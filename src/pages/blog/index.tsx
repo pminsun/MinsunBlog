@@ -14,7 +14,7 @@ export default function Blog({ blogs }: any) {
   return (
     <>
       <Seo
-        title="Blog"
+        title={`MinSun's Blog | Blog`}
         url={BASE_URL + "/blog"}
         desc={"개발하면서 탐구한 것을 기록합니다."}
       />

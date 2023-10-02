@@ -6,7 +6,7 @@ import Seo from "@/components/seo";
 export default function About() {
   return (
     <>
-      <Seo title="About" />
+      <Seo title={`MinSun's Blog | About`} />
       <div>
         <Title title={"About"} subMent={"저를 소개합니다"} />
         <div className="flex items-center justify-center gap-5 flex-col-reverse lg:flex-row">

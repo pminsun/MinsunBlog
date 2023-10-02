@@ -14,7 +14,7 @@ export default function Project({ projects }: any) {
   return (
     <>
       <Seo
-        title="Projects"
+        title={`MinSun's Blog | Projects`} 
         url={BASE_URL + "/project"}
         desc={"진행했던 프로젝트들을 기록합니다."}
       />
