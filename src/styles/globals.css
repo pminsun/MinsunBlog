@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*reset*/
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css")
+    format("font-woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  html,
+  body {
+    @apply font-pretendard h-full;
+  }
+  #__next {
+    @apply h-full;
+  }
+}
+
+select {
+  @apply text-sm text-slate-600 dark:text-slate-400 bg-primary border-b border-slate-500 dark:border-slate-500 focus:outline-none;
+}
+
+p,
+span {
+  @apply text-black dark:text-slate-400;
+}
+
+/*header*/
+.header-style a {
+  @apply block p-2 font-semibold relative
+  after:block after:h-[2px] after:w-0 after:absolute after:left-1/2 after:bottom-[5px] after:bg-transparent after:transition-all after:m-auto
+  hover:after:w-full hover:after:left-0 hover:after:bg-[#2c82f2];
+}
+
+/*custom*/
+.text-point-color {
+  @apply text-[#2c82f2];
+}
+
+.bg-primary {
+  @apply bg-white dark:bg-slate-900;
+}
+.bg-tagNext {
+  @apply bg-[#fdecc8] dark:bg-[#f5cc74] dark:text-slate-800;
+}
+.bg-tagTailwindCSS {
+  @apply bg-[#90ece9] dark:text-slate-800;
+}
+.bg-tagVercel {
+  @apply bg-[#e3e2e0] dark:text-slate-800;
+}
+.bg-tagReact {
+  @apply bg-[#83d4e0] dark:text-slate-800;
+}
+.bg-tagHtml {
+  @apply bg-[#fcb196] dark:text-slate-800;
+}
+.bg-tagCss {
+  @apply bg-[#8dcae4] dark:text-slate-800;
+}
+.bg-tagJavascript {
+  @apply bg-[#f8e88e] dark:text-slate-800;
+}
+.bg-tagReactNative {
+  @apply bg-[#a7bceb] dark:text-slate-800;
+}
+.bg-tagEmotion {
+  @apply bg-[#e0a2d6] dark:text-slate-800;
+}
+.bg-tagDev {
+  @apply bg-slate-300 dark:bg-slate-400 dark:text-slate-800;
+}
+
+.page-state-style {
+  @apply my-8 flex justify-between items-center;
+}
+
+.page-gallery-style {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.page-list-style {
+  @apply block space-y-6;
+}
+
+.item-link-style {
+  @apply space-y-1 rounded-lg overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-800;
+}
+
+.page-image-style {
+  @apply w-full h-full object-cover object-center;
+}
+
+.page-noneimage-style {
+  @apply w-full h-full bg-gray-400;
+}
+
+.page-image-group-hover-effect {
+  @apply overflow-hidden rounded-lg absolute group-hover:brightness-75 group-hover:transition-all group-hover:ease-in-out group-hover:duration-700;
+}
+
+.page-text-group-hover-effect {
+  @apply group-hover:text-white group-hover:drop-shadow-lg;
+}
+
+.page-text-group-hover-Anieffect-500 {
+  @apply text-xs group-hover:transition-all group-hover:duration-500;
+}
+
+.page-text-group-hover-Anieffect-1000 {
+  @apply text-xs group-hover:transition-all group-hover:duration-1000;
+}
