@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Tag from "./tag";
 import { changeDate } from "libs/useChangeDate";
+import { cls } from "libs/utils";
 
 export default function Item({ item, viewStyle }: any) {
   const itemData = UseProperties(item);
@@ -88,7 +89,12 @@ export default function Item({ item, viewStyle }: any) {
               <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect">
                 {itemData.name}
               </p>
-              <span className="text-xs w-2/3 hidden md:block md:mt-1 page-text-group-hover-effect">
+              <span
+                className={cls(
+                  itemData.description.length > 45 ? "w-2/3" : "w-full",
+                  "text-xs hidden md:block md:mt-1 page-text-group-hover-effect"
+                )}
+              >
                 {itemData.description}
               </span>
             </div>
