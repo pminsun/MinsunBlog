@@ -39,7 +39,9 @@ export default function Item({ item, viewStyle }: any) {
               {itemData.name}
             </p>
             <p className="mt-3 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-              {itemData.description}
+              {itemData.description.length > 26
+                ? itemData.description.slice(0, 25) + "....."
+                : itemData.description}
             </p>
             {itemData.date && (
               <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
