@@ -12,7 +12,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const backClick = () => {
-    router.back();
+    router.push("/project");
   };
 
   const itemData = UseProperties(propertiesData);
