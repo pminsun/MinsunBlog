@@ -59,14 +59,14 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="bg-gray-200 dark:bg-gray-600 p-4 rounded text-sm my-4"
+          className="bg-gray-200 dark:bg-gray-600 p-4 rounded text-xs md:text-sm my-4 whitespace-pre-wrap "
         >
           {blockContent.code.rich_text[0].text.content}
         </pre>
       );
     case "image":
       return (
-        <div key={blockContent.id} className="relative h-56">
+        <div key={blockContent.id} className="relative h-32 md:h-56">
           <Image
             src={blockContent.image.file.url}
             alt="image"
