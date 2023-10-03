@@ -67,7 +67,7 @@ export default function Item({ item, viewStyle }: any) {
         <Link
           href={{ pathname: pathName }}
           key={item.id}
-          className="flex items-center justify-between pr-4 h-20 group item-link-style relative group"
+          className="flex items-center justify-between pr-4 h-20 md:h-24 group item-link-style relative group"
         >
           <div className="w-[22%] md:w-[110px] h-full left-0 page-image-group-hover-effect group-hover:w-[100%]">
             {item.cover ? (
@@ -88,7 +88,7 @@ export default function Item({ item, viewStyle }: any) {
               <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect">
                 {itemData.name}
               </p>
-              <span className="text-xs hidden md:block md:mt-1 page-text-group-hover-effect">
+              <span className="text-xs w-2/3 hidden md:block md:mt-1 page-text-group-hover-effect">
                 {itemData.description}
               </span>
             </div>
