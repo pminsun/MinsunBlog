@@ -35,7 +35,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         startDate={itemData.startDate}
         endDate={itemData.endDate}
       />
-      <div>
+      <div className="pb-10">
         {blockDetail?.results?.map((blockContent: any) => (
           <ItemDetailContent
             key={blockContent.id}
