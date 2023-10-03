@@ -10,10 +10,12 @@ export default function ItemDetailContent({ blockContent }: any) {
   const paragraphProp = blockContent.paragraph?.rich_text[0];
   const paragraphTxt = paragraphProp?.text?.content;
   const paragraphPropStyle = paragraphProp?.annotations;
+  const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
 
+  // paragraph
   const notionTxtColor = (colorName: string) => {
     const notionTextColorsList: notionText = {
-      red: "text-red-600",
+      red: "text-red-600 dark:text-red-700",
     };
 
     return notionTextColorsList[colorName] || "";
@@ -59,9 +61,9 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="bg-gray-200 dark:bg-gray-600 p-4 rounded text-xs md:text-sm my-4 whitespace-pre-wrap "
+          className="bg-gray-200 dark:bg-gray-600 p-4 rounded text-xs md:text-sm my-4 whitespace-pre-wrap"
         >
-          {blockContent.code.rich_text[0].text.content}
+          {codeTxt}
         </pre>
       );
     case "image":
