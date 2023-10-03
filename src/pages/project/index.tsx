@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Item from "@/components/item";
 import PageState from "@/components/pageState";
 import Seo from "@/components/seo";
@@ -7,37 +8,52 @@ import axios from "axios";
 import { BASE_URL, DATABASE_ID_PROJECT, TOKEN } from "libs/config";
 import { useSortedData } from "libs/usePageState";
 import { cls } from "libs/utils";
+import { useEffect, useState } from "react";
 
 export default function Project({ projects }: any) {
   const { viewStyle, sortedContent } = useProjectPageStore();
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <Seo
-        title={`MinSun's Blog | Projects`} 
+        title={`MinSun's Blog | Projects`}
         url={BASE_URL + "/project"}
         desc={"진행했던 프로젝트들을 기록합니다."}
       />
-      <Title title={"Projects"} subMent={"진행했던 프로젝트들을 기록합니다."} />
-      <div className="pb-8">
-        <div className="page-state-style">
-          <p>All ({projects.results.length})</p>
-          <PageState path={"projects"} />
-        </div>
-        <div
-          className={cls(
-            viewStyle === "gallery" ? "page-gallery-style" : "page-list-style",
-            "w-full"
-          )}
-        >
-          {useSortedData(
-            projects.results.map((item: any) => (
-              <Item key={item.id} item={item} viewStyle={viewStyle} />
-            )),
-            sortedContent
-          )}
-        </div>
-      </div>
+      {mounted && (
+        <>
+          <Title
+            title={"Projects"}
+            subMent={"진행했던 프로젝트들을 기록합니다."}
+          />
+          <div className="pb-8">
+            <div className="page-state-style">
+              <p>All ({projects.results.length})</p>
+              <PageState path={"projects"} />
+            </div>
+            <div
+              className={cls(
+                viewStyle === "gallery"
+                  ? "page-gallery-style"
+                  : "page-list-style",
+                "w-full"
+              )}
+            >
+              {useSortedData(
+                projects.results.map((item: any) => (
+                  <Item key={item.id} item={item} viewStyle={viewStyle} />
+                )),
+                sortedContent
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

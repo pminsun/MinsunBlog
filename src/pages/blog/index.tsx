@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Item from "@/components/item";
 import Title from "../../components/title";
 import axios from "axios";
@@ -7,9 +8,15 @@ import { useSortedData } from "libs/usePageState";
 import PageState from "@/components/pageState";
 import { useBlogPageStore } from "@/store/pageStore";
 import Seo from "@/components/seo";
+import { useEffect, useState } from "react";
 
 export default function Blog({ blogs }: any) {
   const { viewStyle, sortedContent } = useBlogPageStore();
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -18,26 +25,35 @@ export default function Blog({ blogs }: any) {
         url={BASE_URL + "/blog"}
         desc={"개발하면서 탐구한 것을 기록합니다."}
       />
-      <Title title={"Blog"} subMent={"개발하면서 탐구한 것을 기록합니다."} />
-      <div className="pb-8">
-        <div className="page-state-style">
-          <p>All ({blogs.results.length})</p>
-          <PageState path={"blogs"} />
-        </div>
-        <div
-          className={cls(
-            viewStyle === "gallery" ? "page-gallery-style" : "page-list-style",
-            "w-full"
-          )}
-        >
-          {useSortedData(
-            blogs.results.map((item: any) => (
-              <Item key={item.id} item={item} viewStyle={viewStyle} />
-            )),
-            sortedContent
-          )}
-        </div>
-      </div>
+      {mounted && (
+        <>
+          <Title
+            title={"Blog"}
+            subMent={"개발하면서 탐구한 것을 기록합니다."}
+          />
+          <div className="pb-8">
+            <div className="page-state-style">
+              <p>All ({blogs.results.length})</p>
+              <PageState path={"blogs"} />
+            </div>
+            <div
+              className={cls(
+                viewStyle === "gallery"
+                  ? "page-gallery-style"
+                  : "page-list-style",
+                "w-full"
+              )}
+            >
+              {useSortedData(
+                blogs.results.map((item: any) => (
+                  <Item key={item.id} item={item} viewStyle={viewStyle} />
+                )),
+                sortedContent
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -101,7 +101,8 @@ span {
 }
 
 .page-image-group-hover-effect {
-  @apply overflow-hidden rounded-lg absolute group-hover:brightness-75 group-hover:transition-all group-hover:ease-in-out group-hover:duration-700;
+  @apply overflow-hidden rounded-lg absolute
+  group-hover:brightness-75 group-hover:transition-all group-hover:ease-in-out group-hover:duration-700;
 }
 
 .page-text-group-hover-effect {
@@ -109,9 +110,11 @@ span {
 }
 
 .page-text-group-hover-Anieffect-500 {
-  @apply text-xs group-hover:transition-all group-hover:duration-500;
+  @apply text-xs
+  group-hover:transition-all group-hover:duration-500;
 }
 
 .page-text-group-hover-Anieffect-1000 {
-  @apply text-xs group-hover:transition-all group-hover:duration-1000;
+  @apply text-xs 
+  group-hover:transition-all group-hover:duration-1000;
 }
