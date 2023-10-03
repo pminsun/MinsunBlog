@@ -24,7 +24,7 @@ export default function ItemDetailContent({ blockContent }: any) {
     bold: "font-extrabold",
     italic: "italic",
     strikethrough: "line-through",
-    underline: "underline",
+    underline: "underline underline-offset-4",
   };
 
   const getStyle = (styleName: string, value: any) =>
@@ -81,7 +81,10 @@ export default function ItemDetailContent({ blockContent }: any) {
     case "bookmark":
       return (
         <div key={blockContent.id} className="my-2 hover:underline">
-          <Link href={blockContent.bookmark.url}>
+          <Link
+            href={blockContent.bookmark.url}
+            className="text-sm dark:text-slate-400"
+          >
             {blockContent.bookmark.url}
           </Link>
         </div>
