@@ -18,7 +18,10 @@ interface notionText {
 
 export default function ItemDetailContent({ blockContent }: any) {
   const paragraphProp = blockContent.paragraph?.rich_text[0];
-  const paragraphTxt = paragraphProp?.text?.content;
+  const paragraph = blockContent.paragraph?.rich_text.map(
+    (txtPiece: any) => txtPiece?.text?.content
+  );
+
   const paragraphPropStyle = paragraphProp?.annotations;
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
@@ -27,6 +30,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   const notionTxtColor = (colorName: string) => {
     const notionTextColorsList: notionText = {
       red: "text-red-600 dark:text-red-700",
+      red_background: "bg-red-600",
     };
 
     return notionTextColorsList[colorName] || "";
@@ -66,10 +70,10 @@ export default function ItemDetailContent({ blockContent }: any) {
           className={cls(
             "text-sm leading-6",
             finalNotionTextStyle,
-            paragraphTxt === "참고 링크" ? "mt-12" : ""
+            paragraph === "참고 링크" ? "mt-12" : ""
           )}
         >
-          {paragraphTxt}
+          {paragraph}
         </p>
       );
     case "code":

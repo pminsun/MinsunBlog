@@ -12,7 +12,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const backClick = () => {
-    router.push('/blog');
+    router.push("/blog");
   };
 
   const itemData = UseProperties(propertiesData);
@@ -22,7 +22,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         title={itemData.name}
         url={BASE_URL + "/" + router.asPath}
         desc={itemData.description}
-        image={propertiesData.cover.external.url}
+        image={propertiesData.cover?.external.url}
       />
       <button onClick={backClick} className="block p-1">
         <HiArrowLeft />
