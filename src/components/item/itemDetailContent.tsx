@@ -1,6 +1,16 @@
 import { cls } from "libs/utils";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
+import html from "highlight.js/lib/languages/xml";
+import "highlight.js/styles/night-owl.css";
+
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("html", html);
 
 interface notionText {
   [key: string]: string;
@@ -11,6 +21,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   const paragraphTxt = paragraphProp?.text?.content;
   const paragraphPropStyle = paragraphProp?.annotations;
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
+  const codeLag = blockContent.code?.language;
 
   // paragraph
   const notionTxtColor = (colorName: string) => {
@@ -42,6 +53,10 @@ export default function ItemDetailContent({ blockContent }: any) {
 
   const finalNotionTextStyle = notionTextStyle.join(" ");
 
+  useEffect(() => {
+    hljs.initHighlighting();
+  }, []);
+
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
     case "paragraph":
@@ -61,9 +76,13 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="bg-gray-200 dark:bg-gray-600 p-4 rounded text-xs md:text-sm my-4 whitespace-pre-wrap"
+          className="text-xs md:text-sm my-6 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
         >
-          {codeTxt}
+          {codeLag === "javascript" ? (
+            <code className="js">{codeTxt}</code>
+          ) : (
+            <code className="css">{codeTxt}</code>
+          )}
         </pre>
       );
     case "image":
