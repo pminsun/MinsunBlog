@@ -66,51 +66,31 @@ export default function ItemDetailContent({ blockContent }: any) {
 
   const paragraphColor = colorStyle(blockContent.paragraph?.color);
 
-  const richTextContent = blockContent.paragraph?.rich_text.map(
-    (txtPiece: any, index: number) => {
-      const textContent = txtPiece?.text?.content;
-      const textAnnotations = txtPiece?.annotations;
+  const textContent =
+    blockContent.type === "paragraph"
+      ? blockContent.paragraph?.rich_text
+      : blockContent.bulleted_list_item?.rich_text;
 
-      const textStyles = [
-        ...getStyle("bold", textAnnotations?.bold),
-        ...getStyle("italic", textAnnotations?.italic),
-        ...getStyle("strikethrough", textAnnotations?.strikethrough),
-        ...getStyle("underline", textAnnotations?.underline),
-        ...colorStyle(textAnnotations?.color),
-      ].filter(Boolean);
+  const richTextContent = textContent?.map((txtPiece: any, index: number) => {
+    const textContent = txtPiece?.text?.content;
+    const textAnnotations = txtPiece?.annotations;
 
-      const finalTextStyle = textStyles.join(" ");
+    const textStyles = [
+      ...getStyle("bold", textAnnotations?.bold),
+      ...getStyle("italic", textAnnotations?.italic),
+      ...getStyle("strikethrough", textAnnotations?.strikethrough),
+      ...getStyle("underline", textAnnotations?.underline),
+      ...colorStyle(textAnnotations?.color),
+    ].filter(Boolean);
 
-      return (
-        <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
-          {textContent}
-        </span>
-      );
-    }
-  );
+    const finalTextStyle = textStyles.join(" ");
 
-  const listContent = blockContent.bulleted_list_item?.rich_text.map(
-    (txtPiece: any, index: number) => {
-      const textContent = txtPiece?.text?.content;
-      const textAnnotations = txtPiece?.annotations;
-
-      const textStyles = [
-        ...getStyle("bold", textAnnotations?.bold),
-        ...getStyle("italic", textAnnotations?.italic),
-        ...getStyle("strikethrough", textAnnotations?.strikethrough),
-        ...getStyle("underline", textAnnotations?.underline),
-        ...colorStyle(textAnnotations?.color),
-      ].filter(Boolean);
-
-      const finalTextStyle = textStyles.join(" ");
-
-      return (
-        <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
-          {textContent}
-        </span>
-      );
-    }
-  );
+    return (
+      <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
+        {textContent}
+      </span>
+    );
+  });
 
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
@@ -140,10 +120,10 @@ export default function ItemDetailContent({ blockContent }: any) {
           className={cls(
             "text-sm leading-6",
             ...paragraphColor,
-            listContent.textContent === "참고 링크" ? "mt-12" : ""
+            richTextContent.textContent === "참고 링크" ? "mt-12" : ""
           )}
         >
-          {listContent}
+          {richTextContent}
         </li>
       );
     case "code":
