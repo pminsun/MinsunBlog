@@ -26,6 +26,7 @@ select {
 }
 
 p,
+li,
 span:not(.detail-paragraph, .tag-name) {
   @apply text-black dark:text-slate-400;
 }
