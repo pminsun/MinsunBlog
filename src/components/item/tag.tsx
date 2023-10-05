@@ -9,7 +9,7 @@ export default function Tag({ tags, viewStyle }: any) {
           <span
             className={cls(
               UseTagsColor(tags[0].name),
-              "p-1 rounded text-[10px]"
+              "p-1 rounded text-[10px] tag-name"
             )}
           >
             {tags[0].name}
@@ -22,7 +22,7 @@ export default function Tag({ tags, viewStyle }: any) {
           key={tag.id}
           className={cls(
             UseTagsColor(tag.name),
-            "p-1 rounded text-[10px]",
+            "p-1 rounded text-[10px] tag-name",
             viewStyle === "list" && tags.length > 1
               ? "hidden md:inline-block"
               : ""

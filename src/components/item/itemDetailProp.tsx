@@ -35,7 +35,7 @@ export default function ItemDetailProp({
       {endDate && startDate && (
         <div className="flex items-center">
           <span className="text-xs w-24 pt-1 block">WorkPeriod</span>
-          <div className="text-xs">
+          <div className="text-xs pt-1">
             <span>{changeDate(startDate)} ~ </span>
             <span> {changeDate(endDate)}</span>
           </div>
@@ -44,13 +44,13 @@ export default function ItemDetailProp({
       {endDate == null && startDate && (
         <div className="flex items-center">
           <span className="text-xs w-24 pt-1 block">작성일자</span>
-          <span className="text-xs">{changeDate(startDate)}</span>
+          <span className="text-xs pt-1">{changeDate(startDate)}</span>
         </div>
       )}
       {date && (
         <div className="flex items-center">
           <span className="text-xs w-24 pt-1 block">작성일자</span>
-          <span className="text-xs">{changeDate(date)}</span>
+          <span className="text-xs pt-1">{changeDate(date)}</span>
         </div>
       )}
     </div>

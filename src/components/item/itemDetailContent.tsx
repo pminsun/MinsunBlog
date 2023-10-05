@@ -17,12 +17,11 @@ interface notionText {
 }
 
 export default function ItemDetailContent({ blockContent }: any) {
-  const paragraphProp = blockContent.paragraph?.rich_text[0];
-  const paragraph = blockContent.paragraph?.rich_text.map(
-    (txtPiece: any) => txtPiece?.text?.content
-  );
+  // code
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
 
-  const paragraphPropStyle = paragraphProp?.annotations;
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
 
@@ -30,11 +29,28 @@ export default function ItemDetailContent({ blockContent }: any) {
   const notionTxtColor = (colorName: string) => {
     const notionTextColorsList: notionText = {
       red: "text-red-600 dark:text-red-700",
-      red_background: "bg-red-600",
+      red_background: "bg-red-200 dark:bg-red-900",
+      orange: "text-orange-600 dark:text-orange-700",
+      orange_background: "bg-orange-200 dark:bg-orange-900",
+      yellow: "text-yellow-600 dark:text-yellow-700",
+      yellow_background: "bg-yellow-200 dark:bg-yellow-900",
+      green: "text-green-600 dark:text-green-700",
+      green_background: "bg-green-200 dark:bg-green-900",
+      blue: "text-blue-600 dark:text-blue-700",
+      blue_background: "bg-blue-200 dark:bg-blue-900",
+      purple: "text-purple-600 dark:text-purple-700",
+      purple_background: "bg-purple-200 dark:bg-purple-900",
+      pink: "text-pink-600 dark:text-pink-700",
+      pink_background: "bg-pink-200 dark:bg-pink-900",
+      brown: "text-[#c8a08d] dark:text-[#976954]",
+      brown_background: "bg-[#F4EEEE] dark:bg-[#68493b]",
+      gray: "text-gray-600 dark:text-gray-500",
+      gray_background: "bg-gray-200 dark:bg-gray-700",
     };
 
     return notionTextColorsList[colorName] || "";
   };
+
   const stylesMap: notionText = {
     bold: "font-extrabold",
     italic: "italic",
@@ -47,19 +63,30 @@ export default function ItemDetailContent({ blockContent }: any) {
   const colorStyle = (color: string) =>
     color !== "default" ? [notionTxtColor(color)] : [];
 
-  const notionTextStyle = [
-    ...getStyle("bold", paragraphPropStyle?.bold),
-    ...getStyle("italic", paragraphPropStyle?.italic),
-    ...getStyle("strikethrough", paragraphPropStyle?.strikethrough),
-    ...getStyle("underline", paragraphPropStyle?.underline),
-    ...colorStyle(paragraphPropStyle?.color),
-  ].filter(Boolean);
+  const paragraphColor = colorStyle(blockContent.paragraph?.color);
 
-  const finalNotionTextStyle = notionTextStyle.join(" ");
+  const richTextContent = blockContent.paragraph?.rich_text.map(
+    (txtPiece: any, index: number) => {
+      const textContent = txtPiece?.text?.content;
+      const textAnnotations = txtPiece?.annotations;
 
-  useEffect(() => {
-    hljs.initHighlighting();
-  }, []);
+      const textStyles = [
+        ...getStyle("bold", textAnnotations?.bold),
+        ...getStyle("italic", textAnnotations?.italic),
+        ...getStyle("strikethrough", textAnnotations?.strikethrough),
+        ...getStyle("underline", textAnnotations?.underline),
+        ...colorStyle(textAnnotations?.color),
+      ].filter(Boolean);
+
+      const finalTextStyle = textStyles.join(" ");
+
+      return (
+        <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
+          {textContent}
+        </span>
+      );
+    }
+  );
 
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
@@ -69,11 +96,11 @@ export default function ItemDetailContent({ blockContent }: any) {
           key={blockContent.id}
           className={cls(
             "text-sm leading-6",
-            finalNotionTextStyle,
-            paragraph === "참고 링크" ? "mt-12" : ""
+            ...paragraphColor,
+            richTextContent.textContent === "참고 링크" ? "mt-12" : ""
           )}
         >
-          {paragraph}
+          {richTextContent}
         </p>
       );
     case "code":
@@ -91,7 +118,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       );
     case "image":
       return (
-        <div key={blockContent.id} className="relative h-32 md:h-56">
+        <div key={blockContent.id} className="relative h-32 md:h-56 my-4">
           <Image
             src={blockContent.image.file.url}
             alt="image"

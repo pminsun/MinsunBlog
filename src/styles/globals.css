@@ -26,7 +26,7 @@ select {
 }
 
 p,
-span {
+span:not(.detail-paragraph, .tag-name) {
   @apply text-black dark:text-slate-400;
 }
 
@@ -117,4 +117,35 @@ span {
 .page-text-group-hover-Anieffect-1000 {
   @apply text-xs 
   group-hover:transition-all group-hover:duration-1000;
+}
+
+/* code-highlight */
+/*css*/
+.hljs-selector-tag {
+  @apply !text-[#ff6363];
+}
+
+.hljs-selector-class {
+  @apply !text-[#addb67] italic;
+}
+
+.hljs-number {
+  @apply !text-[#f78c6c];
+}
+
+.hljs-attribute {
+  @apply !text-[#80cbc4];
+}
+/*javascript*/
+.hljs-keyword {
+  @apply !text-[#c792ea] italic;
+}
+.hljs-title {
+  @apply !text-[#dcdcaa] italic;
+}
+.hljs-function {
+  @apply !text-[#82aaff];
+}
+.hljs-literal {
+  @apply !text-[#ff5874];
 }
