@@ -117,11 +117,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <li
           key={blockContent.id}
-          className={cls(
-            "text-sm leading-6",
-            ...paragraphColor,
-            richTextContent.textContent === "참고 링크" ? "mt-12" : ""
-          )}
+          className={cls("text-sm leading-6", ...paragraphColor)}
         >
           {richTextContent}
         </li>
