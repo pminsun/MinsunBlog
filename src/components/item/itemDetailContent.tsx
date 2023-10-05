@@ -38,7 +38,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       green: "text-green-600 dark:text-green-700",
       green_background: "bg-green-200 dark:bg-green-900",
       blue: "text-blue-600 dark:text-blue-700",
-      blue_background: "bg-blue-200 dark:bg-blue-900",
+      blue_background: "bg-blue-100 dark:bg-blue-900",
       purple: "text-purple-600 dark:text-purple-700",
       purple_background: "bg-purple-200 dark:bg-purple-900",
       pink: "text-pink-600 dark:text-pink-700",
@@ -89,26 +89,68 @@ export default function ItemDetailContent({ blockContent }: any) {
     }
   );
 
+  const listContent = blockContent.bulleted_list_item?.rich_text.map(
+    (txtPiece: any, index: number) => {
+      const textContent = txtPiece?.text?.content;
+      const textAnnotations = txtPiece?.annotations;
+
+      const textStyles = [
+        ...getStyle("bold", textAnnotations?.bold),
+        ...getStyle("italic", textAnnotations?.italic),
+        ...getStyle("strikethrough", textAnnotations?.strikethrough),
+        ...getStyle("underline", textAnnotations?.underline),
+        ...colorStyle(textAnnotations?.color),
+      ].filter(Boolean);
+
+      const finalTextStyle = textStyles.join(" ");
+
+      return (
+        <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
+          {textContent}
+        </span>
+      );
+    }
+  );
+
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
     case "paragraph":
       return (
-        <p
+        <>
+          {richTextContent.length > 0 ? (
+            <p
+              key={blockContent.id}
+              className={cls(
+                "text-sm leading-6",
+                ...paragraphColor,
+                richTextContent.textContent === "참고 링크" ? "mt-12" : ""
+              )}
+            >
+              {richTextContent}
+            </p>
+          ) : (
+            <p className="py-3" />
+          )}
+        </>
+      );
+    case "bulleted_list_item":
+      return (
+        <li
           key={blockContent.id}
           className={cls(
             "text-sm leading-6",
             ...paragraphColor,
-            richTextContent.textContent === "참고 링크" ? "mt-12" : ""
+            listContent.textContent === "참고 링크" ? "mt-12" : ""
           )}
         >
-          {richTextContent}
-        </p>
+          {listContent}
+        </li>
       );
     case "code":
       return (
         <pre
           key={blockContent.id}
-          className="text-xs md:text-sm my-6 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
+          className="text-xs md:text-sm my-2 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
         >
           {codeLag === "javascript" ? (
             <code className="js">{codeTxt}</code>
@@ -145,8 +187,3 @@ export default function ItemDetailContent({ blockContent }: any) {
       return null; // 다른 블록 유형은 무시
   }
 }
-
-/*
-width={768}
-            height={224}
-*/
