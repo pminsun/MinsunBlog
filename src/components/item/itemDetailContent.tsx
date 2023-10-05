@@ -20,6 +20,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   // code
   useEffect(() => {
     hljs.highlightAll();
+    hljs.configure({ ignoreUnescapedHTML: true }); //코드 블록에서 이스케이프되지 않은 HTML에 대한 경고를 콘솔에 기록하지 않음
   }, []);
 
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
@@ -124,6 +125,7 @@ export default function ItemDetailContent({ blockContent }: any) {
             alt="image"
             fill
             priority
+            sizes="100%"
             className="object-contain"
           />
         </div>
@@ -143,3 +145,8 @@ export default function ItemDetailContent({ blockContent }: any) {
       return null; // 다른 블록 유형은 무시
   }
 }
+
+/*
+width={768}
+            height={224}
+*/
