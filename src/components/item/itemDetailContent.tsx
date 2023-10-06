@@ -30,19 +30,19 @@ export default function ItemDetailContent({ blockContent }: any) {
   const notionTxtColor = (colorName: string) => {
     const notionTextColorsList: notionText = {
       red: "text-red-600 dark:text-red-700",
-      red_background: "bg-red-200 dark:bg-red-900",
+      red_background: "bg-red-100 dark:bg-red-900",
       orange: "text-orange-600 dark:text-orange-700",
-      orange_background: "bg-orange-200 dark:bg-orange-900",
+      orange_background: "bg-orange-100 dark:bg-orange-900",
       yellow: "text-yellow-600 dark:text-yellow-700",
-      yellow_background: "bg-yellow-200 dark:bg-yellow-900",
+      yellow_background: "bg-yellow-100 dark:bg-yellow-900",
       green: "text-green-600 dark:text-green-700",
-      green_background: "bg-green-200 dark:bg-green-900",
+      green_background: "bg-green-100 dark:bg-green-900",
       blue: "text-blue-600 dark:text-blue-700",
       blue_background: "bg-blue-100 dark:bg-blue-900",
       purple: "text-purple-600 dark:text-purple-700",
-      purple_background: "bg-purple-200 dark:bg-purple-900",
+      purple_background: "bg-purple-100 dark:bg-purple-900",
       pink: "text-pink-600 dark:text-pink-700",
-      pink_background: "bg-pink-200 dark:bg-pink-900",
+      pink_background: "bg-pink-100 dark:bg-pink-900",
       brown: "text-[#c8a08d] dark:text-[#976954]",
       brown_background: "bg-[#F4EEEE] dark:bg-[#68493b]",
       gray: "text-gray-600 dark:text-gray-500",
@@ -137,7 +137,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       );
     case "image":
       return (
-        <div key={blockContent.id} className="relative h-32 md:h-56 my-4">
+        <div key={blockContent.id} className="relative h-32 md:h-56 my-2">
           <Image
             src={blockContent.image.file.url}
             alt="image"
