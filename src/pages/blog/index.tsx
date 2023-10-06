@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 export default function Blog({ blogs }: any) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
+  const [tagCategory, setTagCategory] = useState("all");
 
   useEffect(() => {
     setMounted(true);
@@ -33,7 +34,59 @@ export default function Blog({ blogs }: any) {
           />
           <div className="pb-8">
             <div className="page-state-style">
-              <p>All ({blogs.results.length})</p>
+              <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
+                <li
+                  onClick={() => setTagCategory("all")}
+                  className={cls(
+                    "flex",
+                    tagCategory === "all" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  All <span>({blogs.results.length})</span>
+                </li>
+                <li
+                  onClick={() => setTagCategory("Dev")}
+                  className={cls(tagCategory === "Dev" ? "text-[#2c82f2]" : "")}
+                >
+                  Dev
+                </li>
+                <li
+                  onClick={() => setTagCategory("React")}
+                  className={cls(
+                    tagCategory === "React" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  React
+                </li>
+                <li
+                  onClick={() => setTagCategory("Emotion")}
+                  className={cls(
+                    tagCategory === "Emotion" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  Emotion
+                </li>
+                <li
+                  onClick={() => setTagCategory("Javascript")}
+                  className={cls(
+                    tagCategory === "Javascript" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  Javascript
+                </li>
+                <li
+                  onClick={() => setTagCategory("Css")}
+                  className={cls(tagCategory === "Css" ? "text-[#2c82f2]" : "")}
+                >
+                  Css
+                </li>
+                <li
+                  onClick={() => setTagCategory("Etc")}
+                  className={cls(tagCategory === "Etc" ? "text-[#2c82f2]" : "")}
+                >
+                  Etc
+                </li>
+              </ul>
               <PageState path={"blogs"} />
             </div>
             <div
@@ -46,7 +99,12 @@ export default function Blog({ blogs }: any) {
             >
               {useSortedData(
                 blogs.results.map((item: any) => (
-                  <Item key={item.id} item={item} viewStyle={viewStyle} />
+                  <Item
+                    key={item.id}
+                    item={item}
+                    viewStyle={viewStyle}
+                    tagCategory={tagCategory}
+                  />
                 )),
                 sortedContent
               )}

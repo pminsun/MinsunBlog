@@ -89,6 +89,10 @@ span:not(.detail-paragraph, .tag-name) {
   @apply block space-y-6;
 }
 
+.item-tagCategory li {
+  @apply cursor-pointer p-2;
+}
+
 .item-link-style {
   @apply space-y-1 rounded-lg overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-800;
 }
