@@ -86,7 +86,16 @@ export default function ItemDetailContent({ blockContent }: any) {
     const finalTextStyle = textStyles.join(" ");
 
     return (
-      <span key={index} className={cls("detail-paragraph", finalTextStyle)}>
+      <span
+        key={index}
+        className={cls(
+          "detail-paragraph",
+          finalTextStyle,
+          textContent === "참고"
+            ? "mt-6 pb-3 mb-6 font-bold text-lg block border-b border-stone-400"
+            : ""
+        )}
+      >
         {textContent}
       </span>
     );
@@ -100,11 +109,7 @@ export default function ItemDetailContent({ blockContent }: any) {
           {richTextContent.length > 0 ? (
             <p
               key={blockContent.id}
-              className={cls(
-                "text-sm leading-6",
-                ...paragraphColor,
-                richTextContent.textContent === "참고 링크" ? "mt-12" : ""
-              )}
+              className={cls("text-sm leading-6", ...paragraphColor)}
             >
               {richTextContent}
             </p>
@@ -150,10 +155,10 @@ export default function ItemDetailContent({ blockContent }: any) {
       );
     case "bookmark":
       return (
-        <div key={blockContent.id} className="my-2 hover:underline">
+        <div key={blockContent.id} className="my-2 ">
           <Link
             href={blockContent.bookmark.url}
-            className="text-sm dark:text-slate-400"
+            className="text-sm text-[#2c82f2] font-bold hover:underline decoration-[#2c82f2]"
           >
             {blockContent.bookmark.url}
           </Link>
