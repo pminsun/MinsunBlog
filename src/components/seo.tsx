@@ -10,7 +10,7 @@ interface SeoType {
 export default function Seo({ title, desc, url, image }: SeoType) {
   return (
     <Head>
-      <title>{`MinSun's Blog | ${title}`}</title>
+      <title>{title ? title : "MinSun's Blog"}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta property="og:title" content={title ? title : "MinSun's Blog"} />
       <meta property="og:site_name" content="MinSun's Blog" />
