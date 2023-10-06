@@ -92,7 +92,7 @@ export default function ItemDetailContent({ blockContent }: any) {
           "detail-paragraph",
           finalTextStyle,
           textContent === "참고"
-            ? "mt-6 pb-3 mb-6 font-bold text-lg block border-b border-stone-400"
+            ? "mt-6 pb-3 mb-4 font-bold text-sm block border-b border-stone-400"
             : ""
         )}
       >
