@@ -7,6 +7,7 @@ export default function ItemDetailProp({
   name,
   tags,
   github,
+  description,
   date,
   startDate,
   endDate,
@@ -14,12 +15,16 @@ export default function ItemDetailProp({
   return (
     <div className="mt-4 mb-8 pb-8 border-b-4 border-stone-200 border-dotted dark:border-stone-500">
       <h2 className="text-2xl font-semibold mb-7">{name}</h2>
-      <div className="flex items-center mb-2">
+      <div className="flex items-center mb-4">
         <span className="text-xs w-24 block">태그</span>
         <Tag tags={tags} />
       </div>
+      <div className="flex items-center mb-3">
+        <span className="text-xs w-24 block">상세설명</span>
+        <span className="text-xs">{description}</span>
+      </div>
       {github && (
-        <div className="flex items-center h-6 mt-4 mb-2">
+        <div className="flex items-center h-6 mt-3 mb-2">
           <span className="flex items-center gap-2 text-xs w-24">
             Github <HiExternalLink />
           </span>

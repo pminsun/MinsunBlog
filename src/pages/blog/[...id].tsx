@@ -32,6 +32,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         tags={itemData.tags}
         github={itemData.github}
         date={itemData.date}
+        description={itemData.description}
       />
       <div className="pb-10">
         {blockDetail?.results?.map((blockContent: any) => (
