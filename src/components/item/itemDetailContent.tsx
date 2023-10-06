@@ -129,9 +129,9 @@ export default function ItemDetailContent({ blockContent }: any) {
           className="text-xs md:text-sm my-2 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
         >
           {codeLag === "javascript" ? (
-            <code className="js">{codeTxt}</code>
+            <code className="js code-color">{codeTxt}</code>
           ) : (
-            <code className="css">{codeTxt}</code>
+            <code className="css code-color">{codeTxt}</code>
           )}
         </pre>
       );

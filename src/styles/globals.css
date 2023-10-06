@@ -121,32 +121,47 @@ span:not(.detail-paragraph, .tag-name) {
 }
 
 /* code-highlight */
-/*css*/
+.code-color span {
+  @apply text-[#d6deeb];
+}
 .hljs-selector-tag {
   @apply !text-[#ff6363];
 }
-
-.hljs-selector-class {
-  @apply !text-[#addb67] italic;
-}
-
 .hljs-number {
   @apply !text-[#f78c6c];
 }
-
 .hljs-attribute {
   @apply !text-[#80cbc4];
 }
-/*javascript*/
+.hljs-built_in,
+.hljs-selector-class {
+  @apply !text-[#addb67] italic;
+}
 .hljs-keyword {
   @apply !text-[#c792ea] italic;
 }
 .hljs-title {
   @apply !text-[#dcdcaa] italic;
 }
-.hljs-function {
+.hljs-function,
+.hljs-type {
   @apply !text-[#82aaff];
 }
 .hljs-literal {
   @apply !text-[#ff5874];
+}
+.hljs-attr,
+.hljs-name,
+.hljs-tag,
+.hljs-doctag {
+  @apply !text-[#7fdbca];
+}
+.hljs-string {
+  @apply !text-[#ecc48d];
+}
+.hljs-variable {
+  @apply !text-[#addb67];
+}
+.hljs-comment {
+  @apply !text-[#637777] italic;
 }
