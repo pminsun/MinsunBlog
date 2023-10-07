@@ -69,6 +69,8 @@ export default function ItemDetailContent({ blockContent }: any) {
   const textContent =
     blockContent.type === "paragraph"
       ? blockContent.paragraph?.rich_text
+      : blockContent.type === "heading_3"
+      ? blockContent.heading_3?.rich_text
       : blockContent.bulleted_list_item?.rich_text;
 
   const richTextContent = textContent?.map((txtPiece: any, index: number) => {
@@ -122,10 +124,21 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <li
           key={blockContent.id}
-          className={cls("text-sm leading-6", ...paragraphColor)}
+          className={cls("pl-3 text-sm leading-6", ...paragraphColor)}
         >
           {richTextContent}
         </li>
+      );
+    case "heading_3":
+      return (
+        <>
+          <p
+            key={blockContent.id}
+            className={cls("text-lg pb-2 leading-6", ...paragraphColor)}
+          >
+            {richTextContent}
+          </p>
+        </>
       );
     case "code":
       return (
