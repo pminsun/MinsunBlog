@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 export default function Project({ projects }: any) {
   const { viewStyle, sortedContent } = useProjectPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
+  const [tagCategory, setTagCategory] = useState("all");
 
   useEffect(() => {
     setMounted(true);
@@ -33,7 +34,17 @@ export default function Project({ projects }: any) {
           />
           <div className="pb-8">
             <div className="page-state-style">
-              <p>All ({projects.results.length})</p>
+              <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
+                <li
+                  onClick={() => setTagCategory("all")}
+                  className={cls(
+                    "flex",
+                    tagCategory === "all" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  All({projects.results.length})
+                </li>
+              </ul>
               <PageState path={"projects"} />
             </div>
             <div
@@ -46,7 +57,12 @@ export default function Project({ projects }: any) {
             >
               {useSortedData(
                 projects.results.map((item: any) => (
-                  <Item key={item.id} item={item} viewStyle={viewStyle} />
+                  <Item
+                    key={item.id}
+                    item={item}
+                    viewStyle={viewStyle}
+                    tagCategory={tagCategory}
+                  />
                 )),
                 sortedContent
               )}

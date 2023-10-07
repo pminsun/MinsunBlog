@@ -42,7 +42,7 @@ export default function Blog({ blogs }: any) {
                     tagCategory === "all" ? "text-[#2c82f2]" : ""
                   )}
                 >
-                  All <span>({blogs.results.length})</span>
+                  All({blogs.results.length})
                 </li>
                 <li
                   onClick={() => setTagCategory("Dev")}
