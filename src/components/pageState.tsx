@@ -71,13 +71,13 @@ export default function PageState({ path }: PageStateType) {
               <BsGrid
                 className={cls(
                   "text-lg",
-                  viewStyle === "gallery" ? "text-[#2c82f2]" : "text-black"
+                  viewStyle === "gallery" ? "text-[#2c82f2]" : "text-slate-400"
                 )}
               />
               <span
                 className={cls(
                   "text-[10px]",
-                  viewStyle === "gallery" ? "!text-[#2c82f2]" : "text-black"
+                  viewStyle === "gallery" ? "!text-[#2c82f2]" : ""
                 )}
               >
                 갤러리
@@ -90,7 +90,7 @@ export default function PageState({ path }: PageStateType) {
               <BsListUl
                 className={cls(
                   "text-lg",
-                  viewStyle === "list" ? "text-[#2c82f2]" : "text-black"
+                  viewStyle === "list" ? "text-[#2c82f2]" : "text-slate-400"
                 )}
               />
               <span
@@ -116,7 +116,9 @@ export default function PageState({ path }: PageStateType) {
               <BsSortNumericDownAlt
                 className={cls(
                   "text-lg",
-                  sortedContent === "latest" ? "text-[#2c82f2]" : "text-black"
+                  sortedContent === "latest"
+                    ? "text-[#2c82f2]"
+                    : "text-slate-400"
                 )}
               />
               <span
@@ -137,7 +139,7 @@ export default function PageState({ path }: PageStateType) {
                   "text-lg",
                   sortedContent === "registration"
                     ? "text-[#2c82f2]"
-                    : "text-black"
+                    : "text-slate-400"
                 )}
               />
               <span
