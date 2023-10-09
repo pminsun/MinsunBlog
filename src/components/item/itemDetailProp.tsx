@@ -20,7 +20,7 @@ export default function ItemDetailProp({
         <Tag tags={tags} />
       </div>
       <div className="flex items-center mb-3">
-        <span className="text-xs w-24 block">상세설명</span>
+        <span className="text-xs w-24 min-w-[6rem] block">상세설명</span>
         <span className="text-xs">{description}</span>
       </div>
       {github && (
