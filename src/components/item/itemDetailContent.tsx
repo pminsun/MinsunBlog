@@ -148,8 +148,10 @@ export default function ItemDetailContent({ blockContent }: any) {
         >
           {codeLag === "javascript" ? (
             <code className="js code-color">{codeTxt}</code>
-          ) : (
+          ) : codeLag === "css" ? (
             <code className="css code-color">{codeTxt}</code>
+          ) : (
+            <code className="html code-color">{codeTxt}</code>
           )}
         </pre>
       );

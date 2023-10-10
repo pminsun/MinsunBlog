@@ -157,7 +157,8 @@ span:not(.detail-paragraph, .tag-name) {
 .hljs-attr,
 .hljs-name,
 .hljs-tag,
-.hljs-doctag {
+.hljs-doctag,
+.hljs-params {
   @apply !text-[#7fdbca];
 }
 .hljs-string {
@@ -168,4 +169,7 @@ span:not(.detail-paragraph, .tag-name) {
 }
 .hljs-comment {
   @apply !text-[#637777] italic;
+}
+.hljs-subst {
+  @apply !text-[#d3423e];
 }
