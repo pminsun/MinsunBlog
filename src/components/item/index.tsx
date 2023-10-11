@@ -30,9 +30,18 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
             className="h-[280px] item-link-style group relative"
           >
             <div className="w-full h-1/2 top-0 group-hover:h-full page-image-group-hover-effect">
-              {item.cover ? (
+              {item.cover?.external ? (
                 <Image
-                  src={item.cover?.external?.url || item.cover?.file?.url}
+                  src={item.cover?.external?.url}
+                  alt="image"
+                  width={300}
+                  height={300}
+                  priority
+                  className="page-image-style"
+                />
+              ) : item.cover?.file ? (
+                <Image
+                  src={item.cover?.file?.url}
                   alt="image"
                   width={300}
                   height={300}
