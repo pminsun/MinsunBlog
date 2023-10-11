@@ -21,9 +21,14 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
         (tagCategory === "all" ||
           tagName.includes(tagCategory) ||
           (tagCategory === "Etc" &&
-            !["Dev", "React", "Emotion", "Javascript", "Css"].some(
-              (excludedTag) => tagName.includes(excludedTag)
-            ))) && (
+            ![
+              "Dev",
+              "React",
+              "Emotion",
+              "TailwindCSS",
+              "Javascript",
+              "Css",
+            ].some((excludedTag) => tagName.includes(excludedTag)))) && (
           <Link
             href={{ pathname: pathName }}
             key={item.id}
@@ -76,9 +81,14 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
         (tagCategory === "all" ||
           tagName.includes(tagCategory) ||
           (tagCategory === "Etc" &&
-            !["Dev", "React", "Emotion", "Javascript", "Css"].some(
-              (excludedTag) => tagName.includes(excludedTag)
-            ))) && (
+            ![
+              "Dev",
+              "React",
+              "Emotion",
+              "TailwindCSS",
+              "Javascript",
+              "Css",
+            ].some((excludedTag) => tagName.includes(excludedTag)))) && (
           <Link
             href={{ pathname: pathName }}
             key={item.id}

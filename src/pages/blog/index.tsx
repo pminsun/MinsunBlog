@@ -67,6 +67,14 @@ export default function Blog({ blogs }: any) {
                   Emotion
                 </li>
                 <li
+                  onClick={() => setTagCategory("TailwindCSS")}
+                  className={cls(
+                    tagCategory === "TailwindCSS" ? "text-[#2c82f2]" : ""
+                  )}
+                >
+                  TailwindCSS
+                </li>
+                <li
                   onClick={() => setTagCategory("Javascript")}
                   className={cls(
                     tagCategory === "Javascript" ? "text-[#2c82f2]" : ""
