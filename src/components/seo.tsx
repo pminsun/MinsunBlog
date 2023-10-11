@@ -12,6 +12,8 @@ export default function Seo({ title, desc, url, image }: SeoType) {
     <Head>
       <title>{title ? title : "MinSun's Blog"}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="author" content="Minsun" />
+      <meta name="description" content="MinSun's Blog" />
       <meta property="og:title" content={title ? title : "MinSun's Blog"} />
       <meta property="og:site_name" content="MinSun's Blog" />
       <meta

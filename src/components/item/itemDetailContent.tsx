@@ -7,6 +7,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 import css from "highlight.js/lib/languages/css";
 import html from "highlight.js/lib/languages/xml";
 import "highlight.js/styles/night-owl.css";
+import { useTheme } from "next-themes";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("css", css);
@@ -134,7 +135,7 @@ export default function ItemDetailContent({ blockContent }: any) {
         <>
           <p
             key={blockContent.id}
-            className={cls("text-lg pb-2 leading-6", ...paragraphColor)}
+            className={cls("text-lg pb-4 leading-6", ...paragraphColor)}
           >
             {richTextContent}
           </p>
@@ -144,7 +145,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="text-xs md:text-sm my-2 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
+          className="text-xs md:text-sm my-4 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
         >
           {codeLag === "javascript" ? (
             <code className="js code-color">{codeTxt}</code>

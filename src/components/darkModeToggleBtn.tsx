@@ -4,7 +4,6 @@ import { HiOutlineSun, HiOutlineStar } from "react-icons/hi";
 
 export default function DarkModeToggleBtn() {
   const { theme, setTheme } = useTheme();
-
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     setLoaded(true);

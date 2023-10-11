@@ -125,8 +125,8 @@ span:not(.detail-paragraph, .tag-name) {
 }
 
 /* code-highlight */
-.code-color span {
-  @apply text-[#d6deeb];
+.code-color {
+  @apply rounded !py-5 !px-7 !bg-[#f6f4ef] dark:!bg-[#011627] !text-[#4e5156] dark:!text-[#d6deeb];
 }
 .hljs-selector-tag {
   @apply !text-[#ff6363];
@@ -135,17 +135,17 @@ span:not(.detail-paragraph, .tag-name) {
   @apply !text-[#f78c6c];
 }
 .hljs-attribute {
-  @apply !text-[#80cbc4];
+  @apply !text-[#69b4ad] dark:!text-[#80cbc4];
 }
 .hljs-built_in,
 .hljs-selector-class {
-  @apply !text-[#addb67] italic;
+  @apply !text-[#8bb053] dark:!text-[#addb67] italic;
 }
 .hljs-keyword {
-  @apply !text-[#c792ea] italic;
+  @apply !text-[#9a66bd] dark:!text-[#c792ea] italic;
 }
 .hljs-title {
-  @apply !text-[#dcdcaa] italic;
+  @apply !text-[#b9af54] dark:!text-[#dcdcaa] italic;
 }
 .hljs-function,
 .hljs-type {
@@ -159,13 +159,13 @@ span:not(.detail-paragraph, .tag-name) {
 .hljs-tag,
 .hljs-doctag,
 .hljs-params {
-  @apply !text-[#7fdbca];
+  @apply !text-[#449486] dark:!text-[#7fdbca];
 }
 .hljs-string {
-  @apply !text-[#ecc48d];
+  @apply !text-[#ca9b59] dark:!text-[#ecc48d];
 }
 .hljs-variable {
-  @apply !text-[#addb67];
+  @apply !text-[#7ea14a] dark:!text-[#addb67];
 }
 .hljs-comment {
   @apply !text-[#637777] italic;
