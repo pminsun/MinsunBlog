@@ -32,7 +32,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
             <div className="w-full h-1/2 top-0 group-hover:h-full page-image-group-hover-effect">
               {item.cover ? (
                 <Image
-                  src={item.cover?.external.url || item.cover?.file?.url}
+                  src={item.cover?.external?.url || item.cover?.file?.url}
                   alt="image"
                   width={300}
                   height={300}

@@ -22,7 +22,9 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         title={itemData.name}
         url={BASE_URL + "/" + router.asPath}
         desc={itemData.description}
-        image={propertiesData.cover?.external.url}
+        image={
+          propertiesData.cover?.external?.url || propertiesData.cover?.file?.url
+        }
       />
       <button onClick={backClick} className="block p-1">
         <HiArrowLeft />
