@@ -38,22 +38,21 @@ export default function Blog({ blogs }: any) {
                 <li
                   onClick={() => setTagCategory("all")}
                   className={cls(
-                    "flex",
-                    tagCategory === "all" ? "text-[#2c82f2]" : ""
+                    tagCategory === "all" ? "categoty-style " : ""
                   )}
                 >
                   All({blogs.results.length})
                 </li>
                 <li
                   onClick={() => setTagCategory("Dev")}
-                  className={cls(tagCategory === "Dev" ? "text-[#2c82f2]" : "")}
+                  className={cls(tagCategory === "Dev" ? "categoty-style" : "")}
                 >
                   Dev
                 </li>
                 <li
                   onClick={() => setTagCategory("React")}
                   className={cls(
-                    tagCategory === "React" ? "text-[#2c82f2]" : ""
+                    tagCategory === "React" ? "categoty-style" : ""
                   )}
                 >
                   React
@@ -61,7 +60,7 @@ export default function Blog({ blogs }: any) {
                 <li
                   onClick={() => setTagCategory("Emotion")}
                   className={cls(
-                    tagCategory === "Emotion" ? "text-[#2c82f2]" : ""
+                    tagCategory === "Emotion" ? "categoty-style" : ""
                   )}
                 >
                   Emotion
@@ -69,7 +68,7 @@ export default function Blog({ blogs }: any) {
                 <li
                   onClick={() => setTagCategory("TailwindCSS")}
                   className={cls(
-                    tagCategory === "TailwindCSS" ? "text-[#2c82f2]" : ""
+                    tagCategory === "TailwindCSS" ? "categoty-style" : ""
                   )}
                 >
                   TailwindCSS
@@ -77,20 +76,20 @@ export default function Blog({ blogs }: any) {
                 <li
                   onClick={() => setTagCategory("Javascript")}
                   className={cls(
-                    tagCategory === "Javascript" ? "text-[#2c82f2]" : ""
+                    tagCategory === "Javascript" ? "categoty-style" : ""
                   )}
                 >
                   Javascript
                 </li>
                 <li
                   onClick={() => setTagCategory("Css")}
-                  className={cls(tagCategory === "Css" ? "text-[#2c82f2]" : "")}
+                  className={cls(tagCategory === "Css" ? "categoty-style" : "")}
                 >
                   Css
                 </li>
                 <li
                   onClick={() => setTagCategory("Etc")}
-                  className={cls(tagCategory === "Etc" ? "text-[#2c82f2]" : "")}
+                  className={cls(tagCategory === "Etc" ? "categoty-style" : "")}
                 >
                   Etc
                 </li>

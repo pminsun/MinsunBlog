@@ -37,10 +37,7 @@ export default function Project({ projects }: any) {
               <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
                 <li
                   onClick={() => setTagCategory("all")}
-                  className={cls(
-                    "flex",
-                    tagCategory === "all" ? "text-[#2c82f2]" : ""
-                  )}
+                  className={cls(tagCategory === "all" ? "categoty-style" : "")}
                 >
                   All({projects.results.length})
                 </li>

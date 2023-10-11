@@ -77,6 +77,10 @@ span:not(.detail-paragraph, .tag-name) {
   @apply bg-slate-300 dark:bg-slate-400 dark:text-slate-800;
 }
 
+.categoty-style {
+  @apply text-[#2c82f2] dark:text-[#2c82f2];
+}
+
 .page-state-style {
   @apply my-8 flex justify-between items-center;
 }
