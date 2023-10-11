@@ -126,7 +126,7 @@ span:not(.detail-paragraph, .tag-name) {
 
 /* code-highlight */
 .code-color {
-  @apply rounded !py-5 !px-7 !bg-[#f6f4ef] dark:!bg-[#011627] !text-[#4e5156] dark:!text-[#d6deeb];
+  @apply rounded !py-5 !px-6 !bg-[#f6f4ef] dark:!bg-[#011627] !text-[#4e5156] dark:!text-[#d6deeb];
 }
 .hljs-selector-tag {
   @apply !text-[#ff6363];

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import ItemDetailContent from "@/components/item/itemDetailContent";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -7,9 +8,9 @@ import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
 import ItemDetailProp from "@/components/item/itemDetailProp";
 import Seo from "@/components/seo";
+import MoveToTop from "@/components/moveToTop";
 
 export default function blockDetail({ blockDetail, propertiesData }: any) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const backClick = () => {
     router.push("/blog");
@@ -44,6 +45,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
           />
         ))}
       </div>
+      <MoveToTop />
     </>
   );
 }

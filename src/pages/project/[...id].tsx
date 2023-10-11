@@ -7,6 +7,7 @@ import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
 import ItemDetailProp from "@/components/item/itemDetailProp";
 import Seo from "@/components/seo";
+import MoveToTop from "@/components/moveToTop";
 
 export default function blockDetail({ blockDetail, propertiesData }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -44,6 +45,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
           />
         ))}
       </div>
+      <MoveToTop />
     </>
   );
 }
