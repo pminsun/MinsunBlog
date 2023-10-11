@@ -25,7 +25,7 @@ select {
   @apply text-sm text-slate-600 dark:text-slate-400 bg-primary border-b border-slate-500 dark:border-slate-500 focus:outline-none;
 }
 
-p,
+p:not(.about-allposts),
 li,
 span:not(.detail-paragraph, .tag-name) {
   @apply text-black dark:text-slate-400;

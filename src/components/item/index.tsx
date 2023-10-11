@@ -11,7 +11,9 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
 
   const router = useRouter();
   const pathName =
-    router.pathname === "/blog" ? `/blog/${item.id}` : `/project/${item.id}`;
+    router.pathname === "/blog" || "/"
+      ? `/blog/${item.id}`
+      : `/project/${item.id}`;
 
   const tagName = itemData.tags.map((row: any) => row.name);
 
