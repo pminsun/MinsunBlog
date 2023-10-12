@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Item from "@/components/item";
+import MoveToTop from "@/components/moveToTop";
 import PageState from "@/components/pageState";
 import Seo from "@/components/seo";
 import Title from "@/components/title";
@@ -65,6 +66,7 @@ export default function Project({ projects }: any) {
               )}
             </div>
           </div>
+          <MoveToTop />
         </>
       )}
     </>

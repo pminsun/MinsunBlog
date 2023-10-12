@@ -9,6 +9,7 @@ import PageState from "@/components/pageState";
 import { useBlogPageStore } from "@/store/pageStore";
 import Seo from "@/components/seo";
 import { useEffect, useState } from "react";
+import MoveToTop from "@/components/moveToTop";
 
 export default function Blog({ blogs }: any) {
   const { viewStyle, sortedContent } = useBlogPageStore();
@@ -116,6 +117,7 @@ export default function Blog({ blogs }: any) {
                 sortedContent
               )}
             </div>
+            <MoveToTop />
           </div>
         </>
       )}
