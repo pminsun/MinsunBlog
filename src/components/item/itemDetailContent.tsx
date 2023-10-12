@@ -120,7 +120,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   }, []);
 
   const imageSizeStyles = {
-    height: scrennWidth < 768 && imageSize.height < 30 ? 30 : imageSize.height,
+    height: imageSize.height < 30 ? 30 : imageSize.height,
     width:
       imageSize.width > 768 || scrennWidth < 768 ? "100%" : imageSize.width,
   };
