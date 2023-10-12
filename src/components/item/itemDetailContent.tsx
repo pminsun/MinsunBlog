@@ -1,5 +1,5 @@
 import { cls } from "libs/utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import hljs from "highlight.js/lib/core";
@@ -104,6 +104,13 @@ export default function ItemDetailContent({ blockContent }: any) {
     );
   });
 
+  // image
+  const [imageSize, setImageSize] = useState({ width: 1, height: 1 });
+  const imageSizeStyles = {
+    height: imageSize.height,
+    width: imageSize.width > 768 ? "100%" : imageSize.width,
+  };
+
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
     case "paragraph":
@@ -158,14 +165,21 @@ export default function ItemDetailContent({ blockContent }: any) {
       );
     case "image":
       return (
-        <div key={blockContent.id} className="relative h-32 md:h-56 my-2">
+        <div
+          key={blockContent.id}
+          style={imageSizeStyles}
+          className="relative my-2 border border-gray-200 dark:border-gray-700"
+        >
           <Image
             src={blockContent.image.file.url}
             alt="image"
             fill
             priority
             sizes="100%"
-            className="object-contain"
+            className="object-contain !w-auto"
+            onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+              setImageSize({ width: naturalWidth, height: naturalHeight });
+            }}
           />
         </div>
       );
