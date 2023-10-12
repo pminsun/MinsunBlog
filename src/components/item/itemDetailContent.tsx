@@ -104,7 +104,9 @@ export default function ItemDetailContent({ blockContent }: any) {
   });
 
   // image
-  const [scrennWidth, setScrennWidth] = useState(window.innerWidth);
+  const [scrennWidth, setScrennWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
   const [imageSize, setImageSize] = useState({ width: 1, height: 1 });
   const handleResize = () => {
     setScrennWidth(window.innerWidth);
@@ -118,7 +120,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   }, []);
 
   const imageSizeStyles = {
-    height: imageSize.height,
+    height: scrennWidth < 768 && imageSize.height < 30 ? 30 : imageSize.height,
     width:
       imageSize.width > 768 || scrennWidth < 768 ? "100%" : imageSize.width,
   };
