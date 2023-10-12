@@ -104,10 +104,23 @@ export default function ItemDetailContent({ blockContent }: any) {
   });
 
   // image
+  const [scrennWidth, setScrennWidth] = useState(window.innerWidth);
   const [imageSize, setImageSize] = useState({ width: 1, height: 1 });
+  const handleResize = () => {
+    setScrennWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const imageSizeStyles = {
     height: imageSize.height,
-    width: imageSize.width > 768 ? "100%" : imageSize.width,
+    width:
+      imageSize.width > 768 || scrennWidth < 768 ? "100%" : imageSize.width,
   };
 
   // 각 블록 유형에 따라 내용을 렌더링
