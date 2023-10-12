@@ -7,7 +7,6 @@ import javascript from "highlight.js/lib/languages/javascript";
 import css from "highlight.js/lib/languages/css";
 import html from "highlight.js/lib/languages/xml";
 import "highlight.js/styles/night-owl.css";
-import { useTheme } from "next-themes";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("css", css);
@@ -176,7 +175,7 @@ export default function ItemDetailContent({ blockContent }: any) {
             fill
             priority
             sizes="100%"
-            className="object-contain !w-auto"
+            className="object-contain"
             onLoadingComplete={({ naturalWidth, naturalHeight }) => {
               setImageSize({ width: naturalWidth, height: naturalHeight });
             }}
