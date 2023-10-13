@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Disallow: /404
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://min-sun.vercel.app
+
+# Sitemaps
+Sitemap: https://min-sun.vercel.app/sitemap.xml
+Sitemap: https://min-sun.vercel.app/dynamic-sitemap.xml
