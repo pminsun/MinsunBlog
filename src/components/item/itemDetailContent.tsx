@@ -57,6 +57,7 @@ export default function ItemDetailContent({ blockContent }: any) {
     italic: "italic",
     strikethrough: "line-through",
     underline: "underline underline-offset-4",
+    code: "bg-[#f6f4ef] dark:bg-[#122c42] text-[#eb5757] px-1 rounded",
   };
 
   const getStyle = (styleName: string, value: any) =>
@@ -82,6 +83,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       ...getStyle("italic", textAnnotations?.italic),
       ...getStyle("strikethrough", textAnnotations?.strikethrough),
       ...getStyle("underline", textAnnotations?.underline),
+      ...getStyle("code", textAnnotations?.code),
       ...colorStyle(textAnnotations?.color),
     ].filter(Boolean);
 
