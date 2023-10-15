@@ -98,7 +98,7 @@ span:not(.detail-paragraph, .tag-name) {
 }
 
 .item-link-style {
-  @apply space-y-1 rounded-lg overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-800;
+  @apply rounded-lg overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-800;
 }
 
 .page-image-style {

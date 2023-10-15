@@ -47,14 +47,12 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               <div className="page-noneimage-style" />
             )}
           </div>
-          <div className="p-4 absolute bottom-0">
-            <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect">
+          <div className="p-4 absolute bottom-0 w-full">
+            <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect w-full whitespace-nowrap overflow-hidden text-ellipsis">
               {itemData.name}
             </p>
-            <p className="mt-3 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-              {itemData.description.length > 26
-                ? itemData.description.slice(0, 25) + "....."
-                : itemData.description}
+            <p className="mt-3 page-text-group-hover-effect page-text-group-hover-Anieffect-500 w-full whitespace-nowrap overflow-hidden text-ellipsis">
+              {itemData.description}
             </p>
             {itemData.date && (
               <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
@@ -96,9 +94,9 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               <div className="page-noneimage-style " />
             )}
           </div>
-          <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20">
-            <div>
-              <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect">
+          <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
+            <div className="w-2/3 md:w-full">
+              <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect w-full whitespace-nowrap overflow-hidden text-ellipsis">
                 {itemData.name}
               </p>
               <span
@@ -111,7 +109,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               </span>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-end md:items-center gap-3 z-20">
+          <div className="flex flex-col md:flex-row items-end md:items-center gap-3 z-20 absolute right-4">
             <Tag tags={itemData.tags} viewStyle={viewStyle} />
             <span className="hidden md:inline-block page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
               |
