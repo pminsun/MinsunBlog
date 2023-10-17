@@ -25,7 +25,7 @@ export default function MoveToTop() {
     <div
       onClick={moveToTop}
       className={cls(
-        showTopBtn ? "opacity-100" : "opacity-0",
+        showTopBtn ? "opacity-100 visible" : "opacity-0 invisible",
         "fixed bottom-7 right-4 lg:right-10 p-2 z-20 cursor-pointer hover:scale-90 transition-all duration-500 rounded-full bg-[#2c82f2]"
       )}
     >
