@@ -26,7 +26,7 @@ export default function ItemDetailContent({ blockContent }: any) {
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
 
-  // paragraph
+  // paragraph & heading_3 & bulleted_list_item
   const notionTxtColor = (colorName: string) => {
     const notionTextColorsList: notionText = {
       red: "text-red-600 dark:text-red-700",
@@ -66,13 +66,7 @@ export default function ItemDetailContent({ blockContent }: any) {
     color !== "default" ? [notionTxtColor(color)] : [];
 
   const paragraphColor = colorStyle(blockContent.paragraph?.color);
-
-  const textContent =
-    blockContent.type === "paragraph"
-      ? blockContent.paragraph?.rich_text
-      : blockContent.type === "heading_3"
-      ? blockContent.heading_3?.rich_text
-      : blockContent.bulleted_list_item?.rich_text;
+  const textContent = blockContent[blockContent.type]?.rich_text || null;
 
   const richTextContent = textContent?.map((txtPiece: any, index: number) => {
     const textContent = txtPiece?.text?.content;
@@ -197,6 +191,15 @@ export default function ItemDetailContent({ blockContent }: any) {
               setImageSize({ width: naturalWidth, height: naturalHeight });
             }}
           />
+        </div>
+      );
+    case "video":
+      return (
+        <div
+          key={blockContent.id}
+          className="border border-gray-200 dark:border-gray-700"
+        >
+          <video src={blockContent.video.file.url} autoPlay loop muted />
         </div>
       );
     case "bookmark":
