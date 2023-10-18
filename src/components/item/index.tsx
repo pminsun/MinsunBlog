@@ -22,6 +22,9 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
         (excludedTag) => tagName.includes(excludedTag)
       ));
 
+  const blurDataURL =
+    "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
+
   return (
     <>
       {viewStyle === "gallery" && categoryView && (
@@ -38,6 +41,8 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
                 width={300}
                 height={300}
                 priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 className="page-image-style"
               />
             ) : (
@@ -85,6 +90,8 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
                 width={300}
                 height={300}
                 priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
                 className="page-image-style"
               />
             ) : (
