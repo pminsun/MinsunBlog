@@ -107,7 +107,11 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-end md:items-center gap-3 z-20 absolute right-4">
-            <Tag tags={itemData.tags} viewStyle={viewStyle} />
+            <Tag
+              tags={itemData.tags}
+              viewStyle={viewStyle}
+              tagCategory={tagCategory}
+            />
             <span className="hidden md:inline-block page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
               |
             </span>
