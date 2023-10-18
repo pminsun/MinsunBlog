@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie-player";
-import lottieJson from "public/aboutAni.json";
+import Image from "next/image";
 
 export default function LottiAnimation() {
+  const [animationData, setAnimationData] = useState<object>();
+  useEffect(() => {
+    import("public/aboutAni.json").then(setAnimationData);
+  }, []);
+
+  if (!animationData)
+    return (
+      <div className="w-fll h-[201px] md:h-[336px] flex items-center justify-center">
+        <Image
+          src={"/gear-solid.svg"}
+          alt="setting"
+          width={50}
+          height={50}
+          className="animate-spin"
+        />
+      </div>
+    );
   return (
     <Lottie
       loop
-      animationData={lottieJson}
+      animationData={animationData}
       play
       style={{ width: "90%", height: "90%" }}
     />
