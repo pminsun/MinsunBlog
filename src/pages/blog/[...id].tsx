@@ -78,16 +78,16 @@ export default function blockDetail({
           />
         ))}
       </div>
-      <div className="flex items-center justify-between py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
+      <div className="flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
         {preHref && (
           <Link
             href={`/blog/${preHref}`}
-            className="bg-gray-100 rounded flex items-center px-2 py-3 group"
+            className="bg-gray-100 dark:bg-gray-800 w-full md:w-auto rounded flex items-center px-2 py-3 group"
           >
             <HiOutlineArrowCircleLeft className="text-2xl text-gray-400 group-hover:text-[#2c82f2] mt-1" />
             <div className="ml-4">
               <p className="text-[10px] mb-1">이전 포스트</p>
-              <p className="font-bold w-48 whitespace-nowrap overflow-hidden text-ellipsis">
+              <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis">
                 {preTitle}
               </p>
             </div>
@@ -96,11 +96,11 @@ export default function blockDetail({
         {nextHref && (
           <Link
             href={`/blog/${nextHref}`}
-            className="flex items-center bg-gray-100 rounded px-4 py-3 ml-auto group"
+            className="flex items-center justify-end w-full md:w-auto bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 ml-auto group"
           >
             <div className="mr-4 flex flex-col items-end">
               <p className="text-[10px] mb-1">다음 포스트</p>
-              <p className="font-bold w-48 whitespace-nowrap overflow-hidden text-ellipsis text-right">
+              <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis text-right">
                 {nextTitle}
               </p>
             </div>
