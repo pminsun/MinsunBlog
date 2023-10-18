@@ -10,7 +10,7 @@ export default function LottiAnimation() {
 
   if (!animationData)
     return (
-      <div className="w-fll h-[201px] md:h-[336px] flex items-center justify-center">
+      <div className="w-fll h-[201px] md:h-[467px] lg:h-[336px] flex items-center justify-center">
         <Image
           src={"/gear-solid.svg"}
           alt="setting"
