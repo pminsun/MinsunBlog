@@ -207,6 +207,7 @@ export default function ItemDetailContent({ blockContent }: any) {
         <div key={blockContent.id} className="my-2 ">
           <Link
             href={blockContent.bookmark.url}
+            target="_blank"
             className="text-sm text-[#2c82f2] font-bold hover:underline decoration-[#2c82f2]"
           >
             {blockContent.bookmark.url}
