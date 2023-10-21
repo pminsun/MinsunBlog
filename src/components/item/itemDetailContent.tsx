@@ -121,6 +121,16 @@ export default function ItemDetailContent({ blockContent }: any) {
       imageSize.width > 768 || scrennWidth < 768 ? "100%" : imageSize.width,
   };
 
+  // embed - codepen
+  const [mounted, setMounted] = useState<boolean>(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const codepenUrl = "https://codepen.io";
+  const codepenMyId = "pminsun";
+  const codepenId = blockContent.embed?.url?.split("/")[5].split("?")[0];
+
   // 각 블록 유형에 따라 내용을 렌더링
   switch (blockContent.type) {
     case "paragraph":
@@ -212,6 +222,31 @@ export default function ItemDetailContent({ blockContent }: any) {
           >
             {blockContent.bookmark.url}
           </Link>
+        </div>
+      );
+    case "embed":
+      return (
+        <div key={blockContent.id} className="my-2">
+          {mounted && (
+            <>
+              <iframe
+                height="350"
+                className="w-full"
+                title="videoTag"
+                src={`${codepenUrl}/${codepenMyId}/embed/${codepenId}?default-tab=html%2Cresult`}
+                loading="lazy"
+              >
+                <span>See the Pen</span>
+                <Link href={`${codepenUrl}/${codepenMyId}/pen/${codepenId}`}>
+                  videoTag
+                </Link>
+                <span>by pminsun</span> (
+                <Link href={`${codepenUrl}/${codepenMyId}`}>@pminsun</Link>)
+                <span>on</span>
+                <Link href={codepenUrl}>CodePen</Link>.
+              </iframe>
+            </>
+          )}
         </div>
       );
     default:
