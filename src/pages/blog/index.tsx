@@ -15,10 +15,33 @@ export default function Blog({ blogs }: any) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
   const [tagCategory, setTagCategory] = useState("all");
+  const [search, setSearch] = useState("");
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setFilteredList(blogs.results);
+  }, [blogs.results]);
+
+  const handleSearchInputChange = (searchWord: string) => {
+    setSearch(searchWord);
+
+    let updatedList = blogs.results;
+    updatedList = blogs.results.filter((item: any) => {
+      return (
+        item?.properties["이름"].title[0].plain_text
+          ?.toLowerCase()
+          .includes(searchWord) ||
+        item?.properties.Description?.rich_text[0].plain_text
+          ?.toLowerCase()
+          .includes(searchWord)
+      );
+    });
+    setFilteredList(updatedList);
+  };
 
   return (
     <>
@@ -34,6 +57,14 @@ export default function Blog({ blogs }: any) {
             subMent={"개발하면서 탐구한 것을 기록합니다."}
           />
           <div className="pb-8">
+            <div className="border border-slate-400 rounded-2xl overflow-hidden w-full md:w-1/2 mt-10">
+              <input
+                value={search}
+                onChange={(e) => handleSearchInputChange(e.target.value)}
+                placeholder="Serch"
+                className="text-sm bg-primary px-4 py-2 w-full focus:outline-0 text-black dark:text-slate-400"
+              />
+            </div>
             <div className="page-state-style">
               <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
                 <li
@@ -106,7 +137,7 @@ export default function Blog({ blogs }: any) {
               )}
             >
               {useSortedData(
-                blogs.results.map((item: any) => (
+                filteredList.map((item: any) => (
                   <Item
                     key={item.id}
                     item={item}
