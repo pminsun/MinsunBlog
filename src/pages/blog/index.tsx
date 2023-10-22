@@ -61,7 +61,7 @@ export default function Blog({ blogs }: any) {
               <input
                 value={search}
                 onChange={(e) => handleSearchInputChange(e.target.value)}
-                placeholder="Serch"
+                placeholder="Search"
                 className="text-sm bg-primary px-4 py-2 w-full focus:outline-0 text-black dark:text-slate-400"
               />
             </div>
