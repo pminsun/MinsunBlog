@@ -2,15 +2,7 @@ import { cls } from "libs/utils";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import hljs from "highlight.js/lib/core";
-import javascript from "highlight.js/lib/languages/javascript";
-import css from "highlight.js/lib/languages/css";
-import html from "highlight.js/lib/languages/xml";
-import "highlight.js/styles/night-owl.css";
-
-hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("css", css);
-hljs.registerLanguage("html", html);
+import Highlight from "react-highlight";
 
 interface notionText {
   [key: string]: string;
@@ -18,11 +10,6 @@ interface notionText {
 
 export default function ItemDetailContent({ blockContent }: any) {
   // code
-  useEffect(() => {
-    hljs.highlightAll();
-    hljs.configure({ ignoreUnescapedHTML: true }); //코드 블록에서 이스케이프되지 않은 HTML에 대한 경고를 콘솔에 기록하지 않음
-  }, []);
-
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
 
@@ -172,14 +159,14 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="text-xs md:text-sm my-4 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
+          className="text-xs !text-[#4e5156] dark:!text-[#d6deeb] p-5 bg-[#f6f4ef] dark:bg-[#011627] md:text-sm my-4 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
         >
           {codeLag === "javascript" ? (
-            <code className="js code-color">{codeTxt}</code>
+            <Highlight className="javascript">{codeTxt}</Highlight>
           ) : codeLag === "css" ? (
-            <code className="css code-color">{codeTxt}</code>
+            <Highlight className="css">{codeTxt}</Highlight>
           ) : (
-            <code className="html code-color">{codeTxt}</code>
+            <Highlight className="html">{codeTxt}</Highlight>
           )}
         </pre>
       );
