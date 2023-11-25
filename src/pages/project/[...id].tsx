@@ -9,7 +9,7 @@ import ItemDetailProp from "@/components/item/itemDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/moveToTop";
 
-export default function blockDetail({ blockDetail, propertiesData }: any) {
+export default function BlockDetail({ blockDetail, propertiesData }: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const backClick = () => {
