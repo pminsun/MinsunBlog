@@ -15,7 +15,7 @@ import Seo from "@/components/seo";
 import MoveToTop from "@/components/moveToTop";
 import Link from "next/link";
 
-export default function BlockDetail({
+export default function blockDetail({
   blockDetail,
   propertiesData,
   tableData,
