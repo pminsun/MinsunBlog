@@ -205,12 +205,12 @@ export default function ItemDetailContent({ blockContent }: any) {
           <Link
             href={blockContent.bookmark.url}
             target="_blank"
-            className="text-sm text-[#2c82f2] font-bold hover:underline decoration-[#2c82f2]"
+            className="text-sm text-[#2c82f2] font-bold break-all hover:underline decoration-[#2c82f2]"
           >
             {blockContent.bookmark.url}
           </Link>
         </div>
-      );
+      ); //참고링크
     case "embed":
       return (
         <div key={blockContent.id} className="my-2">
