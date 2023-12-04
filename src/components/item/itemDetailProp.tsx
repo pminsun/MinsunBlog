@@ -22,7 +22,6 @@ export default function ItemDetailProp({
           alt="coverImage"
           width={300}
           height={300}
-          quality={100}
           className="w-full h-full object-cover object-center brightness-75"
         />
       </div>
