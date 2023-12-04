@@ -31,42 +31,12 @@ span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
 }
 
 /*custom*/
-.text-point-color {
-  @apply text-[#2c82f2];
-}
-
 .bg-primary {
   @apply bg-[#fbfbfa] dark:bg-slate-900;
 }
-.bg-tagNext {
-  @apply bg-[#fdecc8] dark:bg-[#f5cc74] dark:text-slate-800;
-}
-.bg-tagTailwindCSS {
-  @apply bg-[#90ece9] dark:text-slate-800;
-}
-.bg-tagVercel {
-  @apply bg-[#e3e2e0] dark:text-slate-800;
-}
-.bg-tagReact {
-  @apply bg-[#83d4e0] dark:text-slate-800;
-}
-.bg-tagHtml {
-  @apply bg-[#fcb196] dark:text-slate-800;
-}
-.bg-tagCss {
-  @apply bg-[#8dcae4] dark:text-slate-800;
-}
-.bg-tagJavascript {
-  @apply bg-[#f8e88e] dark:text-slate-800;
-}
-.bg-tagReactNative {
-  @apply bg-[#a7bceb] dark:text-slate-800;
-}
-.bg-tagEmotion {
-  @apply bg-[#e0a2d6] dark:text-slate-800;
-}
-.bg-tagDev {
-  @apply bg-slate-300 dark:bg-slate-400 dark:text-slate-800;
+
+.text-point-color {
+  @apply text-[#2c82f2];
 }
 
 .categoty-style {
@@ -123,51 +93,4 @@ span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
 /* ItemDetailProp */
 .ItemDetailPropText h2 {
   @apply drop-shadow-md;
-}
-
-/* code-highlight */
-.hljs-selector-tag {
-  @apply !text-[#ff6363];
-}
-.hljs-number {
-  @apply !text-[#f78c6c];
-}
-.hljs-attribute {
-  @apply !text-[#69b4ad] dark:!text-[#80cbc4];
-}
-.hljs-built_in,
-.hljs-selector-class {
-  @apply !text-[#8bb053] dark:!text-[#addb67] italic;
-}
-.hljs-keyword {
-  @apply !text-[#9a66bd] dark:!text-[#c792ea] italic;
-}
-.hljs-title {
-  @apply !text-[#b9af54] dark:!text-[#dcdcaa] italic;
-}
-.hljs-function,
-.hljs-type {
-  @apply !text-[#82aaff];
-}
-.hljs-literal {
-  @apply !text-[#ff5874];
-}
-.hljs-attr,
-.hljs-name,
-.hljs-tag,
-.hljs-doctag,
-.hljs-params {
-  @apply !text-[#449486] dark:!text-[#7fdbca];
-}
-.hljs-string {
-  @apply !text-[#ca9b59] dark:!text-[#ecc48d];
-}
-.hljs-variable {
-  @apply !text-[#7ea14a] dark:!text-[#addb67];
-}
-.hljs-comment {
-  @apply !text-[#637777] italic;
-}
-.hljs-subst {
-  @apply !text-[#d3423e];
 }

@@ -1,5 +1,7 @@
-import "@/styles/fonts.css";
 import "@/styles/globals.css";
+import "@/styles/fonts.css";
+import "@/styles/tagColors.css";
+import "@/styles/codeHighlightColors.css";
 import type { AppProps } from "next/app";
 import Layout from "../components/layout";
 import React from "react";

@@ -1,0 +1,45 @@
+.hljs-selector-tag {
+  @apply !text-[#ff6363];
+}
+.hljs-number {
+  @apply !text-[#f78c6c];
+}
+.hljs-attribute {
+  @apply !text-[#69b4ad] dark:!text-[#80cbc4];
+}
+.hljs-built_in,
+.hljs-selector-class {
+  @apply !text-[#8bb053] dark:!text-[#addb67] italic;
+}
+.hljs-keyword {
+  @apply !text-[#9a66bd] dark:!text-[#c792ea] italic;
+}
+.hljs-title {
+  @apply !text-[#b9af54] dark:!text-[#dcdcaa] italic;
+}
+.hljs-function,
+.hljs-type {
+  @apply !text-[#82aaff];
+}
+.hljs-literal {
+  @apply !text-[#ff5874];
+}
+.hljs-attr,
+.hljs-name,
+.hljs-tag,
+.hljs-doctag,
+.hljs-params {
+  @apply !text-[#449486] dark:!text-[#7fdbca];
+}
+.hljs-string {
+  @apply !text-[#ca9b59] dark:!text-[#ecc48d];
+}
+.hljs-variable {
+  @apply !text-[#7ea14a] dark:!text-[#addb67];
+}
+.hljs-comment {
+  @apply !text-[#637777] italic;
+}
+.hljs-subst {
+  @apply !text-[#d3423e];
+}
