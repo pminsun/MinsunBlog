@@ -56,7 +56,7 @@ export default function Blog({ blogs }: any) {
             title={"Blog"}
             subMent={"개발하면서 탐구한 것을 기록합니다."}
           />
-          <div className="pb-8">
+          <div className="px-5 lg:px-0 pb-8">
             <div className="border border-slate-400 rounded-2xl overflow-hidden w-full md:w-1/2 mt-10">
               <input
                 value={search}
