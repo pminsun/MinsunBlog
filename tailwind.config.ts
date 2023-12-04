@@ -16,7 +16,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      pretendard: ["Pretendard"],
+      SCoreDream: ["SCoreDream"],
     },
   },
   plugins: [],
