@@ -11,7 +11,7 @@ export default function About({ blogs }: any) {
   return (
     <>
       <Seo title={`MinSun's Blog | About`} />
-      <div>
+      <div className="lg:max-w-3xl w-full mx-auto">
         <Title title={"About"} subMent={"저를 소개합니다"} />
         <div className="flex items-center mb-16 lg:mb-0 justify-center gap-5 flex-col-reverse lg:flex-row">
           <div className="w-full lg:w-1/2 lg:pr-5 text-sm leading-6">

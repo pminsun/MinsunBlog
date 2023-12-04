@@ -25,7 +25,7 @@ export default function Tag({ tags, viewStyle, tagCategory }: any) {
           key={tag.id}
           className={cls(
             UseTagsColor(tag.name),
-            "p-1 rounded text-[10px] tag-name",
+            "p-1 rounded text-[10px] tag-name !text-black",
             viewStyle === "list" && tags.length > 1
               ? "hidden md:inline-block"
               : ""

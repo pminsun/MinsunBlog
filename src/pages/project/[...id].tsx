@@ -26,9 +26,11 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         desc={itemData.description}
         image={propertiesData.cover.external.url}
       />
-      <button onClick={backClick} className="block p-1">
-        <HiArrowLeft />
-      </button>
+      <div className="lg:max-w-3xl lg:mx-auto">
+        <button onClick={backClick} className="block p-1">
+          <HiArrowLeft />
+        </button>
+      </div>
       <ItemDetailProp
         name={itemData.name}
         tags={itemData.tags}
@@ -36,8 +38,9 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         startDate={itemData.startDate}
         endDate={itemData.endDate}
         description={itemData.description}
+        coverImage={itemData.coverImage}
       />
-      <div className="pb-10">
+      <div className="pb-10 lg:max-w-3xl w-full mx-auto">
         {blockDetail?.results?.map((blockContent: any) => (
           <ItemDetailContent
             key={blockContent.id}

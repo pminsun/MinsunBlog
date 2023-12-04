@@ -27,7 +27,7 @@ select {
 
 p:not(.about-allposts),
 li,
-span:not(.detail-paragraph, .tag-name) {
+span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
   @apply text-black dark:text-slate-400;
 }
 
@@ -44,7 +44,7 @@ span:not(.detail-paragraph, .tag-name) {
 }
 
 .bg-primary {
-  @apply bg-white dark:bg-slate-900;
+  @apply bg-[#fbfbfa] dark:bg-slate-900;
 }
 .bg-tagNext {
   @apply bg-[#fdecc8] dark:bg-[#f5cc74] dark:text-slate-800;
@@ -126,6 +126,11 @@ span:not(.detail-paragraph, .tag-name) {
 .page-text-group-hover-Anieffect-1000 {
   @apply text-xs 
   group-hover:transition-all group-hover:duration-1000;
+}
+
+/* ItemDetailProp */
+.ItemDetailPropText h2 {
+  @apply drop-shadow-md;
 }
 
 /* code-highlight */

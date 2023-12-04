@@ -60,17 +60,20 @@ export default function blockDetail({
           propertiesData.cover?.external?.url || propertiesData.cover?.file?.url
         }
       />
-      <button onClick={backClick} className="block p-1">
-        <HiArrowLeft />
-      </button>
+      <div className="lg:max-w-3xl lg:mx-auto">
+        <button onClick={backClick} className="block p-1">
+          <HiArrowLeft />
+        </button>
+      </div>
       <ItemDetailProp
         name={itemData.name}
         tags={itemData.tags}
         github={itemData.github}
         date={itemData.date}
         description={itemData.description}
+        coverImage={itemData.coverImage}
       />
-      <div className="pb-10">
+      <div className="pb-10 lg:max-w-3xl lg:mx-auto">
         {blockDetail?.results?.map((blockContent: any) => (
           <ItemDetailContent
             key={blockContent.id}
@@ -78,7 +81,7 @@ export default function blockDetail({
           />
         ))}
       </div>
-      <div className="flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
+      <div className="lg:max-w-3xl lg:mx-auto flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
         {preHref && (
           <Link
             href={`/blog/${preHref}`}

@@ -6,6 +6,7 @@ export default function UseProperties(item: any) {
   const startDate = item.properties.WokPeriod?.date.start;
   const endDate = item.properties.WokPeriod?.date.end;
   const tags = item.properties["태그"].multi_select;
+  const coverImage = item.cover.external.url;
 
   return {
     name,
@@ -15,5 +16,6 @@ export default function UseProperties(item: any) {
     startDate,
     endDate,
     tags,
+    coverImage,
   };
 }

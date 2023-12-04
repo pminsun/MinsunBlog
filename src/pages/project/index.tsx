@@ -51,7 +51,7 @@ export default function Project({ projects }: any) {
         desc={"진행했던 프로젝트들을 기록합니다."}
       />
       {mounted && (
-        <>
+        <div className="lg:max-w-3xl w-full mx-auto">
           <Title
             title={"Projects"}
             subMent={"진행했던 프로젝트들을 기록합니다."}
@@ -98,7 +98,7 @@ export default function Project({ projects }: any) {
             </div>
           </div>
           <MoveToTop />
-        </>
+        </div>
       )}
     </>
   );

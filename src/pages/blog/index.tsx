@@ -51,7 +51,7 @@ export default function Blog({ blogs }: any) {
         desc={"개발하면서 탐구한 것을 기록합니다."}
       />
       {mounted && (
-        <>
+        <div className="lg:max-w-3xl w-full mx-auto">
           <Title
             title={"Blog"}
             subMent={"개발하면서 탐구한 것을 기록합니다."}
@@ -150,7 +150,7 @@ export default function Blog({ blogs }: any) {
             </div>
             <MoveToTop />
           </div>
-        </>
+        </div>
       )}
     </>
   );
