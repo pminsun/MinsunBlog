@@ -12,35 +12,46 @@ export default function About({ blogs }: any) {
     <>
       <Seo title={`MinSun's Blog | About`} />
       <div className="px-5 lg:px-0 lg:max-w-3xl w-full mx-auto">
-        <Title title={"About"} subMent={"저를 소개합니다"} />
-        <div className="flex items-center mb-16 lg:mb-0 justify-center gap-5 flex-col-reverse lg:flex-row">
-          <div className="w-full lg:w-1/2 lg:pr-5 text-sm leading-6">
-            <p className="text-center lg:text-left">
-              안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
-              개발자입니다. 사용자의 니즈와 복잡한 것을 단순하고 간편하게 만드는
-              것에 관심이 많으며, 정보를 공유하는 것에 즐거움을 느낍니다.
-            </p>
-            <div className="flex justify-center lg:justify-start gap-2 mt-6">
-              {/* <Link
-              href="/resume"
-              className="block py-2 w-[80px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-point-color"
-            >
-              이력서
-            </Link> */}
+        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[450px] mb-16 lg:mb-10">
+          <div className="flex lg:w-1/2 p-4 lg:p-6 rounded-lg overflow-hidden justify-center gap-5 flex-col bg-gray-100 dark:bg-gray-800">
+            <div className="w-full">
+              <LottiAnimation />
+            </div>
+            <div className=" w-full text-sm leading-6">
+              <p className="text-center">
+                안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
+                개발자입니다. 사용자의 니즈와 복잡한 것을 단순하고 간편하게
+                만드는 것에 관심이 많으며, 정보를 공유하는 것에 즐거움을
+                느낍니다.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-8 h-full w-full md:w-1/2">
+            <div className="flex justify-between flex-col md:flex-row rounded-lg overflow-hidden px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800">
               <Link
                 href="/project"
-                className="block py-2 w-[80px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+                className="block py-3 w-full md:w-[100px] text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+              >
+                프로젝트
+              </Link>
+              <Link
+                href="/project"
+                className="block py-3 w-full md:w-[100px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+              >
+                프로젝트
+              </Link>
+              <Link
+                href="/project"
+                className="block py-3 w-full md:w-[100px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
               >
                 프로젝트
               </Link>
             </div>
-          </div>
-          <div className="w-2/3 lg:w-1/2">
-            <LottiAnimation />
+            <div className="w-full h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800"></div>
           </div>
         </div>
         <div className="pb-8">
-          <p className="text-xl font-bold mb-5">Recent Posts</p>
+          <p className="text-xl font-bold mb-5">Recent Blog Posts</p>
           <div className="w-full page-gallery-style">
             {blogs?.results.slice(0, 3).map((item: any) => (
               <Item
