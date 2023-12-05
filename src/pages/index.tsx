@@ -12,13 +12,13 @@ export default function About({ blogs }: any) {
     <>
       <Seo title={`MinSun's Blog | About`} />
       <div className="px-5 lg:px-0 lg:max-w-3xl w-full mx-auto">
-        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[450px] mb-16 lg:mb-10">
-          <div className="flex lg:w-1/2 p-4 lg:p-6 rounded-lg overflow-hidden justify-center gap-5 flex-col bg-gray-100 dark:bg-gray-800">
+        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[468px] mb-16 lg:mb-10">
+          <div className="flex flex-1 rounded-lg overflow-hidden gap-4 flex-col bg-gray-100 dark:bg-gray-800">
             <div className="w-full">
               <LottiAnimation />
             </div>
-            <div className=" w-full text-sm leading-6">
-              <p className="text-center">
+            <div className="w-full text-sm leading-6">
+              <p className="text-center px-4 lg:px-6 pb-6">
                 안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
                 개발자입니다. 사용자의 니즈와 복잡한 것을 단순하고 간편하게
                 만드는 것에 관심이 많으며, 정보를 공유하는 것에 즐거움을
@@ -26,23 +26,23 @@ export default function About({ blogs }: any) {
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-8 h-full w-full md:w-1/2">
+          <div className="flex flex-col gap-8 h-full w-full flex-1">
             <div className="flex justify-between flex-col md:flex-row rounded-lg overflow-hidden px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800">
               <Link
                 href="/project"
-                className="block py-3 w-full md:w-[100px] text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+                className="block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
               >
                 프로젝트
               </Link>
               <Link
                 href="/project"
-                className="block py-3 w-full md:w-[100px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+                className="block py-3 flex-1 text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
               >
                 프로젝트
               </Link>
               <Link
                 href="/project"
-                className="block py-3 w-full md:w-[100px] text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
+                className="block py-3 flex-1 text-center rounded-lg text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
               >
                 프로젝트
               </Link>
