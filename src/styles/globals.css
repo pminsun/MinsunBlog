@@ -6,7 +6,7 @@
 @layer base {
   html,
   body {
-    @apply font-SCoreDream h-full;
+    @apply font-SCoreDream h-full scrollbar-w-3 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-[#c7c7c4] dark:scrollbar-thumb-[#23345c] scrollbar-track-[#fbfbfa] dark:scrollbar-track-slate-900;
   }
   #__next {
     @apply h-full;

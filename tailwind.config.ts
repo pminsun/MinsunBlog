@@ -19,6 +19,6 @@ const config: Config = {
       SCoreDream: ["SCoreDream"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
 export default config;
