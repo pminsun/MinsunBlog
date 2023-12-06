@@ -159,7 +159,7 @@ export default function ItemDetailContent({ blockContent }: any) {
       return (
         <pre
           key={blockContent.id}
-          className="text-xs !text-[#4e5156] dark:!text-[#d6deeb] p-5 bg-[#f6f4ef] dark:bg-[#011627] md:text-sm my-4 border border-transparent rounded-lg overflow-hidden dark:border-slate-600"
+          className="text-xs overflow-x-auto !text-[#4e5156] dark:!text-[#d6deeb] p-5 bg-[#f6f4ef] dark:bg-[#011627] md:text-sm my-4 border border-transparent rounded-lg dark:border-slate-600"
         >
           {codeLag === "javascript" ? (
             <Highlight className="javascript">{codeTxt}</Highlight>
