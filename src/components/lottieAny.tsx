@@ -25,7 +25,7 @@ export default function LottiAnimation() {
       loop
       animationData={animationData}
       play
-      style={{ width: "90%", height: "90%" }}
+      style={{ width: "100%", height: "100%" }}
     />
   );
 }
