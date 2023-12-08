@@ -22,9 +22,10 @@ export default function ItemDetailProp({
           alt="coverImage"
           width={300}
           height={300}
-          className="w-full h-full object-cover object-center brightness-75"
+          className="w-full h-full object-cover object-center"
         />
       </div>
+      <div className="absolute w-full h-full bg-black/50" />
       <div className="px-5 lg:px-0 ItemDetailPropText absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:max-w-3xl w-full text-white">
         <h2 className="text-2xl font-semibold mb-7">{name}</h2>
         <div className="flex items-center mb-4">
