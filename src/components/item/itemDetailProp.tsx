@@ -13,7 +13,15 @@ export default function ItemDetailProp({
   startDate,
   endDate,
   coverImage,
+  createDate,
 }: any) {
+  const create = new Date(createDate);
+  const korDate = new Date(
+    create.getTime() - create.getTimezoneOffset() * 60000
+  )
+    .toISOString()
+    .split("T")[0];
+
   return (
     <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
       <div className="absolute w-full h-full">
@@ -52,7 +60,7 @@ export default function ItemDetailProp({
             </Link>
           </div>
         )}
-        {endDate && startDate && (
+        {/* {endDate && startDate && (
           <div className="flex items-center">
             <span className="text-xs w-24 pt-1 block itemDetail-prop">
               WorkPeriod
@@ -74,14 +82,14 @@ export default function ItemDetailProp({
               {changeDate(startDate)}
             </span>
           </div>
-        )}
-        {date && (
+        )} */}
+        {createDate && (
           <div className="flex items-center">
             <span className="text-xs w-24 pt-1 block itemDetail-prop">
               작성일자
             </span>
             <span className="text-xs pt-1 itemDetail-prop">
-              {changeDate(date)}
+              {changeDate(korDate)}
             </span>
           </div>
         )}

@@ -13,6 +13,13 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
   const pathName =
     router.pathname === "/project" ? `/project/${item.id}` : `/blog/${item.id}`;
 
+  const create = new Date(item.created_time);
+  const korDate = new Date(
+    create.getTime() - create.getTimezoneOffset() * 60000
+  )
+    .toISOString()
+    .split("T")[0];
+
   const tagName = itemData.tags.map((row: any) => row.name);
   const categoryView =
     tagCategory === "all" ||
@@ -56,12 +63,12 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
             <p className="mt-3 page-text-group-hover-effect page-text-group-hover-Anieffect-500 w-full whitespace-nowrap overflow-hidden text-ellipsis">
               {itemData.description}
             </p>
-            {itemData.date && (
+            {item.created_time && (
               <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-                {changeDate(itemData.date)}
+                {changeDate(korDate)}
               </p>
             )}
-            {itemData.endDate && itemData.startDate && (
+            {/* {itemData.endDate && itemData.startDate && (
               <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
                 {changeDate(itemData.startDate)}~
                 {changeDate(itemData.endDate) || null}
@@ -71,7 +78,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
                 {changeDate(itemData.startDate)}
               </p>
-            )}
+            )} */}
             <Tag tags={itemData.tags} viewStyle={viewStyle} />
           </div>
         </Link>
@@ -122,12 +129,12 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
             <span className="hidden md:inline-block page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
               |
             </span>
-            {itemData.date && (
+            {item.created_time && (
               <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
-                {changeDate(itemData.date)}
+                {changeDate(item.created_time)}
               </span>
             )}
-            {itemData.endDate && itemData.startDate && (
+            {/* {itemData.endDate && itemData.startDate && (
               <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
                 {changeDate(itemData.startDate)}~
                 {changeDate(itemData.endDate.slice(-5)) || null}
@@ -137,7 +144,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
                 {changeDate(itemData.startDate)}
               </span>
-            )}
+            )} */}
           </div>
         </Link>
       )}

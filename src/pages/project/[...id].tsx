@@ -35,6 +35,7 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         name={itemData.name}
         tags={itemData.tags}
         github={itemData.github}
+        createDate={propertiesData.created_time}
         startDate={itemData.startDate}
         endDate={itemData.endDate}
         description={itemData.description}

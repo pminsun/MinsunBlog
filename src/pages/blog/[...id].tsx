@@ -70,6 +70,7 @@ export default function blockDetail({
         tags={itemData.tags}
         github={itemData.github}
         date={itemData.date}
+        createDate={propertiesData.created_time}
         description={itemData.description}
         coverImage={itemData.coverImage}
       />

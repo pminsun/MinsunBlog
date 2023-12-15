@@ -7,17 +7,53 @@ import axios from "axios";
 import Item from "@/components/item";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
-
-import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { ApexOptions } from "apexcharts";
+import PostHeatMap from "@/components/postHeatMap";
+import { useState } from "react";
 
 export default function About({ blogs }: any) {
   const today = new Date();
-  const month = today.getMonth() + 1;
-  const date = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
-  const weekday = ["일", "월", "화", "수", "목", "금", "토"];
-  const day = weekday[today.getDay()];
+  const year = today.getFullYear();
+  const engMonthName = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const engMonth = engMonthName[today.getMonth()];
+  const currnetMonth = today.getMonth() + 1;
+
+  const createPost = blogs.results.map((x: { created_time: string }) => {
+    const create = new Date(x.created_time);
+    const korDate = new Date(
+      create.getTime() - create.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split("T")[0];
+
+    return korDate;
+  });
+
+  const mathMonth = createPost.filter(
+    (x: string) => x.slice(0, 7) === year + "-" + currnetMonth
+  );
+
+  const [monthList, setMonthList] = useState(engMonth);
+  const [showMonth, setShowMonth] = useState(false);
+  const selectMonth = (mon: string) => {
+    setMonthList(mon);
+  };
+
+  const toggleMonthList = () => {
+    setShowMonth((prev) => !prev);
+  };
 
   return (
     <>
@@ -25,12 +61,13 @@ export default function About({ blogs }: any) {
       <div className="px-5 lg:px-0 lg:max-w-3xl w-full mx-auto">
         <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[468px] mb-16 lg:mb-10">
           <div className="flex flex-1 justify-between rounded-lg overflow-hidden flex-col h-full bg-gray-100 dark:bg-gray-800">
-            <div className="w-full h-2/3">
+            <div className="w-full h-2/3 lg:h-[312px]">
               <LottiAnimation />
             </div>
             <div className="w-full text-sm leading-6 px-4 lg:px-6 pb-6">
-              <p className="text-center mb-10">
-                안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
+              <p className="text-center mb-6">
+                안녕하세요.
+                <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
                 개발자입니다.
                 {/* 안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
                 개발자입니다. 사용자의 니즈와 복잡한 것을 단순하고 간편하게
@@ -76,9 +113,39 @@ export default function About({ blogs }: any) {
               </Link>
             </div>
             <div className="w-full h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <p>
-                {month}.{date} ({day})
-              </p>
+              {/* <div className="text-center flex items-center justify-between text-xs">
+                <span>
+                  {mathMonth.length} posts in {engMonth}
+                </span>
+                <div className="text-base cursor-pointer relative">
+                  <span
+                    onClick={toggleMonthList}
+                    className="hover:text-[#2c82f2] py-1 px-3"
+                  >
+                    {monthList}
+                  </span>
+                  {showMonth && (
+                    <ul className="absolute z-20 shadow-md h-48 overflow-y-auto scrollbar-none bg-gray-200 rounded-lg mt-1 left-1/2 -translate-x-1/2">
+                      {engMonthName.map((mon) => (
+                        <li
+                          key={mon}
+                          onClick={() => {
+                            selectMonth(mon);
+                            setShowMonth(false);
+                          }}
+                          className="cursor-pointer text-[10px] px-5 py-1 hover:bg-[#2c82f2] hover:text-white"
+                        >
+                          {mon}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <span>{blogs.results.length} total posts</span>
+              </div>
+              <div className="mt-2 h-full w-full relative">
+                <PostHeatMap blogs={blogs} />
+              </div> */}
             </div>
           </div>
         </div>
