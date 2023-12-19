@@ -8,27 +8,31 @@ import Item from "@/components/item";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
 import PostHeatMap from "@/components/postHeatMap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { cls } from "libs/utils";
 
 export default function About({ blogs }: any) {
   const today = new Date();
   const year = today.getFullYear();
   const engMonthName = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    { monthEng: "Jan", monthNum: "01" },
+    { monthEng: "Feb", monthNum: "02" },
+    { monthEng: "Mar", monthNum: "03" },
+    { monthEng: "Apr", monthNum: "04" },
+    { monthEng: "May", monthNum: "05" },
+    { monthEng: "Jun", monthNum: "06" },
+    { monthEng: "Jul", monthNum: "07" },
+    { monthEng: "Aug", monthNum: "08" },
+    { monthEng: "Sep", monthNum: "09" },
+    { monthEng: "Oct", monthNum: "10" },
+    { monthEng: "Nov", monthNum: "11" },
+    { monthEng: "Dec", monthNum: "12" },
   ];
-  const engMonth = engMonthName[today.getMonth()];
-  const currnetMonth = today.getMonth() + 1;
+
+  const years = [2023, 2024];
+
+  const engMonth = engMonthName[today.getMonth()].monthEng;
+  const numMonth = engMonthName[today.getMonth()].monthNum;
 
   const createPost = blogs.results.map((x: { created_time: string }) => {
     const create = new Date(x.created_time);
@@ -41,19 +45,23 @@ export default function About({ blogs }: any) {
     return korDate;
   });
 
-  const mathMonth = createPost.filter(
-    (x: string) => x.slice(0, 7) === year + "-" + currnetMonth
-  );
-
-  const [monthList, setMonthList] = useState(engMonth);
-  const [showMonth, setShowMonth] = useState(false);
-  const selectMonth = (mon: string) => {
-    setMonthList(mon);
+  const [monthList, setMonthList] = useState({ engMonth, numMonth });
+  const [yearList, setYearList] = useState(year);
+  const [showMonthModal, setShowMonthModal] = useState(false);
+  const selectMonth = (engMonth: string, numMonth: string) => {
+    setMonthList({ engMonth, numMonth });
+    setShowMonthModal(false);
   };
 
   const toggleMonthList = () => {
-    setShowMonth((prev) => !prev);
+    setShowMonthModal((prev) => !prev);
   };
+
+  const mathMonth = createPost.filter(
+    (x: string) => x.slice(0, 7) === yearList + "-" + monthList.numMonth
+  );
+
+  const exceptMonth = engMonthName.slice(0, 8).map((mon) => mon);
 
   return (
     <>
@@ -112,40 +120,84 @@ export default function About({ blogs }: any) {
                 <IoLogoGithub className="text-2xl" />
               </Link>
             </div>
-            <div className="w-full h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              {/* <div className="text-center flex items-center justify-between text-xs">
+            <div className="w-full relative h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <div className="relative text-center flex items-center justify-between text-xs">
                 <span>
-                  {mathMonth.length} posts in {engMonth}
+                  {mathMonth.length > 0 ? mathMonth.length : 0} posts in{" "}
+                  {monthList.engMonth}
                 </span>
                 <div className="text-base cursor-pointer relative">
                   <span
                     onClick={toggleMonthList}
                     className="hover:text-[#2c82f2] py-1 px-3"
                   >
-                    {monthList}
+                    {yearList}. {monthList.engMonth}
                   </span>
-                  {showMonth && (
-                    <ul className="absolute z-20 shadow-md h-48 overflow-y-auto scrollbar-none bg-gray-200 rounded-lg mt-1 left-1/2 -translate-x-1/2">
-                      {engMonthName.map((mon) => (
-                        <li
-                          key={mon}
-                          onClick={() => {
-                            selectMonth(mon);
-                            setShowMonth(false);
-                          }}
-                          className="cursor-pointer text-[10px] px-5 py-1 hover:bg-[#2c82f2] hover:text-white"
-                        >
-                          {mon}
-                        </li>
-                      ))}
-                    </ul>
+                  {showMonthModal && (
+                    <div className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 rounded-lg mt-1">
+                      <ul>
+                        {years.map((year) => (
+                          <li
+                            key={year}
+                            onClick={() => setYearList(year)}
+                            className={cls(
+                              yearList === year
+                                ? "bg-[#2c82f2] text-white"
+                                : "bg-gray-200 text-black",
+                              "cursor-pointer text-[10px] px-5 py-1 hover:bg-[#2c82f2]/[0.5] hover:text-white"
+                            )}
+                          >
+                            {year}
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="h-48 overflow-y-auto scrollbar-none">
+                        {engMonthName.map((mon) => (
+                          <li
+                            key={mon.monthEng}
+                            onClick={() => {
+                              if (
+                                !(
+                                  yearList === 2023 &&
+                                  exceptMonth.some(
+                                    (exceptMonth) =>
+                                      exceptMonth.monthEng === mon.monthEng
+                                  )
+                                )
+                              ) {
+                                selectMonth(mon.monthEng, mon.monthNum);
+                              }
+                            }}
+                            className={cls(
+                              monthList.engMonth === mon.monthEng
+                                ? "bg-[#2c82f2] text-white"
+                                : "bg-gray-200 text-black",
+                              yearList === 2023 &&
+                                exceptMonth.some(
+                                  (exceptMonth) =>
+                                    exceptMonth.monthEng === mon.monthEng
+                                )
+                                ? "opacity-30 cursor-default !hover:bg-none"
+                                : "hover:bg-[#2c82f2]/[0.5] hover:text-white",
+                              "cursor-pointer text-[10px] px-5 py-1"
+                            )}
+                          >
+                            {mon.monthEng}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
                 <span>{blogs.results.length} total posts</span>
               </div>
-              <div className="mt-2 h-full w-full relative">
-                <PostHeatMap blogs={blogs} />
-              </div> */}
+              <div className="mt-2 h-full w-full">
+                <PostHeatMap
+                  blogs={blogs}
+                  year={yearList}
+                  month={monthList.numMonth}
+                />
+              </div>
             </div>
           </div>
         </div>

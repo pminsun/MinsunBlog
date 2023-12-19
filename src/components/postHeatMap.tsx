@@ -3,13 +3,10 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
 import { useEffect } from "react";
 
-export default function PostHeatMap({ blogs }: any) {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const date = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
-  const weekday = ["일", "월", "화", "수", "목", "금", "토"];
-  const day = weekday[today.getDay()];
+export default function PostHeatMap({ blogs, year, month }: any) {
+  const today = new Date(`${year}-${month}`);
+  const yearChart = today.getFullYear();
+  const monthChart = today.getMonth() + 1;
 
   //작성일자
   const createPost = blogs.results.map((x: { created_time: string }) => {
@@ -28,19 +25,13 @@ export default function PostHeatMap({ blogs }: any) {
   });
 
   // 이번달 1일, 마지막 일
-  const firstDay = new Date(year, today.getMonth(), 1);
-  const lastDay = new Date(year, month, 0);
+  const firstDay = new Date(yearChart, today.getMonth(), 1);
+  const lastDay = new Date(yearChart, monthChart, 0);
   const diffDate = firstDay.getTime() - lastDay.getTime();
   const daysDifference = Math.abs(diffDate / (1000 * 60 * 60 * 24));
 
-  //var yesterday = new Date(now.setDate(now.getDate() - 1));
-
   let dateArray: any[] = [];
   let firstWeekDate: any[] = [];
-  let secondWeekDate: any[] = [];
-  let thirdWeekDate: any[] = [];
-  let fourthWeekDate: any[] = [];
-  let fifthWeekDate: any[] = [];
   let sixthWeekDate: any[] = [];
 
   useEffect(() => {
@@ -73,73 +64,26 @@ export default function PostHeatMap({ blogs }: any) {
           : 0,
       }));
 
-    const secondWeekData = dateArray
-      ?.slice(firstWeekDays, firstWeekDays + 7)
-      .map((date) => ({
-        x: date[0],
-        y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
-      }));
-
-    const thirdWeekData = dateArray
-      ?.slice(firstWeekDays + 7, firstWeekDays + 14)
-      .map((date) => ({
-        x: date[0],
-        y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
-      }));
-
-    const fourthWeekData = dateArray
-      ?.slice(firstWeekDays + 14, firstWeekDays + 21)
-      .map((date) => ({
-        x: date[0],
-        y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
-      }));
-
-    const fifthhWeekData = dateArray
-      ?.slice(firstWeekDays + 21, firstWeekDays + 28)
-      .map((date) => ({
-        x: date[0],
-        y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
-      }));
-
-    if (excaptFirstWeek > 4) {
-      const sixthWeekData = dateArray
-        ?.slice(firstWeekDays + 28)
+    const middleWeek = (startWeekDay: number, lastWeekDay: number) => {
+      return dateArray
+        ?.slice(firstWeekDays + startWeekDay, firstWeekDays + lastWeekDay)
         .map((date) => ({
           x: date[0],
           y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
         }));
+    };
 
-      sixthWeekData.forEach((date) => {
-        if (!sixthWeekDate.find((item) => item.x === date.x)) {
-          sixthWeekDate.push(date);
-        }
-      });
+    const secondWeekData = middleWeek(0, 7);
+    const thirdWeekData = middleWeek(7, 14);
+    const fourthWeekData = middleWeek(14, 21);
+    const fifthhWeekData = middleWeek(21, 28);
+
+    if (excaptFirstWeek > 4) {
+      sixthWeekDate = dateArray?.slice(firstWeekDays + 28).map((date) => ({
+        x: date[0],
+        y: createPostCount[date[0]] ? createPostCount[date[0]] : 0,
+      }));
     }
-
-    // 중복제거
-    secondWeekData.forEach((date) => {
-      if (!secondWeekDate.find((item) => item.x === date.x)) {
-        secondWeekDate.push(date);
-      }
-    });
-
-    thirdWeekData.forEach((date) => {
-      if (!thirdWeekDate.find((item) => item.x === date.x)) {
-        thirdWeekDate.push(date);
-      }
-    });
-
-    fourthWeekData.forEach((date) => {
-      if (!fourthWeekDate.find((item) => item.x === date.x)) {
-        fourthWeekDate.push(date);
-      }
-    });
-
-    fifthhWeekData.forEach((date) => {
-      if (!fifthWeekDate.find((item) => item.x === date.x)) {
-        fifthWeekDate.push(date);
-      }
-    });
 
     let currentDay = new Date(firstDay);
 
@@ -173,46 +117,64 @@ export default function PostHeatMap({ blogs }: any) {
         }
       });
     }
+
+    return [
+      firstWeekDate,
+      secondWeekData,
+      thirdWeekData,
+      fourthWeekData,
+      fifthhWeekData,
+      sixthWeekDate,
+    ];
   };
+
+  const firstWeekDatas = DateArray()[0];
+  const secondWeekDatas = DateArray()[1];
+  const thirdWeekDatas = DateArray()[2];
+  const fourthWeekDatas = DateArray()[3];
+  const fifthWeekDatas = DateArray()[4];
+  const sixWeekDatas = DateArray()[5];
 
   const commonDate = [
     {
       name: "5주",
-      data: fifthWeekDate,
+      data: fifthWeekDatas,
     },
     {
       name: "4주",
-      data: fourthWeekDate,
+      data: fourthWeekDatas,
     },
     {
       name: "3주",
-      data: thirdWeekDate,
+      data: thirdWeekDatas,
     },
     {
       name: "2주",
-      data: secondWeekDate,
+      data: secondWeekDatas,
     },
     {
       name: "1주",
-      data: firstWeekDate,
+      data: firstWeekDatas,
     },
   ];
 
   const state: ApexOptions = {
-    series: sixthWeekDate
-      ? [
-          {
-            name: "6주",
-            data: sixthWeekDate,
-          },
-          ...commonDate,
-        ]
-      : [...commonDate],
+    series:
+      sixthWeekDate.length > 0
+        ? [
+            {
+              name: "6주",
+              data: sixWeekDatas,
+            },
+            ...commonDate,
+          ]
+        : [...commonDate],
   };
 
   const options: ApexOptions = {
     chart: {
       type: "heatmap",
+
       zoom: {
         enabled: false,
       },
