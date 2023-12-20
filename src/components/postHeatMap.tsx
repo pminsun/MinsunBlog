@@ -251,8 +251,14 @@ export default function PostHeatMap({ blogs, year, month }: any) {
       },
     },
     tooltip: {
+      enabled: true,
+
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+        const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+
+        if (data.y === -1) {
+          return "";
+        }
 
         return (
           "<div class='py-1 px-2 rounded-md'>" +

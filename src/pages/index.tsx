@@ -8,7 +8,7 @@ import Item from "@/components/item";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
 import PostHeatMap from "@/components/postHeatMap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
 
 export default function About({ blogs }: any) {
@@ -29,7 +29,7 @@ export default function About({ blogs }: any) {
     { monthEng: "Dec", monthNum: "12" },
   ];
 
-  const years = [2023, 2024];
+  const years = [2023, 2024, 2025];
 
   const engMonth = engMonthName[today.getMonth()].monthEng;
   const numMonth = engMonthName[today.getMonth()].monthNum;
@@ -50,7 +50,6 @@ export default function About({ blogs }: any) {
   const [showMonthModal, setShowMonthModal] = useState(false);
   const selectMonth = (engMonth: string, numMonth: string) => {
     setMonthList({ engMonth, numMonth });
-    setShowMonthModal(false);
   };
 
   const toggleMonthList = () => {
@@ -62,6 +61,49 @@ export default function About({ blogs }: any) {
   );
 
   const exceptMonth = engMonthName.slice(0, 8).map((mon) => mon);
+
+  const preventScroll = () => {
+    const currentScrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
+    document.body.style.top = `-${currentScrollY}px`;
+    document.body.style.overflowY = "scroll";
+
+    return currentScrollY;
+  };
+
+  const allowScroll = (prevScrollY: number) => {
+    document.body.style.position = "";
+    document.body.style.width = "";
+    document.body.style.top = "";
+    document.body.style.overflowY = "";
+    window.scrollTo(0, prevScrollY);
+  };
+
+  useEffect(() => {
+    if (showMonthModal) {
+      const prevScrollY = preventScroll();
+      return () => {
+        allowScroll(prevScrollY);
+      };
+    }
+  }, [showMonthModal]);
+
+  const dropMonthMenuBtnRef = useRef<HTMLDivElement | null>(null);
+  const dropMonthMenuRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const handleClickOutsideClose = (e: { target: any }) => {
+      if (
+        showMonthModal &&
+        !dropMonthMenuRef.current?.contains(e.target) &&
+        !dropMonthMenuBtnRef.current?.contains(e.target)
+      )
+        setShowMonthModal(false);
+    };
+    document.addEventListener("click", handleClickOutsideClose);
+
+    return () => document.removeEventListener("click", handleClickOutsideClose);
+  }, [showMonthModal]);
 
   return (
     <>
@@ -129,22 +171,47 @@ export default function About({ blogs }: any) {
                 <div className="text-base cursor-pointer relative">
                   <span
                     onClick={toggleMonthList}
+                    ref={dropMonthMenuBtnRef}
                     className="hover:text-[#2c82f2] py-1 px-3"
                   >
                     {yearList}. {monthList.engMonth}
                   </span>
                   {showMonthModal && (
-                    <div className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 rounded-lg mt-1">
+                    <div
+                      ref={dropMonthMenuRef}
+                      className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 rounded-lg mt-1"
+                    >
                       <ul>
                         {years.map((year) => (
                           <li
                             key={year}
-                            onClick={() => setYearList(year)}
+                            onClick={() => {
+                              const isExceptMonth = exceptMonth.find(
+                                (exceptMonth) =>
+                                  exceptMonth.monthEng === monthList.engMonth
+                              );
+
+                              if (isExceptMonth) {
+                                if (year !== 2023) {
+                                  setYearList(year);
+                                }
+                              } else {
+                                setYearList(year);
+                              }
+                            }}
                             className={cls(
                               yearList === year
                                 ? "bg-[#2c82f2] text-white"
                                 : "bg-gray-200 text-black",
-                              "cursor-pointer text-[10px] px-5 py-1 hover:bg-[#2c82f2]/[0.5] hover:text-white"
+                              exceptMonth.some(
+                                (exceptMonth) =>
+                                  exceptMonth.monthEng === monthList.engMonth
+                              )
+                                ? year === 2023
+                                  ? "opacity-30 cursor-default !hover:bg-none"
+                                  : "hover:bg-[#2c82f2]/[0.5] hover:text-white"
+                                : "",
+                              "cursor-pointer text-[10px] px-5 py-1"
                             )}
                           >
                             {year}
