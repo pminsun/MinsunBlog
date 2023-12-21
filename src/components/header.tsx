@@ -31,7 +31,7 @@ export default function Header() {
           >
             Projects
           </Link>
-          {/* <Link href="/resume">Resume</Link> */}
+          <Link href="/resume">Resume</Link>
         </nav>
         <DarkModeToggleBtn />
       </div>

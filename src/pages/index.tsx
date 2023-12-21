@@ -105,6 +105,10 @@ export default function About({ blogs }: any) {
     return () => document.removeEventListener("click", handleClickOutsideClose);
   }, [showMonthModal]);
 
+  const matchExceptMonth = (select: string) => {
+    return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
+  };
+
   return (
     <>
       <Seo title={`MinSun's Blog | Home`} />
@@ -132,10 +136,10 @@ export default function About({ blogs }: any) {
                   프로젝트
                 </Link>
                 <Link
-                  href="/project"
+                  href="/resume"
                   className="block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
                 >
-                  프로젝트
+                  이력서
                 </Link>
               </div>
             </div>
@@ -186,12 +190,7 @@ export default function About({ blogs }: any) {
                           <li
                             key={year}
                             onClick={() => {
-                              const isExceptMonth = exceptMonth.find(
-                                (exceptMonth) =>
-                                  exceptMonth.monthEng === monthList.engMonth
-                              );
-
-                              if (isExceptMonth) {
+                              if (matchExceptMonth(monthList.engMonth)) {
                                 if (year !== 2023) {
                                   setYearList(year);
                                 }
@@ -201,17 +200,14 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               yearList === year
-                                ? "!bg-[#2c82f2] text-white dark:text-white"
-                                : "bg-gray-200 text-black",
-                              exceptMonth.some(
-                                (exceptMonth) =>
-                                  exceptMonth.monthEng === monthList.engMonth
-                              )
+                                ? "month-selected"
+                                : "month-noneSelected",
+                              matchExceptMonth(monthList.engMonth)
                                 ? year === 2023
-                                  ? "opacity-30 cursor-default !hover:bg-none"
-                                  : "hover:bg-[#2c82f2]/[0.5] hover:text-white"
+                                  ? "month-disabled hover:text-black"
+                                  : "month-noneDisabled"
                                 : "",
-                              "cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600"
+                              "month-base"
                             )}
                           >
                             {year}
@@ -226,10 +222,7 @@ export default function About({ blogs }: any) {
                               if (
                                 !(
                                   yearList === 2023 &&
-                                  exceptMonth.some(
-                                    (exceptMonth) =>
-                                      exceptMonth.monthEng === mon.monthEng
-                                  )
+                                  matchExceptMonth(mon.monthEng)
                                 )
                               ) {
                                 selectMonth(mon.monthEng, mon.monthNum);
@@ -237,16 +230,13 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               monthList.engMonth === mon.monthEng
-                                ? "!bg-[#2c82f2] text-white dark:text-white"
-                                : "bg-gray-200 text-black",
+                                ? "month-selected"
+                                : "month-noneSelected",
                               yearList === 2023 &&
-                                exceptMonth.some(
-                                  (exceptMonth) =>
-                                    exceptMonth.monthEng === mon.monthEng
-                                )
-                                ? "opacity-30 cursor-default !hover:bg-none"
-                                : "hover:bg-[#2c82f2]/[0.5] hover:text-white",
-                              "cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600"
+                                matchExceptMonth(mon.monthEng)
+                                ? "month-disabled"
+                                : "month-noneDisabled",
+                              "month-base"
                             )}
                           >
                             {mon.monthEng}

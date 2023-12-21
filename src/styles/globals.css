@@ -30,6 +30,28 @@ span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
   hover:after:w-full hover:after:left-0 hover:after:bg-[#2c82f2];
 }
 
+/* Home */
+/* Select Month */
+.month-selected {
+  @apply !bg-[#2c82f2] text-white dark:text-white;
+}
+
+.month-noneSelected {
+  @apply bg-gray-200 text-black;
+}
+
+.month-disabled {
+  @apply opacity-30 !cursor-default hover:bg-transparent;
+}
+
+.month-noneDisabled {
+  @apply hover:bg-[#2c82f2]/[0.5] hover:text-white;
+}
+
+.month-base {
+  @apply cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600;
+}
+
 /*custom*/
 .bg-primary {
   @apply bg-[#fbfbfa] dark:bg-slate-900;
