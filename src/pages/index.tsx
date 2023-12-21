@@ -201,7 +201,7 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               yearList === year
-                                ? "bg-[#2c82f2] dark:bg-[#2c82f2] text-white dark:text-white"
+                                ? "!bg-[#2c82f2] text-white dark:text-white"
                                 : "bg-gray-200 text-black",
                               exceptMonth.some(
                                 (exceptMonth) =>
@@ -237,7 +237,7 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               monthList.engMonth === mon.monthEng
-                                ? "bg-[#2c82f2] dark:bg-[#2c82f2] text-white dark:text-white"
+                                ? "!bg-[#2c82f2] text-white dark:text-white"
                                 : "bg-gray-200 text-black",
                               yearList === 2023 &&
                                 exceptMonth.some(
