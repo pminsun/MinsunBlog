@@ -253,8 +253,10 @@ export default function PostHeatMap({ blogs, year, month }: any) {
         },
       },
       axisBorder: {
-        show: true,
-        color: "#78909C",
+        show: false,
+      },
+      axisTicks: {
+        show: false,
       },
     },
     tooltip: {

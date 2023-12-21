@@ -179,7 +179,7 @@ export default function About({ blogs }: any) {
                   {showMonthModal && (
                     <div
                       ref={dropMonthMenuRef}
-                      className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 rounded-lg mt-1"
+                      className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 dark:bg-gray-600 rounded-lg mt-1"
                     >
                       <ul>
                         {years.map((year) => (
@@ -201,7 +201,7 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               yearList === year
-                                ? "bg-[#2c82f2] text-white"
+                                ? "bg-[#2c82f2] dark:bg-[#2c82f2] text-white dark:text-white"
                                 : "bg-gray-200 text-black",
                               exceptMonth.some(
                                 (exceptMonth) =>
@@ -211,7 +211,7 @@ export default function About({ blogs }: any) {
                                   ? "opacity-30 cursor-default !hover:bg-none"
                                   : "hover:bg-[#2c82f2]/[0.5] hover:text-white"
                                 : "",
-                              "cursor-pointer text-[10px] px-5 py-1"
+                              "cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600"
                             )}
                           >
                             {year}
@@ -237,7 +237,7 @@ export default function About({ blogs }: any) {
                             }}
                             className={cls(
                               monthList.engMonth === mon.monthEng
-                                ? "bg-[#2c82f2] text-white"
+                                ? "bg-[#2c82f2] dark:bg-[#2c82f2] text-white dark:text-white"
                                 : "bg-gray-200 text-black",
                               yearList === 2023 &&
                                 exceptMonth.some(
@@ -246,7 +246,7 @@ export default function About({ blogs }: any) {
                                 )
                                 ? "opacity-30 cursor-default !hover:bg-none"
                                 : "hover:bg-[#2c82f2]/[0.5] hover:text-white",
-                              "cursor-pointer text-[10px] px-5 py-1"
+                              "cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600"
                             )}
                           >
                             {mon.monthEng}
