@@ -107,7 +107,7 @@ export default function About({ blogs }: any) {
 
   return (
     <>
-      <Seo title={`MinSun's Blog | About`} />
+      <Seo title={`MinSun's Blog | Home`} />
       <div className="px-5 lg:px-0 lg:max-w-3xl w-full mx-auto">
         <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[468px] mb-16 lg:mb-10">
           <div className="flex flex-1 justify-between rounded-lg overflow-hidden flex-col h-full bg-gray-100 dark:bg-gray-800">
@@ -162,7 +162,7 @@ export default function About({ blogs }: any) {
                 <IoLogoGithub className="text-2xl" />
               </Link>
             </div>
-            <div className="w-full relative h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <div className="w-full relative h-[320px] lg:h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
               <div className="relative text-center flex items-center justify-between text-xs">
                 <span>
                   {mathMonth.length > 0 ? mathMonth.length : 0} posts in{" "}

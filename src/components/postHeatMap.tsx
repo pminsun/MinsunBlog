@@ -2,8 +2,10 @@ import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 
 export default function PostHeatMap({ blogs, year, month }: any) {
+  const { theme } = useTheme();
   const today = new Date(`${year}-${month}`);
   const yearChart = today.getFullYear();
   const monthChart = today.getMonth() + 1;
@@ -197,11 +199,6 @@ export default function PostHeatMap({ blogs, year, month }: any) {
         colorScale: {
           ranges: [
             {
-              from: -1,
-              to: -1,
-              color: "#d5d6d8",
-            },
-            {
               from: 0,
               to: 0,
               color: "#94A3B8",
@@ -230,12 +227,13 @@ export default function PostHeatMap({ blogs, year, month }: any) {
     },
     stroke: {
       width: 3,
-      colors: ["#F3F4F6"],
+      colors: theme === "light" ? ["#F3F4F6"] : ["#1f2937"],
     },
     yaxis: {
       labels: {
         style: {
           fontSize: "10px",
+          colors: theme === "light" ? "#000" : "#d5d6d8",
         },
       },
     },
@@ -248,6 +246,15 @@ export default function PostHeatMap({ blogs, year, month }: any) {
       },
       tooltip: {
         enabled: false,
+      },
+      labels: {
+        style: {
+          colors: theme === "light" ? "#000" : "#d5d6d8",
+        },
+      },
+      axisBorder: {
+        show: true,
+        color: "#78909C",
       },
     },
     tooltip: {

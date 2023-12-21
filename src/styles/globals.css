@@ -94,3 +94,8 @@ span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
 .ItemDetailPropText h2 {
   @apply drop-shadow-md;
 }
+
+/*hearmap : -1값*/
+rect[val="-1"] {
+  @apply fill-[#f3f4f6] dark:fill-[#1f2937];
+}

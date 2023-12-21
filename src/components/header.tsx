@@ -13,7 +13,7 @@ export default function Header() {
             href="/"
             className={cls(router.pathname === "/" ? "text-point-color" : "")}
           >
-            About
+            Home
           </Link>
           <Link
             href="/blog"
