@@ -7,9 +7,12 @@ import axios from "axios";
 import Item from "@/components/item";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
-import PostHeatMap from "@/components/postHeatMap";
 import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
+import dynamic from "next/dynamic";
+const PostHeatMap = dynamic(() => import("@/components/postHeatMap"), {
+  ssr: false,
+});
 
 export default function About({ blogs }: any) {
   const today = new Date();
