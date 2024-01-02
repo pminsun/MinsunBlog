@@ -60,7 +60,7 @@ export default function blockDetail({
           propertiesData.cover?.external?.url || propertiesData.cover?.file?.url
         }
       />
-      <div className="px-5 lg:px-0 lg:max-w-3xl lg:mx-auto">
+      <div className="px-5 lg:px-0 laptop-max-width">
         <button onClick={backClick} className="block p-1">
           <HiArrowLeft />
         </button>
@@ -74,7 +74,7 @@ export default function blockDetail({
         description={itemData.description}
         coverImage={itemData.coverImage}
       />
-      <div className="px-5 lg:px-0 pb-10 lg:max-w-3xl lg:mx-auto">
+      <div className="px-5 lg:px-0 pb-10 laptop-max-width">
         {blockDetail?.results?.map((blockContent: any) => (
           <ItemDetailContent
             key={blockContent.id}
@@ -82,7 +82,7 @@ export default function blockDetail({
           />
         ))}
       </div>
-      <div className="px-5 lg:px-0 lg:max-w-3xl lg:mx-auto flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
+      <div className="px-5 lg:px-0 laptop-max-width flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
         {preHref && (
           <Link
             href={`/blog/${preHref}`}

@@ -1,0 +1,10 @@
+/*header*/
+.header-style a {
+  @apply block p-2 font-semibold relative
+  after:block after:h-[2px] after:w-0 after:absolute after:left-1/2 after:bottom-[5px] after:bg-transparent after:transition-all after:m-auto
+  hover:after:w-full hover:after:left-0 hover:after:bg-[#2c82f2];
+}
+
+.text-point-color {
+  @apply text-[#2c82f2];
+}

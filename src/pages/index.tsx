@@ -10,6 +10,7 @@ import { IoLogoGithub, IoMail } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
 import dynamic from "next/dynamic";
+import DEFINE from "@/constant/Global";
 const PostHeatMap = dynamic(() => import("@/components/postHeatMap"), {
   ssr: false,
 });
@@ -18,21 +19,21 @@ export default function About({ blogs }: any) {
   const today = new Date();
   const year = today.getFullYear();
   const engMonthName = [
-    { monthEng: "Jan", monthNum: "01" },
-    { monthEng: "Feb", monthNum: "02" },
-    { monthEng: "Mar", monthNum: "03" },
-    { monthEng: "Apr", monthNum: "04" },
-    { monthEng: "May", monthNum: "05" },
-    { monthEng: "Jun", monthNum: "06" },
-    { monthEng: "Jul", monthNum: "07" },
-    { monthEng: "Aug", monthNum: "08" },
-    { monthEng: "Sep", monthNum: "09" },
-    { monthEng: "Oct", monthNum: "10" },
-    { monthEng: "Nov", monthNum: "11" },
-    { monthEng: "Dec", monthNum: "12" },
+    { monthEng: DEFINE.MONTHS.JAN.ENG, monthNum: DEFINE.MONTHS.JAN.NUM },
+    { monthEng: DEFINE.MONTHS.FEB.ENG, monthNum: DEFINE.MONTHS.FEB.NUM },
+    { monthEng: DEFINE.MONTHS.MAR.ENG, monthNum: DEFINE.MONTHS.MAR.NUM },
+    { monthEng: DEFINE.MONTHS.APR.ENG, monthNum: DEFINE.MONTHS.APR.NUM },
+    { monthEng: DEFINE.MONTHS.MAY.ENG, monthNum: DEFINE.MONTHS.MAY.NUM },
+    { monthEng: DEFINE.MONTHS.JUN.ENG, monthNum: DEFINE.MONTHS.JUN.NUM },
+    { monthEng: DEFINE.MONTHS.JUL.ENG, monthNum: DEFINE.MONTHS.JUL.NUM },
+    { monthEng: DEFINE.MONTHS.AUG.ENG, monthNum: DEFINE.MONTHS.AUG.NUM },
+    { monthEng: DEFINE.MONTHS.SEP.ENG, monthNum: DEFINE.MONTHS.SEP.NUM },
+    { monthEng: DEFINE.MONTHS.OCT.ENG, monthNum: DEFINE.MONTHS.OCT.NUM },
+    { monthEng: DEFINE.MONTHS.NOV.ENG, monthNum: DEFINE.MONTHS.NOV.NUM },
+    { monthEng: DEFINE.MONTHS.DEC.ENG, monthNum: DEFINE.MONTHS.DEC.NUM },
   ];
 
-  const years = [2023, 2024, 2025];
+  const years = [2023, 2024];
 
   const engMonth = engMonthName[today.getMonth()].monthEng;
   const numMonth = engMonthName[today.getMonth()].monthNum;
@@ -115,9 +116,9 @@ export default function About({ blogs }: any) {
   return (
     <>
       <Seo title={`MinSun's Blog | Home`} />
-      <div className="px-5 lg:px-0 lg:max-w-3xl w-full mx-auto">
+      <div className="px-5 lg:px-0 laptop-max-width">
         <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[468px] mb-16 lg:mb-10">
-          <div className="flex flex-1 justify-between rounded-lg overflow-hidden flex-col h-full bg-gray-100 dark:bg-gray-800">
+          <div className="flex flex-1 justify-between rounded-lg overflow-hidden flex-col w-full h-full bg-gray-100 dark:bg-gray-800">
             <div className="w-full h-2/3 lg:h-[312px]">
               <LottiAnimation />
             </div>
@@ -126,47 +127,23 @@ export default function About({ blogs }: any) {
                 안녕하세요.
                 <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
                 개발자입니다.
-                {/* 안녕하세요. 새로운 기술을 학습하는 것을 좋아하는 프론트엔드
-                개발자입니다. 사용자의 니즈와 복잡한 것을 단순하고 간편하게
-                만드는 것에 관심이 많으며, 정보를 공유하는 것에 즐거움을
-                느낍니다. */}
               </p>
-              <div className="flex gap-4">
-                <Link
-                  href="/project"
-                  className="block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
-                >
-                  프로젝트
-                </Link>
-                <Link
-                  href="/resume"
-                  className="block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2]"
-                >
-                  이력서
-                </Link>
+              <div className="link-innerPage">
+                <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
+                <Link href="/resume">{DEFINE.PAGES.RESUME.KOR}</Link>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-8 h-full w-full flex-1">
-            <div className="flex justify-between flex-col md:flex-row rounded-lg overflow-hidden px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800">
-              <Link
-                href="https://github.com/pminsun"
-                target="_blank"
-                className="flex items-center justify-center py-2 flex-1 text-center rounded-lg overflow-hidden text-white bg-slate-400 hover:bg-[#2c82f2]"
-              >
-                <IoLogoGithub className="text-2xl" />
+            <div className="link-outerPage">
+              <Link href="https://github.com/pminsun" target="_blank">
+                <IoLogoGithub />
               </Link>
-              <Link
-                href="mailto:pminsun309@gmail.com"
-                className="flex items-center justify-center py-2 flex-1 text-center rounded-lg text-white bg-slate-400 hover:bg-[#2c82f2]"
-              >
-                <IoMail className="text-2xl" />
+              <Link href="mailto:pminsun309@gmail.com">
+                <IoMail />
               </Link>
-              <Link
-                href="/project"
-                className="flex items-center justify-center py-2 flex-1 text-center rounded-lg text-white bg-slate-400 hover:bg-[#2c82f2]"
-              >
-                <IoLogoGithub className="text-2xl" />
+              <Link href="/project">
+                <IoLogoGithub />
               </Link>
             </div>
             <div className="w-full relative h-[320px] lg:h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -269,7 +246,7 @@ export default function About({ blogs }: any) {
                 key={item.id}
                 item={item}
                 viewStyle={"gallery"}
-                tagCategory={"all"}
+                tagCategory={"All"}
               />
             ))}
           </div>
@@ -277,7 +254,9 @@ export default function About({ blogs }: any) {
             href="/blog"
             className="flex items-center gap-2 mt-6 w-36 text-sm text-gray-400 hover:text-gray-700 transition-all"
           >
-            <p className="about-allposts font-semibold">Read all Posts</p>
+            <p className="about-allposts font-semibold">
+              {DEFINE.PAGES.BLOG.ENGTWO}
+            </p>
             <div className="pt-[3px]">
               <HiArrowNarrowRight />
             </div>

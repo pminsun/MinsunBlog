@@ -1,4 +1,7 @@
 import "@/styles/globals.css";
+import "@/styles/header.css";
+import "@/styles/home.css";
+import "@/styles/post.css";
 import "@/styles/fonts.css";
 import "@/styles/tagColors.css";
 import "@/styles/codeHighlightColors.css";

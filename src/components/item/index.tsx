@@ -22,7 +22,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
 
   const tagName = itemData.tags.map((row: any) => row.name);
   const categoryView =
-    tagCategory === "all" ||
+    tagCategory === "All" ||
     tagName.includes(tagCategory) ||
     (tagCategory === "Etc" &&
       !["Dev", "React", "Emotion", "TailwindCSS", "Javascript", "Css"].some(
@@ -38,9 +38,9 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
         <Link
           href={{ pathname: pathName }}
           key={item.id}
-          className="h-[280px] item-link-style group relative"
+          className="h-[280px] post-link-style group"
         >
-          <div className="w-full h-1/2 top-0 group-hover:h-full page-image-group-hover-effect">
+          <div className="post-gallery-image-container">
             {item.cover ? (
               <Image
                 src={item.cover?.external?.url || item.cover?.file?.url}
@@ -50,35 +50,18 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
                 priority
                 placeholder="blur"
                 blurDataURL={blurDataURL}
-                className="page-image-style"
+                className="post-image-style"
               />
             ) : (
-              <div className="page-noneimage-style" />
+              <div className="post-noneimage-style" />
             )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
-            <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect w-full whitespace-nowrap overflow-hidden text-ellipsis">
-              {itemData.name}
-            </p>
-            <p className="mt-3 page-text-group-hover-effect page-text-group-hover-Anieffect-500 w-full whitespace-nowrap overflow-hidden text-ellipsis">
-              {itemData.description}
-            </p>
+            <p className="post-name">{itemData.name}</p>
+            <p className="post-gallery-desc">{itemData.description}</p>
             {item.created_time && (
-              <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-                {changeDate(korDate)}
-              </p>
+              <p className="post-gallery-createdTime">{changeDate(korDate)}</p>
             )}
-            {/* {itemData.endDate && itemData.startDate && (
-              <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-                {changeDate(itemData.startDate)}~
-                {changeDate(itemData.endDate) || null}
-              </p>
-            )}
-            {itemData.endDate == null && itemData.startDate && (
-              <p className="my-2 page-text-group-hover-effect page-text-group-hover-Anieffect-500">
-                {changeDate(itemData.startDate)}
-              </p>
-            )} */}
             <Tag tags={itemData.tags} viewStyle={viewStyle} />
           </div>
         </Link>
@@ -87,9 +70,9 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
         <Link
           href={{ pathname: pathName }}
           key={item.id}
-          className="flex items-center justify-between pr-4 h-20 md:h-24 group item-link-style relative group"
+          className="post-list-style post-link-style group"
         >
-          <div className="w-[22%] md:w-[110px] h-full left-0 page-image-group-hover-effect group-hover:w-[100%]">
+          <div className="post-list-image-container">
             {item.cover ? (
               <Image
                 src={item.cover?.external.url || item.cover?.file?.url}
@@ -99,21 +82,19 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
                 priority
                 placeholder="blur"
                 blurDataURL={blurDataURL}
-                className="page-image-style"
+                className="post-image-style"
               />
             ) : (
-              <div className="page-noneimage-style " />
+              <div className="post-noneimage-style" />
             )}
           </div>
           <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
             <div className="w-2/3 md:w-full">
-              <p className="dark:text-slate-200 font-semibold page-text-group-hover-effect w-full whitespace-nowrap overflow-hidden text-ellipsis">
-                {itemData.name}
-              </p>
+              <p className="post-name">{itemData.name}</p>
               <span
                 className={cls(
                   itemData.description.length > 45 ? "w-2/3" : "w-full",
-                  "text-xs hidden md:block md:mt-1 page-text-group-hover-effect"
+                  "post-list-desc"
                 )}
               >
                 {itemData.description}
@@ -130,21 +111,10 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
               |
             </span>
             {item.created_time && (
-              <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
+              <span className="post-list-createdTime">
                 {changeDate(item.created_time)}
               </span>
             )}
-            {/* {itemData.endDate && itemData.startDate && (
-              <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
-                {changeDate(itemData.startDate)}~
-                {changeDate(itemData.endDate.slice(-5)) || null}
-              </span>
-            )}
-            {itemData.endDate == null && itemData.startDate && (
-              <span className="page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
-                {changeDate(itemData.startDate)}
-              </span>
-            )} */}
           </div>
         </Link>
       )}

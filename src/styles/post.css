@@ -1,0 +1,109 @@
+/* blog & project post style */
+.page-state-style {
+  @apply my-8 flex justify-between items-center;
+}
+
+.post-content-area {
+  @apply px-5 lg:px-0 pb-8;
+}
+
+.post-search-container {
+  @apply border border-slate-400 rounded-2xl overflow-hidden w-full lg:w-1/2 mt-10;
+}
+
+.post-search-container input {
+  @apply text-sm px-4 py-2 w-full focus:outline-0 text-black dark:text-slate-400;
+}
+
+.categoty-selected-style {
+  @apply text-[#2c82f2] dark:text-[#2c82f2];
+}
+
+.page-gallery-style {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.page-list-style {
+  @apply block space-y-6;
+}
+
+.item-tagCategory {
+  @apply flex items-center gap-3 md:max-w-[2/3] mr-3 overflow-x-auto;
+}
+
+.item-tagCategory li {
+  @apply cursor-pointer p-2;
+}
+
+/* item component */
+.post-link-style {
+  @apply relative rounded-lg overflow-hidden cursor-pointer bg-gray-100 dark:bg-gray-800;
+}
+
+.post-list-style {
+  @apply flex items-center justify-between pr-4 h-20 md:h-24;
+}
+
+.post-gallery-image-container {
+  @apply w-full h-1/2 top-0 group-hover:h-full post-image-group-hover-effect;
+}
+
+.post-list-image-container {
+  @apply w-[22%] md:w-[110px] h-full left-0 post-image-group-hover-effect group-hover:w-[100%];
+}
+
+.post-image-style {
+  @apply w-full h-full object-cover object-center;
+}
+
+.post-noneimage-style {
+  @apply w-full h-full bg-gray-400;
+}
+
+.post-name {
+  @apply dark:text-slate-200 font-semibold post-text-group-hover-effect w-full whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.post-gallery-desc {
+  @apply mt-3 post-text-group-hover-effect post-text-group-hover-Anieffect-500 w-full whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.post-list-desc {
+  @apply text-xs hidden md:block md:mt-1 post-text-group-hover-effect;
+}
+
+.post-gallery-createdTime {
+  @apply my-2 post-text-group-hover-effect post-text-group-hover-Anieffect-500;
+}
+
+.post-list-createdTime {
+  @apply post-text-group-hover-effect post-text-group-hover-Anieffect-1000;
+}
+
+.post-image-group-hover-effect {
+  @apply overflow-hidden rounded-lg absolute
+  group-hover:brightness-75 group-hover:transition-all group-hover:ease-in-out group-hover:duration-700;
+}
+
+.post-text-group-hover-effect {
+  @apply group-hover:text-white group-hover:drop-shadow-lg;
+}
+
+.post-text-group-hover-Anieffect-500 {
+  @apply text-xs
+  group-hover:transition-all group-hover:duration-500;
+}
+
+.post-text-group-hover-Anieffect-1000 {
+  @apply text-xs 
+  group-hover:transition-all group-hover:duration-1000;
+}
+
+/* blog & project post Detail style */
+.itemDetail-prop {
+  @apply text-xs;
+}
+
+.ItemDetailPropText h2 {
+  @apply drop-shadow-md;
+}

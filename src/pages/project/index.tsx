@@ -4,6 +4,7 @@ import MoveToTop from "@/components/moveToTop";
 import PageState from "@/components/pageState";
 import Seo from "@/components/seo";
 import Title from "@/components/title";
+import DEFINE from "@/constant/Global";
 import { useProjectPageStore } from "@/store/pageStore";
 import axios from "axios";
 import { BASE_URL, DATABASE_ID_PROJECT, TOKEN } from "libs/config";
@@ -14,7 +15,7 @@ import { useEffect, useState } from "react";
 export default function Project({ projects }: any) {
   const { viewStyle, sortedContent } = useProjectPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
-  const [tagCategory, setTagCategory] = useState("all");
+  const [tagCategory, setTagCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [filteredList, setFilteredList] = useState([]);
 
@@ -51,27 +52,29 @@ export default function Project({ projects }: any) {
         desc={"진행했던 프로젝트들을 기록합니다."}
       />
       {mounted && (
-        <div className="lg:max-w-3xl w-full mx-auto">
+        <div className="laptop-max-width">
           <Title
             title={"Projects"}
             subMent={"진행했던 프로젝트들을 기록합니다."}
           />
-          <div className="px-5 lg:px-0 pb-8">
-            <div className="border border-slate-400 rounded-2xl overflow-hidden w-full lg:w-1/2 mt-10">
+          <div className="post-content-area">
+            <div className="post-search-container">
               <input
                 value={search}
                 onChange={(e) => handleSearchInputChange(e.target.value)}
                 placeholder="Search"
-                className="text-sm bg-primary px-4 py-2 w-full focus:outline-0 text-black dark:text-slate-400"
+                className="bg-primary"
               />
             </div>
             <div className="page-state-style">
-              <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
+              <ul className="item-tagCategory">
                 <li
-                  onClick={() => setTagCategory("all")}
-                  className={cls(tagCategory === "all" ? "categoty-style" : "")}
+                  onClick={() => setTagCategory("All")}
+                  className={cls(
+                    tagCategory === "All" ? "categoty-selected-style" : ""
+                  )}
                 >
-                  All({projects.results.length})
+                  {DEFINE.TAGCATEGORY.ALL}({projects.results.length})
                 </li>
               </ul>
               <PageState path={"projects"} />

@@ -10,11 +10,12 @@ import { useBlogPageStore } from "@/store/pageStore";
 import Seo from "@/components/seo";
 import { useEffect, useState } from "react";
 import MoveToTop from "@/components/moveToTop";
+import DEFINE from "@/constant/Global";
 
 export default function Blog({ blogs }: any) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
-  const [tagCategory, setTagCategory] = useState("all");
+  const [tagCategory, setTagCategory] = useState("All");
   const [search, setSearch] = useState("");
   const [filteredList, setFilteredList] = useState([]);
 
@@ -51,79 +52,89 @@ export default function Blog({ blogs }: any) {
         desc={"개발하면서 탐구한 것을 기록합니다."}
       />
       {mounted && (
-        <div className="lg:max-w-3xl w-full mx-auto">
+        <div className="laptop-max-width">
           <Title
             title={"Blog"}
             subMent={"개발하면서 탐구한 것을 기록합니다."}
           />
-          <div className="px-5 lg:px-0 pb-8">
-            <div className="border border-slate-400 rounded-2xl overflow-hidden w-full lg:w-1/2 mt-10">
+          <div className="post-content-area">
+            <div className="post-search-container">
               <input
                 value={search}
                 onChange={(e) => handleSearchInputChange(e.target.value)}
                 placeholder="Search"
-                className="text-sm bg-primary px-4 py-2 w-full focus:outline-0 text-black dark:text-slate-400"
+                className="bg-primary"
               />
             </div>
             <div className="page-state-style">
-              <ul className="flex items-center gap-3 item-tagCategory md:max-w-2/3 mr-3 overflow-x-auto">
+              <ul className="item-tagCategory">
                 <li
-                  onClick={() => setTagCategory("all")}
+                  onClick={() => setTagCategory("All")}
                   className={cls(
-                    tagCategory === "all" ? "categoty-style " : ""
+                    tagCategory === "All" ? "categoty-selected-style " : ""
                   )}
                 >
-                  All({blogs.results.length})
+                  {DEFINE.TAGCATEGORY.ALL}({blogs.results.length})
                 </li>
                 <li
                   onClick={() => setTagCategory("Dev")}
-                  className={cls(tagCategory === "Dev" ? "categoty-style" : "")}
+                  className={cls(
+                    tagCategory === "Dev" ? "categoty-selected-style" : ""
+                  )}
                 >
-                  Dev
+                  {DEFINE.TAGCATEGORY.DEV}
                 </li>
                 <li
                   onClick={() => setTagCategory("React")}
                   className={cls(
-                    tagCategory === "React" ? "categoty-style" : ""
+                    tagCategory === "React" ? "categoty-selected-style" : ""
                   )}
                 >
-                  React
+                  {DEFINE.TAGCATEGORY.REACT}
                 </li>
                 <li
                   onClick={() => setTagCategory("Emotion")}
                   className={cls(
-                    tagCategory === "Emotion" ? "categoty-style" : ""
+                    tagCategory === "Emotion" ? "categoty-selected-style" : ""
                   )}
                 >
-                  Emotion
+                  {DEFINE.TAGCATEGORY.EMOTION}
                 </li>
                 <li
                   onClick={() => setTagCategory("TailwindCSS")}
                   className={cls(
-                    tagCategory === "TailwindCSS" ? "categoty-style" : ""
+                    tagCategory === "TailwindCSS"
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
-                  TailwindCSS
+                  {DEFINE.TAGCATEGORY.TAILWINDCSS}
                 </li>
                 <li
                   onClick={() => setTagCategory("Javascript")}
                   className={cls(
-                    tagCategory === "Javascript" ? "categoty-style" : ""
+                    tagCategory === "Javascript"
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
-                  Javascript
+                  {DEFINE.TAGCATEGORY.JAVASCRIPT}
                 </li>
                 <li
                   onClick={() => setTagCategory("Css")}
-                  className={cls(tagCategory === "Css" ? "categoty-style" : "")}
+                  className={cls(
+                    tagCategory === "Css" ? "categoty-selected-style" : ""
+                  )}
                 >
-                  Css
+                  {DEFINE.TAGCATEGORY.CSS}
                 </li>
                 <li
                   onClick={() => setTagCategory("Etc")}
-                  className={cls(tagCategory === "Etc" ? "categoty-style" : "")}
+                  className={cls(
+                    tagCategory === "Etc" ? "categoty-selected-style" : ""
+                  )}
                 >
-                  Etc
+                  {DEFINE.TAGCATEGORY.ETC}
                 </li>
               </ul>
               <PageState path={"blogs"} />

@@ -1,0 +1,46 @@
+/* Move to page or link */
+.link-innerPage {
+  @apply flex gap-4;
+}
+
+.link-innerPage a {
+  @apply block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2];
+}
+
+.link-outerPage {
+  @apply flex justify-between flex-col md:flex-row rounded-lg overflow-hidden px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
+}
+
+.link-outerPage a {
+  @apply flex items-center justify-center py-2 flex-1 text-center rounded-lg overflow-hidden text-white bg-slate-400 hover:bg-[#2c82f2];
+}
+
+.link-outerPage a svg {
+  @apply text-2xl;
+}
+
+/* Select Month */
+.month-selected {
+  @apply !bg-[#2c82f2] text-white dark:text-white;
+}
+
+.month-noneSelected {
+  @apply bg-gray-200 text-black;
+}
+
+.month-disabled {
+  @apply opacity-30 !cursor-default hover:bg-transparent;
+}
+
+.month-noneDisabled {
+  @apply hover:bg-[#2c82f2]/[0.5] hover:text-white;
+}
+
+.month-base {
+  @apply cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600;
+}
+
+/*hearmap : -1값*/
+rect[val="-1"] {
+  @apply fill-[#f3f4f6] dark:fill-[#1f2937];
+}
