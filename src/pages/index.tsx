@@ -49,8 +49,15 @@ export default function About({ blogs }: any) {
     return korDate;
   });
 
-  const [monthList, setMonthList] = useState({ engMonth, numMonth });
-  const [yearList, setYearList] = useState(year);
+  const [monthList, setMonthList] = useState<any>({});
+  const [yearList, setYearList] = useState(0);
+
+  useEffect(() => {
+    setMonthList({ engMonth, numMonth });
+    setYearList(today.getFullYear());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [showMonthModal, setShowMonthModal] = useState(false);
   const selectMonth = (engMonth: string, numMonth: string) => {
     setMonthList({ engMonth, numMonth });
