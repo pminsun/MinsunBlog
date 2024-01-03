@@ -40,17 +40,17 @@ export default function blockDetail({
 
   console.log("tableData >>", tableData);
 
-  // const preData = pageInfoAll(tableData.results, 0);
-  // const nextData = pageInfoAll(tableData.results, 1);
+  const preData = pageInfoAll(tableData.results, 0);
+  const nextData = pageInfoAll(tableData.results, 1);
 
   const extractHrefID = (href: string) =>
     href?.substring(href.lastIndexOf("-") + 1 || href.lastIndexOf("/") + 1);
 
   // title & url
-  // const preTitle = preData[0]?.title;
-  // const nextTitle = nextData[0]?.title;
-  // const preHref = extractHrefID(preData[0]?.href);
-  // const nextHref = extractHrefID(nextData[0]?.href);
+  const preTitle = preData[0]?.title;
+  const nextTitle = nextData[0]?.title;
+  const preHref = extractHrefID(preData[0]?.href);
+  const nextHref = extractHrefID(nextData[0]?.href);
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function blockDetail({
         ))}
       </div>
       <div className="px-5 lg:px-0 laptop-max-width flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between py-12 md:py-16 text-xs border-t-4 border-stone-200 border-dotted dark:border-stone-500">
-        {/* {preHref && (
+        {preHref && (
           <Link
             href={`/blog/${preHref}`}
             className="bg-gray-100 dark:bg-gray-800 w-full md:w-auto rounded flex items-center px-2 py-3 group"
@@ -112,7 +112,7 @@ export default function blockDetail({
             </div>
             <HiOutlineArrowCircleRight className="text-2xl text-gray-400 group-hover:text-[#2c82f2] mt-1" />
           </Link>
-        )} */}
+        )}
       </div>
       <MoveToTop />
     </>
