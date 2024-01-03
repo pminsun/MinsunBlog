@@ -1,9 +1,13 @@
+import DEFINE from "@/constant/Global";
 import UseTagsColor from "libs/useTagsColor";
 import { cls } from "libs/utils";
 
 export default function Tag({ tags, viewStyle, tagCategory }: any) {
   const exceptAllEtc =
-    tagCategory === "all" || tagCategory === "Etc" ? tags[0].name : tagCategory;
+    tagCategory === DEFINE.TAGCATEGORY.ALL ||
+    tagCategory === DEFINE.TAGCATEGORY.ETC
+      ? tags[0].name
+      : tagCategory;
 
   return (
     <div className="flex gap-2">

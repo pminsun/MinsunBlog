@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Tag from "./tag";
 import { changeDate } from "libs/useChangeDate";
 import { cls } from "libs/utils";
+import DEFINE from "@/constant/Global";
 
 export default function Item({ item, viewStyle, tagCategory }: any) {
   const itemData = UseProperties(item);
@@ -22,12 +23,17 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
 
   const tagName = itemData.tags.map((row: any) => row.name);
   const categoryView =
-    tagCategory === "All" ||
+    tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagName.includes(tagCategory) ||
-    (tagCategory === "Etc" &&
-      !["Dev", "React", "Emotion", "TailwindCSS", "Javascript", "Css"].some(
-        (excludedTag) => tagName.includes(excludedTag)
-      ));
+    (tagCategory === DEFINE.TAGCATEGORY.ETC &&
+      ![
+        DEFINE.TAGCATEGORY.DEV,
+        DEFINE.TAGCATEGORY.REACT,
+        DEFINE.TAGCATEGORY.EMOTION,
+        DEFINE.TAGCATEGORY.TAILWINDCSS,
+        DEFINE.TAGCATEGORY.JAVASCRIPT,
+        DEFINE.TAGCATEGORY.CSS,
+      ].some((excludedTag) => tagName.includes(excludedTag)));
 
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";

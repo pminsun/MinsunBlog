@@ -69,41 +69,49 @@ export default function Blog({ blogs }: any) {
             <div className="page-state-style">
               <ul className="item-tagCategory">
                 <li
-                  onClick={() => setTagCategory("All")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ALL)}
                   className={cls(
-                    tagCategory === "All" ? "categoty-selected-style " : ""
+                    tagCategory === DEFINE.TAGCATEGORY.ALL
+                      ? "categoty-selected-style "
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ALL}({blogs.results.length})
                 </li>
                 <li
-                  onClick={() => setTagCategory("Dev")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.DEV)}
                   className={cls(
-                    tagCategory === "Dev" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.DEV
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.DEV}
                 </li>
                 <li
-                  onClick={() => setTagCategory("React")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.REACT)}
                   className={cls(
-                    tagCategory === "React" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.REACT
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.REACT}
                 </li>
                 <li
-                  onClick={() => setTagCategory("Emotion")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.EMOTION)}
                   className={cls(
-                    tagCategory === "Emotion" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.EMOTION
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.EMOTION}
                 </li>
                 <li
-                  onClick={() => setTagCategory("TailwindCSS")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.TAILWINDCSS)}
                   className={cls(
-                    tagCategory === "TailwindCSS"
+                    tagCategory === DEFINE.TAGCATEGORY.TAILWINDCSS
                       ? "categoty-selected-style"
                       : ""
                   )}
@@ -111,9 +119,9 @@ export default function Blog({ blogs }: any) {
                   {DEFINE.TAGCATEGORY.TAILWINDCSS}
                 </li>
                 <li
-                  onClick={() => setTagCategory("Javascript")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.JAVASCRIPT)}
                   className={cls(
-                    tagCategory === "Javascript"
+                    tagCategory === DEFINE.TAGCATEGORY.JAVASCRIPT
                       ? "categoty-selected-style"
                       : ""
                   )}
@@ -121,17 +129,21 @@ export default function Blog({ blogs }: any) {
                   {DEFINE.TAGCATEGORY.JAVASCRIPT}
                 </li>
                 <li
-                  onClick={() => setTagCategory("Css")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.CSS)}
                   className={cls(
-                    tagCategory === "Css" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.CSS
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.CSS}
                 </li>
                 <li
-                  onClick={() => setTagCategory("Etc")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ETC)}
                   className={cls(
-                    tagCategory === "Etc" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.ETC
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ETC}

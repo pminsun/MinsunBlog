@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 export default function Project({ projects }: any) {
   const { viewStyle, sortedContent } = useProjectPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
-  const [tagCategory, setTagCategory] = useState("All");
+  const [tagCategory, setTagCategory] = useState(DEFINE.TAGCATEGORY.ALL);
   const [search, setSearch] = useState("");
   const [filteredList, setFilteredList] = useState([]);
 
@@ -69,9 +69,11 @@ export default function Project({ projects }: any) {
             <div className="page-state-style">
               <ul className="item-tagCategory">
                 <li
-                  onClick={() => setTagCategory("All")}
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ALL)}
                   className={cls(
-                    tagCategory === "All" ? "categoty-selected-style" : ""
+                    tagCategory === DEFINE.TAGCATEGORY.ALL
+                      ? "categoty-selected-style"
+                      : ""
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ALL}({projects.results.length})
