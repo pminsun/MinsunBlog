@@ -38,8 +38,6 @@ export default function blockDetail({
       .map(pageInfo)
       .map((item: any) => ({ title: item.title, href: item.href }));
 
-  console.log("tableData >>", tableData);
-
   const preData = pageInfoAll(tableData.results, 0);
   const nextData = pageInfoAll(tableData.results, 1);
 
