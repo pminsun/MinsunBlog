@@ -4,7 +4,7 @@ import Title from "../components/ScreenElement/title";
 import Seo from "@/components/seo";
 import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import axios from "axios";
-import Item from "@/components/item";
+import Item from "@/components/post";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";

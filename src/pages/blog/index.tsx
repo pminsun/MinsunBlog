@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Item from "@/components/item";
+import Item from "@/components/post";
 import Title from "../../components/ScreenElement/title";
 import axios from "axios";
 import { cls } from "libs/utils";

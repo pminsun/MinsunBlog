@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Item from "@/components/item";
+import Item from "@/components/post";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import PageState from "@/components/ScreenElement/pageState";
 import Seo from "@/components/seo";

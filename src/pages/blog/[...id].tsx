@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import ItemDetailContent from "@/components/item/itemDetailContent";
+import ItemDetailContent from "@/components/post/postDetailContent";
 import axios from "axios";
 import { useRouter } from "next/router";
 import {
@@ -10,7 +10,7 @@ import {
 import { NextPageContext } from "next";
 import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
-import ItemDetailProp from "@/components/item/itemDetailProp";
+import ItemDetailProp from "@/components/post/postDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import Link from "next/link";
