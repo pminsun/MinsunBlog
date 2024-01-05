@@ -1,4 +1,4 @@
-import Title from "@/components/title";
+import Title from "@/components/ScreenElement/title";
 
 export default function Resume() {
   return (

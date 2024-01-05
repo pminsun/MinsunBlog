@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Item from "@/components/item";
-import Title from "../../components/title";
+import Title from "../../components/ScreenElement/title";
 import axios from "axios";
 import { cls } from "libs/utils";
 import { BASE_URL, DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import { useSortedData } from "libs/usePageState";
-import PageState from "@/components/pageState";
+import PageState from "@/components/ScreenElement/pageState";
 import { useBlogPageStore } from "@/store/pageStore";
 import Seo from "@/components/seo";
 import { useEffect, useState } from "react";
-import MoveToTop from "@/components/moveToTop";
+import MoveToTop from "@/components/ScreenElement/moveToTop";
 import DEFINE from "@/constant/Global";
 
 export default function Blog({ blogs }: any) {

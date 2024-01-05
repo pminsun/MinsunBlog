@@ -12,7 +12,7 @@ import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
 import ItemDetailProp from "@/components/item/itemDetailProp";
 import Seo from "@/components/seo";
-import MoveToTop from "@/components/moveToTop";
+import MoveToTop from "@/components/ScreenElement/moveToTop";
 import Link from "next/link";
 
 export default function blockDetail({

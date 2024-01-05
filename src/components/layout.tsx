@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from "react";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./ScreenStructure/header";
+import Footer from "./ScreenStructure/footer";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (

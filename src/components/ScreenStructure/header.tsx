@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DarkModeToggleBtn from "./darkModeToggleBtn";
+import DarkModeToggleBtn from "../ScreenElement/darkModeToggleBtn";
 import { useRouter } from "next/router";
 import { cls } from "libs/utils";
 import DEFINE from "@/constant/Global";

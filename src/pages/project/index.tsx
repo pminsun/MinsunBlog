@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Item from "@/components/item";
-import MoveToTop from "@/components/moveToTop";
-import PageState from "@/components/pageState";
+import MoveToTop from "@/components/ScreenElement/moveToTop";
+import PageState from "@/components/ScreenElement/pageState";
 import Seo from "@/components/seo";
-import Title from "@/components/title";
+import Title from "@/components/ScreenElement/title";
 import DEFINE from "@/constant/Global";
 import { useProjectPageStore } from "@/store/pageStore";
 import axios from "axios";

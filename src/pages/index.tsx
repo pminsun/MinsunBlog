@@ -1,6 +1,6 @@
 import Link from "next/link";
-import LottiAnimation from "../components/lottieAny";
-import Title from "../components/title";
+import LottiAnimation from "../components/ScreenElement/lottieAny";
+import Title from "../components/ScreenElement/title";
 import Seo from "@/components/seo";
 import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import axios from "axios";
@@ -11,9 +11,12 @@ import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
 import dynamic from "next/dynamic";
 import DEFINE from "@/constant/Global";
-const PostHeatMap = dynamic(() => import("@/components/postHeatMap"), {
-  ssr: false,
-});
+const PostHeatMap = dynamic(
+  () => import("@/components/ScreenElement/postHeatMap"),
+  {
+    ssr: false,
+  }
+);
 
 export default function About({ blogs }: any) {
   const today = new Date();
