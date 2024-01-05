@@ -11,13 +11,16 @@ import { BASE_URL, DATABASE_ID_PROJECT, TOKEN } from "libs/config";
 import { useSortedData } from "libs/usePageState";
 import { cls } from "libs/utils";
 import { useEffect, useState } from "react";
+import { ListResults, ProjectistObject } from "@/InterfaceGather";
 
-export default function Project({ projects }: any) {
+export default function Project({ projects }: ProjectistObject) {
   const { viewStyle, sortedContent } = useProjectPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
-  const [tagCategory, setTagCategory] = useState(DEFINE.TAGCATEGORY.ALL);
-  const [search, setSearch] = useState("");
-  const [filteredList, setFilteredList] = useState([]);
+  const [tagCategory, setTagCategory] = useState<string>(
+    DEFINE.TAGCATEGORY.ALL
+  );
+  const [search, setSearch] = useState<string>("");
+  const [filteredList, setFilteredList] = useState<ListResults[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -31,7 +34,7 @@ export default function Project({ projects }: any) {
     setSearch(searchWord);
 
     let updatedList = projects.results;
-    updatedList = projects.results.filter((item: any) => {
+    updatedList = projects.results.filter((item: ListResults) => {
       return (
         item?.properties["이름"].title[0].plain_text
           ?.toLowerCase()
@@ -90,7 +93,7 @@ export default function Project({ projects }: any) {
               )}
             >
               {useSortedData(
-                filteredList.map((item: any) => (
+                filteredList.map((item: ListResults) => (
                   <Item
                     key={item.id}
                     item={item}

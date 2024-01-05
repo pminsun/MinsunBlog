@@ -11,13 +11,16 @@ import Seo from "@/components/seo";
 import { useEffect, useState } from "react";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import DEFINE from "@/constant/Global";
+import { BlogistObject, ListResults } from "@/InterfaceGather";
 
-export default function Blog({ blogs }: any) {
+export default function Blog({ blogs }: BlogistObject) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
-  const [tagCategory, setTagCategory] = useState("All");
-  const [search, setSearch] = useState("");
-  const [filteredList, setFilteredList] = useState([]);
+  const [tagCategory, setTagCategory] = useState<string>(
+    DEFINE.TAGCATEGORY.ALL
+  );
+  const [search, setSearch] = useState<string>("");
+  const [filteredList, setFilteredList] = useState<ListResults[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -31,7 +34,7 @@ export default function Blog({ blogs }: any) {
     setSearch(searchWord);
 
     let updatedList = blogs.results;
-    updatedList = blogs.results.filter((item: any) => {
+    updatedList = blogs.results.filter((item: ListResults) => {
       return (
         item?.properties["이름"].title[0].plain_text
           ?.toLowerCase()
@@ -160,7 +163,7 @@ export default function Blog({ blogs }: any) {
               )}
             >
               {useSortedData(
-                filteredList.map((item: any) => (
+                filteredList.map((item: ListResults) => (
                   <Item
                     key={item.id}
                     item={item}
