@@ -1,15 +1,19 @@
-import ItemDetailContent from "@/components/post/postDetailContent";
+import PostDetailContent from "@/components/post/postDetailContent";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { HiArrowLeft } from "react-icons/hi";
 import { NextPageContext } from "next";
 import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
-import ItemDetailProp from "@/components/post/postDetailProp";
+import PostDetailProp from "@/components/post/postDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
+import { BlockDetailData, BlockDetailResults } from "@/InterfaceGather";
 
-export default function blockDetail({ blockDetail, propertiesData }: any) {
+export default function blockDetail({
+  blockDetail,
+  propertiesData,
+}: BlockDetailData) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   const backClick = () => {
@@ -24,14 +28,14 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         title={itemData.name}
         url={BASE_URL + "/" + router.asPath}
         desc={itemData.description}
-        image={propertiesData.cover.external.url}
+        image={propertiesData.cover?.external?.url}
       />
       <div className="px-5 lg:px-0 laptop-max-width">
         <button onClick={backClick} className="block p-1">
           <HiArrowLeft />
         </button>
       </div>
-      <ItemDetailProp
+      <PostDetailProp
         name={itemData.name}
         tags={itemData.tags}
         github={itemData.github}
@@ -42,8 +46,8 @@ export default function blockDetail({ blockDetail, propertiesData }: any) {
         coverImage={itemData.coverImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
-        {blockDetail?.results?.map((blockContent: any) => (
-          <ItemDetailContent
+        {blockDetail?.results?.map((blockContent: BlockDetailResults) => (
+          <PostDetailContent
             key={blockContent.id}
             blockContent={blockContent}
           />

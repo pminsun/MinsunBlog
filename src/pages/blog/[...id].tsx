@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import ItemDetailContent from "@/components/post/postDetailContent";
+import PostDetailContent from "@/components/post/postDetailContent";
 import axios from "axios";
 import { useRouter } from "next/router";
 import {
@@ -10,16 +10,22 @@ import {
 import { NextPageContext } from "next";
 import UseProperties from "libs/useProperties";
 import { BASE_URL, TOKEN } from "libs/config";
-import ItemDetailProp from "@/components/post/postDetailProp";
+import PostDetailProp from "@/components/post/postDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import Link from "next/link";
+import {
+  BlockDetailData,
+  BlockDetailResults,
+  TableData,
+  TableResults,
+} from "@/InterfaceGather";
 
 export default function blockDetail({
   blockDetail,
   propertiesData,
   tableData,
-}: any) {
+}: BlockDetailData) {
   const router = useRouter();
   const backClick = () => {
     router.push("/blog");
@@ -28,18 +34,18 @@ export default function blockDetail({
   const itemData = UseProperties(propertiesData);
 
   // 이전, 다음 글
-  const pageInfo = (cell: any) => {
+  const pageInfo = (cell: { plain_text: string; href: string }) => {
     return { title: cell.plain_text, href: cell.href };
   };
 
-  const pageInfoAll = (tableData: any, index: number) =>
-    tableData
-      .flatMap((table: any) => table.table_row?.cells[index])
+  const pageInfoAll = (tableData: TableData, index: number) =>
+    tableData.results
+      .flatMap((table: TableResults) => table.table_row?.cells[index])
       .map(pageInfo)
-      .map((item: any) => ({ title: item.title, href: item.href }));
+      .map((item) => ({ title: item.title, href: item.href }));
 
-  const preData = pageInfoAll(tableData.results, 0);
-  const nextData = pageInfoAll(tableData.results, 1);
+  const preData = pageInfoAll(tableData!, 0);
+  const nextData = pageInfoAll(tableData!, 1);
 
   const extractHrefID = (href: string) =>
     href?.substring(href.lastIndexOf("-") + 1 || href.lastIndexOf("/") + 1);
@@ -65,7 +71,7 @@ export default function blockDetail({
           <HiArrowLeft />
         </button>
       </div>
-      <ItemDetailProp
+      <PostDetailProp
         name={itemData.name}
         tags={itemData.tags}
         github={itemData.github}
@@ -75,8 +81,8 @@ export default function blockDetail({
         coverImage={itemData.coverImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
-        {blockDetail?.results?.map((blockContent: any) => (
-          <ItemDetailContent
+        {blockDetail?.results?.map((blockContent: BlockDetailResults) => (
+          <PostDetailContent
             key={blockContent.id}
             blockContent={blockContent}
           />
@@ -148,7 +154,7 @@ export async function getServerSideProps(context: NextPageContext) {
   // table id 추출
   let tableId = null;
   blockDetail.results.map(
-    (blockContent: any) =>
+    (blockContent: BlockDetailResults) =>
       blockContent.type === "table" && (tableId = blockContent.id)
   );
 

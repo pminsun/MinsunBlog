@@ -4,7 +4,7 @@ import { HiExternalLink } from "react-icons/hi";
 import { changeDate } from "libs/useChangeDate";
 import Image from "next/image";
 
-export default function ItemDetailProp({
+export default function PostDetailProp({
   name,
   tags,
   github,

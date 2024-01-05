@@ -8,7 +8,7 @@ interface notionText {
   [key: string]: string;
 }
 
-export default function ItemDetailContent({ blockContent }: any) {
+export default function PostDetailContent({ blockContent }: any) {
   // code
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
