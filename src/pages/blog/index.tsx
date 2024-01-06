@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Item from "@/components/post";
+import Post from "@/components/post";
 import Title from "../../components/ScreenElement/title";
 import axios from "axios";
 import { cls } from "libs/utils";
@@ -174,7 +174,7 @@ export default function Blog({ blogs }: BlogistObject) {
             >
               {useSortedData(
                 filteredList.map((item: ListResults) => (
-                  <Item
+                  <Post
                     key={item.id}
                     item={item}
                     viewStyle={viewStyle}

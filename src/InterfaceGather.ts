@@ -229,3 +229,95 @@ export interface BlockDetailData {
   propertiesData: PropertiesData;
   tableData?: TableData;
 }
+
+// tag
+export interface TagType {
+  color: string;
+  id: string;
+  name: string;
+}
+export interface TagsType {
+  tags: TagType[];
+  viewStyle?: string;
+  tagCategory?: string;
+}
+
+// post
+export interface PostType {
+  item: ListResults;
+  viewStyle: string;
+  tagCategory: string;
+}
+
+// PostDetailContent
+export interface PostDetailContent {
+  archived: boolean;
+  created_by: CreatedBy;
+  created_time: string;
+  has_children: boolean;
+  id: string;
+  last_edited_by: LastEditedBy;
+  last_edited_time: string;
+  object: string;
+  parent: {
+    type: string;
+    page_id: string;
+  };
+  type: string;
+  heading_3?: {
+    color: string;
+    is_toggleable: boolean;
+    rich_text: RichText[];
+  };
+  paragraph?: {
+    color: string;
+    rich_text: RichText[];
+  };
+
+  bulleted_list_item?: {
+    color: string;
+    rich_text: RichText[];
+  };
+  code?: {
+    caption: [];
+    language: string;
+    rich_text: RichText[];
+  };
+  bookmark?: {
+    caption: [];
+    url: string;
+  };
+  image?: {
+    caption: [];
+    file: { url: string; expiry_time: string };
+    type: string;
+  };
+  video?: {
+    caption: [];
+    file: {
+      url: string;
+      expiry_time: string;
+    };
+    type: string;
+  };
+  embed?: {
+    caption: [];
+    url: string;
+  };
+  table?: {
+    has_column_header: boolean;
+    has_row_header: boolean;
+    table_width: number;
+  };
+}
+
+export interface BlockTextType {
+  [key: string]: {
+    color: string;
+    rich_text: RichText[];
+  };
+}
+
+export interface BlockContentType {
+  blockContent: PostDetailContent & BlockTextType;
+}

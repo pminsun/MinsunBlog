@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Highlight from "react-highlight";
+import { BlockContentType, RichText } from "@/InterfaceGather";
 
 interface notionText {
   [key: string]: string;
 }
 
-export default function PostDetailContent({ blockContent }: any) {
+export default function PostDetailContent({ blockContent }: BlockContentType) {
   // code
   const codeTxt = blockContent.code?.rich_text[0]?.text?.content;
   const codeLag = blockContent.code?.language;
@@ -47,44 +48,46 @@ export default function PostDetailContent({ blockContent }: any) {
     code: "bg-[#f6f4ef] dark:bg-[#122c42] text-[#eb5757] px-1 rounded",
   };
 
-  const getStyle = (styleName: string, value: any) =>
+  const getStyle = (styleName: string, value: string | boolean) =>
     value ? [stylesMap[styleName]] : [];
   const colorStyle = (color: string) =>
     color !== "default" ? [notionTxtColor(color)] : [];
 
-  const paragraphColor = colorStyle(blockContent.paragraph?.color);
+  const paragraphColor = colorStyle(blockContent.paragraph?.color ?? "");
   const textContent = blockContent[blockContent.type]?.rich_text || null;
 
-  const richTextContent = textContent?.map((txtPiece: any, index: number) => {
-    const textContent = txtPiece?.text?.content;
-    const textAnnotations = txtPiece?.annotations;
+  const richTextContent = textContent?.map(
+    (txtPiece: RichText, index: number) => {
+      const textContent = txtPiece?.text?.content;
+      const textAnnotations = txtPiece?.annotations;
 
-    const textStyles = [
-      ...getStyle("bold", textAnnotations?.bold),
-      ...getStyle("italic", textAnnotations?.italic),
-      ...getStyle("strikethrough", textAnnotations?.strikethrough),
-      ...getStyle("underline", textAnnotations?.underline),
-      ...getStyle("code", textAnnotations?.code),
-      ...colorStyle(textAnnotations?.color),
-    ].filter(Boolean);
+      const textStyles = [
+        ...getStyle("bold", textAnnotations?.bold),
+        ...getStyle("italic", textAnnotations?.italic),
+        ...getStyle("strikethrough", textAnnotations?.strikethrough),
+        ...getStyle("underline", textAnnotations?.underline),
+        ...getStyle("code", textAnnotations?.code),
+        ...colorStyle(textAnnotations?.color),
+      ].filter(Boolean);
 
-    const finalTextStyle = textStyles.join(" ");
+      const finalTextStyle = textStyles.join(" ");
 
-    return (
-      <span
-        key={index}
-        className={cls(
-          "detail-paragraph",
-          finalTextStyle,
-          textContent === "참고"
-            ? "mt-6 pb-3 mb-4 font-bold text-sm block border-b border-stone-400"
-            : ""
-        )}
-      >
-        {textContent}
-      </span>
-    );
-  });
+      return (
+        <span
+          key={index}
+          className={cls(
+            "detail-paragraph",
+            finalTextStyle,
+            textContent === "참고"
+              ? "mt-6 pb-3 mb-4 font-bold text-sm block border-b border-stone-400"
+              : ""
+          )}
+        >
+          {textContent}
+        </span>
+      );
+    }
+  );
 
   // image
   const [scrennWidth, setScrennWidth] = useState(
@@ -177,17 +180,19 @@ export default function PostDetailContent({ blockContent }: any) {
           style={imageSizeStyles}
           className="relative my-2 border border-gray-200 dark:border-gray-700"
         >
-          <Image
-            src={blockContent.image.file.url}
-            alt="image"
-            fill
-            priority
-            sizes="100%"
-            className="object-contain"
-            onLoadingComplete={({ naturalWidth, naturalHeight }) => {
-              setImageSize({ width: naturalWidth, height: naturalHeight });
-            }}
-          />
+          {blockContent.image && (
+            <Image
+              src={blockContent.image.file.url}
+              alt="image"
+              fill
+              priority
+              sizes="100%"
+              className="object-contain"
+              onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+                setImageSize({ width: naturalWidth, height: naturalHeight });
+              }}
+            />
+          )}
         </div>
       );
     case "video":
@@ -196,19 +201,23 @@ export default function PostDetailContent({ blockContent }: any) {
           key={blockContent.id}
           className="border border-gray-200 dark:border-gray-700"
         >
-          <video src={blockContent.video.file.url} autoPlay loop muted />
+          {blockContent.video && (
+            <video src={blockContent.video.file.url} autoPlay loop muted />
+          )}
         </div>
       );
     case "bookmark":
       return (
         <div key={blockContent.id} className="my-2 ">
-          <Link
-            href={blockContent.bookmark.url}
-            target="_blank"
-            className="text-sm text-[#2c82f2] font-bold break-all hover:underline decoration-[#2c82f2]"
-          >
-            {blockContent.bookmark.url}
-          </Link>
+          {blockContent.bookmark && (
+            <Link
+              href={blockContent.bookmark.url}
+              target="_blank"
+              className="text-sm text-[#2c82f2] font-bold break-all hover:underline decoration-[#2c82f2]"
+            >
+              {blockContent.bookmark.url}
+            </Link>
+          )}
         </div>
       ); //참고링크
     case "embed":

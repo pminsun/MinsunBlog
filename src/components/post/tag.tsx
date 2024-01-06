@@ -1,8 +1,9 @@
+import { TagType, TagsType } from "@/InterfaceGather";
 import DEFINE from "@/constant/Global";
 import UseTagsColor from "libs/useTagsColor";
 import { cls } from "libs/utils";
 
-export default function Tag({ tags, viewStyle, tagCategory }: any) {
+export default function Tag({ tags, viewStyle, tagCategory }: TagsType) {
   const exceptAllEtc =
     tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagCategory === DEFINE.TAGCATEGORY.ETC
@@ -15,7 +16,7 @@ export default function Tag({ tags, viewStyle, tagCategory }: any) {
         <div className="flex items-end gap-1 md:hidden">
           <span
             className={cls(
-              UseTagsColor(exceptAllEtc),
+              UseTagsColor(exceptAllEtc ?? ""),
               "p-1 rounded text-[10px] tag-name"
             )}
           >
@@ -24,7 +25,7 @@ export default function Tag({ tags, viewStyle, tagCategory }: any) {
           <span className="text-[10px]">etc</span>
         </div>
       ) : null}
-      {tags.map((tag: any) => (
+      {tags.map((tag: TagType) => (
         <span
           key={tag.id}
           className={cls(

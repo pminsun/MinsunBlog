@@ -4,13 +4,14 @@ import Title from "../components/ScreenElement/title";
 import Seo from "@/components/seo";
 import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import axios from "axios";
-import Item from "@/components/post";
+import Post from "@/components/post";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { IoLogoGithub, IoMail } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
 import dynamic from "next/dynamic";
 import DEFINE from "@/constant/Global";
+import { BlogistObject, ListResults } from "@/InterfaceGather";
 const PostHeatMap = dynamic(
   () => import("@/components/ScreenElement/postHeatMap"),
   {
@@ -18,7 +19,7 @@ const PostHeatMap = dynamic(
   }
 );
 
-export default function About({ blogs }: any) {
+export default function Home({ blogs }: BlogistObject) {
   const today = new Date();
   const year = today.getFullYear();
   const engMonthName = [
@@ -100,11 +101,11 @@ export default function About({ blogs }: any) {
   const dropMonthMenuBtnRef = useRef<HTMLDivElement | null>(null);
   const dropMonthMenuRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    const handleClickOutsideClose = (e: { target: any }) => {
+    const handleClickOutsideClose = (e: MouseEvent) => {
       if (
         showMonthModal &&
-        !dropMonthMenuRef.current?.contains(e.target) &&
-        !dropMonthMenuBtnRef.current?.contains(e.target)
+        !dropMonthMenuRef.current?.contains(e.target as Node) &&
+        !dropMonthMenuBtnRef.current?.contains(e.target as Node)
       )
         setShowMonthModal(false);
     };
@@ -245,8 +246,8 @@ export default function About({ blogs }: any) {
         <div className="pb-8">
           <p className="text-xl font-bold mb-5">Recent Blog Posts</p>
           <div className="w-full page-gallery-style">
-            {blogs?.results.slice(0, 3).map((item: any) => (
-              <Item
+            {blogs?.results.slice(0, 3).map((item: ListResults) => (
+              <Post
                 key={item.id}
                 item={item}
                 viewStyle={"gallery"}

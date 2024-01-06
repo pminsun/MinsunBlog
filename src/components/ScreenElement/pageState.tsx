@@ -23,11 +23,11 @@ export default function PageState({ path }: PageStateType) {
   const dropPageStateMenuBtnRef = useRef<HTMLDivElement | null>(null);
   const dropPageStateMenuRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    const handleClickOutsideClose = (e: { target: any }) => {
+    const handleClickOutsideClose = (e: MouseEvent) => {
       if (
         pageStateSelect &&
-        !dropPageStateMenuBtnRef.current?.contains(e.target) &&
-        !dropPageStateMenuRef.current?.contains(e.target)
+        !dropPageStateMenuBtnRef.current?.contains(e.target as Node) &&
+        !dropPageStateMenuRef.current?.contains(e.target as Node)
       )
         setPageStateSelect(false);
     };

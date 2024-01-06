@@ -6,8 +6,9 @@ import Tag from "./tag";
 import { changeDate } from "libs/useChangeDate";
 import { cls } from "libs/utils";
 import DEFINE from "@/constant/Global";
+import { PostType, TagType } from "@/InterfaceGather";
 
-export default function Item({ item, viewStyle, tagCategory }: any) {
+export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const itemData = UseProperties(item);
 
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
     .toISOString()
     .split("T")[0];
 
-  const tagName = itemData.tags.map((row: any) => row.name);
+  const tagName = itemData.tags.map((row: TagType) => row.name);
   const categoryView =
     tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagName.includes(tagCategory) ||
@@ -49,7 +50,10 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
           <div className="post-gallery-image-container">
             {item.cover ? (
               <Image
-                src={item.cover?.external?.url || item.cover?.file?.url}
+                src={
+                  (item.cover?.external?.url ?? "") ||
+                  (item.cover?.file?.url ?? "")
+                }
                 alt="image"
                 width={300}
                 height={300}
@@ -81,7 +85,10 @@ export default function Item({ item, viewStyle, tagCategory }: any) {
           <div className="post-list-image-container">
             {item.cover ? (
               <Image
-                src={item.cover?.external.url || item.cover?.file?.url}
+                src={
+                  (item.cover?.external?.url ?? "") ||
+                  (item.cover?.file?.url ?? "")
+                }
                 alt="image"
                 width={300}
                 height={300}
