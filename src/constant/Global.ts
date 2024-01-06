@@ -25,6 +25,7 @@ const DEFINE = {
     EMOTION: "Emotion",
     TAILWINDCSS: "TailwindCSS",
     JAVASCRIPT: "Javascript",
+    TYPESCRIPT: "Typescript",
     CSS: "Css",
     ETC: "Etc",
   },

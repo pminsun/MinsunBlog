@@ -132,6 +132,16 @@ export default function Blog({ blogs }: BlogistObject) {
                   {DEFINE.TAGCATEGORY.JAVASCRIPT}
                 </li>
                 <li
+                  onClick={() => setTagCategory(DEFINE.TAGCATEGORY.TYPESCRIPT)}
+                  className={cls(
+                    tagCategory === DEFINE.TAGCATEGORY.TYPESCRIPT
+                      ? "categoty-selected-style"
+                      : ""
+                  )}
+                >
+                  {DEFINE.TAGCATEGORY.TYPESCRIPT}
+                </li>
+                <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.CSS)}
                   className={cls(
                     tagCategory === DEFINE.TAGCATEGORY.CSS

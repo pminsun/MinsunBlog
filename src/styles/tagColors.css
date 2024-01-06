@@ -19,6 +19,9 @@
 .bg-tagJavascript {
   @apply bg-[#f8e88e] dark:text-slate-800;
 }
+.bg-tagTypescript {
+  @apply bg-[#fa97a5] dark:text-slate-800;
+}
 .bg-tagReactNative {
   @apply bg-[#a7bceb] dark:text-slate-800;
 }

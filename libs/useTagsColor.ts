@@ -12,6 +12,7 @@ export default function UseTagsColor(name: string) {
     Html: "bg-tagHtml",
     Css: "bg-tagCss",
     Javascript: "bg-tagJavascript",
+    Typescript: "bg-tagTypescript",
     ReactNative: "bg-tagReactNative",
     Dev: "bg-tagDev",
   };
