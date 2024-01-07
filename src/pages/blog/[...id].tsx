@@ -91,13 +91,15 @@ export default function blockDetail({
         {preHref && (
           <Link
             href={`/blog/${preHref}`}
-            className="bg-gray-100 dark:bg-gray-800 w-full md:w-auto rounded flex items-center px-2 py-3 group"
+            className="bg-gray-100 overflow-hidden dark:bg-gray-800 w-full md:w-auto rounded flex items-center px-2 py-3 group"
           >
             <HiOutlineArrowCircleLeft className="text-2xl text-gray-400 group-hover:text-[#2c82f2] mt-1" />
             <div className="ml-4">
               <p className="text-[10px] mb-1">이전 포스트</p>
               <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis">
-                {preTitle}
+                {preTitle.length > 30
+                  ? preTitle.slice(0, 30) + "..."
+                  : preTitle}
               </p>
             </div>
           </Link>
@@ -105,12 +107,14 @@ export default function blockDetail({
         {nextHref && (
           <Link
             href={`/blog/${nextHref}`}
-            className="flex items-center justify-end w-full md:w-auto bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 ml-auto group"
+            className="flex items-center overflow-hidden justify-end w-full md:w-auto bg-gray-100 dark:bg-gray-800 rounded px-4 py-3 ml-auto group"
           >
             <div className="mr-4 flex flex-col items-end">
               <p className="text-[10px] mb-1">다음 포스트</p>
               <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis text-right">
-                {nextTitle}
+                {nextTitle.length > 30
+                  ? nextTitle.slice(0, 30) + "..."
+                  : nextTitle}
               </p>
             </div>
             <HiOutlineArrowCircleRight className="text-2xl text-gray-400 group-hover:text-[#2c82f2] mt-1" />
