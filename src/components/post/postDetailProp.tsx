@@ -3,6 +3,7 @@ import Tag from "./tag";
 import { HiExternalLink } from "react-icons/hi";
 import { changeDate } from "libs/useChangeDate";
 import Image from "next/image";
+import { PostDetailPropType } from "@/InterfaceGather";
 
 export default function PostDetailProp({
   name,
@@ -11,7 +12,7 @@ export default function PostDetailProp({
   description,
   coverImage,
   createDate,
-}: any) {
+}: PostDetailPropType) {
   const create = new Date(createDate);
   const korDate = new Date(
     create.getTime() - create.getTimezoneOffset() * 60000

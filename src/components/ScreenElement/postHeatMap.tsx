@@ -3,8 +3,9 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
+import { PostCountType, PostHeatMapType } from "@/InterfaceGather";
 
-export default function PostHeatMap({ blogs, year, month }: any) {
+export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
   const { theme } = useTheme();
   const today = new Date(`${year}-${month}`);
   const yearChart = today.getFullYear();
@@ -21,7 +22,7 @@ export default function PostHeatMap({ blogs, year, month }: any) {
     return korDate;
   });
 
-  const createPostCount: any = {};
+  const createPostCount: PostCountType = {};
   createPost.forEach((x: string | number) => {
     createPostCount[x] = (createPostCount[x] || 0) + 1;
   });
@@ -32,9 +33,9 @@ export default function PostHeatMap({ blogs, year, month }: any) {
   const diffDate = firstDay.getTime() - lastDay.getTime();
   const daysDifference = Math.abs(diffDate / (1000 * 60 * 60 * 24));
 
-  let dateArray: any[] = [];
-  let firstWeekDate: any[] = [];
-  let sixthWeekDate: any[] = [];
+  let dateArray: [string, number][] = [];
+  let firstWeekDate: { x: string; y: number }[] = [];
+  let sixthWeekDate: { x: string; y: number }[] = [];
 
   useEffect(() => {
     DateArray();
@@ -45,7 +46,7 @@ export default function PostHeatMap({ blogs, year, month }: any) {
     dateArray = [];
 
     for (let i = 1; i <= daysDifference + 1; i++) {
-      const monthDate = new Date(year, month - 1, i);
+      const monthDate = new Date(year, Number(month) - 1, i);
 
       const korDate = new Date(
         monthDate.getTime() - monthDate.getTimezoneOffset() * 60000
@@ -90,7 +91,7 @@ export default function PostHeatMap({ blogs, year, month }: any) {
     let currentDay = new Date(firstDay);
 
     if (firstWeekData && firstWeekData.length < 7) {
-      let noneDate: any[] = [];
+      let noneDate: { x: string; y: number }[] = [];
       for (let i = 0; i < 7 - firstWeekData?.length; i++) {
         const previousMonth = new Date(
           currentDay.setDate(currentDay.getDate() - 1)

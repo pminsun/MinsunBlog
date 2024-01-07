@@ -75,13 +75,12 @@ export default function blockDetail({
         name={itemData.name}
         tags={itemData.tags}
         github={itemData.github}
-        date={itemData.date}
         createDate={propertiesData.created_time}
         description={itemData.description}
         coverImage={itemData.coverImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
-        {blockDetail?.results?.map((blockContent: BlockDetailResults) => (
+        {blockDetail?.results?.map((blockContent: any) => (
           <PostDetailContent
             key={blockContent.id}
             blockContent={blockContent}

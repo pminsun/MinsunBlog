@@ -20,7 +20,7 @@
 }
 
 .page-gallery-style {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-rows-3;
 }
 
 .page-list-style {
@@ -106,4 +106,26 @@
 
 .ItemDetailPropText h2 {
   @apply drop-shadow-md;
+}
+
+/* Pagination */
+.pagination-style {
+  @apply flex items-center justify-center gap-3 text-sm py-2;
+}
+
+.pagination-style li {
+  @apply py-1 px-2 cursor-pointer;
+}
+
+.pagination-style .ellipsis {
+  @apply cursor-default;
+}
+
+.pagination-style .aLeft,
+.pagination-style .aRight {
+  @apply py-2 px-2;
+}
+
+.pagination-style .currentpage {
+  @apply bg-[#5699f1] text-white rounded-md;
 }

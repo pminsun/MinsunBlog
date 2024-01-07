@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import DEFINE from "@/constant/Global";
 import { BlogistObject, ListResults } from "@/InterfaceGather";
+import Pagination from "@/components/ScreenElement/pagination";
 
 export default function Blog({ blogs }: BlogistObject) {
   const { viewStyle, sortedContent } = useBlogPageStore();
@@ -29,6 +30,11 @@ export default function Blog({ blogs }: BlogistObject) {
   useEffect(() => {
     setFilteredList(blogs.results);
   }, [blogs.results]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLast = currentPage * 9;
+  const indexOfFirst = indexOfLast - 9;
 
   const handleSearchInputChange = (searchWord: string) => {
     setSearch(searchWord);
@@ -169,7 +175,7 @@ export default function Blog({ blogs }: BlogistObject) {
                 viewStyle === "gallery"
                   ? "page-gallery-style"
                   : "page-list-style",
-                "w-full"
+                "w-full min-h-[912px] lg:min-h-[904px]"
               )}
             >
               {useSortedData(
@@ -182,15 +188,23 @@ export default function Blog({ blogs }: BlogistObject) {
                   />
                 )),
                 sortedContent
-              )}
+              ).slice(indexOfFirst, indexOfLast)}
             </div>
             <MoveToTop />
           </div>
+          <Pagination
+            postsPerPage={9}
+            totalPosts={blogs.results?.length || 0}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       )}
     </>
   );
 }
+
+//  const currentPageData = sortedData?.slice(indexOfFirst, indexOfLast);
 
 export async function getServerSideProps() {
   const axiosConfig = {

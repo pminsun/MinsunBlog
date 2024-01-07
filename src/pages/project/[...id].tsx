@@ -46,7 +46,7 @@ export default function blockDetail({
         coverImage={itemData.coverImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
-        {blockDetail?.results?.map((blockContent: BlockDetailResults) => (
+        {blockDetail?.results?.map((blockContent: any) => (
           <PostDetailContent
             key={blockContent.id}
             blockContent={blockContent}

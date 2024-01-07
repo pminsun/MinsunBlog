@@ -203,15 +203,15 @@ export interface BlockDetailResults {
   last_edited_by: LastEditedBy;
   last_edited_time: string;
   object: string;
-  paragraph: {
-    rich_text: RichText[];
-    color: string;
-  };
   parent: {
     type: string;
     page_id: string;
   };
   type: string;
+  paragraph?: {
+    rich_text: RichText[];
+    color: string;
+  };
 }
 
 export interface BlockDetail {
@@ -249,8 +249,20 @@ export interface PostType {
   tagCategory: string;
 }
 
+//PostDetailProp
+export interface PostDetailPropType {
+  name: string;
+  tags: TagType[];
+  github?: string;
+  startDate?: string;
+  endDate?: string;
+  description: string;
+  coverImage: string;
+  createDate: string;
+}
+
 // PostDetailContent
-export interface PostDetailContent {
+export interface PostDetailContentType {
   archived: boolean;
   created_by: CreatedBy;
   created_time: string;
@@ -319,5 +331,24 @@ export interface BlockTextType {
 }
 
 export interface BlockContentType {
-  blockContent: PostDetailContent & BlockTextType;
+  blockContent: PostDetailContentType & BlockTextType;
+}
+
+//PostHeatMap
+export interface PostHeatMapType {
+  blogs: DataListObject;
+  year: number;
+  month: string;
+}
+
+export interface PostCountType {
+  [date: string]: number;
+}
+
+// Pagination
+export interface PaginationType {
+  postsPerPage: number;
+  totalPosts: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }

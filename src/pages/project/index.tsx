@@ -12,6 +12,7 @@ import { useSortedData } from "libs/usePageState";
 import { cls } from "libs/utils";
 import { useEffect, useState } from "react";
 import { ListResults, ProjectistObject } from "@/InterfaceGather";
+import Pagination from "@/components/ScreenElement/pagination";
 
 export default function Project({ projects }: ProjectistObject) {
   const { viewStyle, sortedContent } = useProjectPageStore();
@@ -29,6 +30,11 @@ export default function Project({ projects }: ProjectistObject) {
   useEffect(() => {
     setFilteredList(projects.results);
   }, [projects.results]);
+
+  // Paging
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLast = currentPage * 9;
+  const indexOfFirst = indexOfLast - 9;
 
   const handleSearchInputChange = (searchWord: string) => {
     setSearch(searchWord);
@@ -102,10 +108,16 @@ export default function Project({ projects }: ProjectistObject) {
                   />
                 )),
                 sortedContent
-              )}
+              ).slice(indexOfFirst, indexOfLast)}
             </div>
           </div>
           <MoveToTop />
+          <Pagination
+            postsPerPage={9}
+            totalPosts={projects.results?.length || 0}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       )}
     </>

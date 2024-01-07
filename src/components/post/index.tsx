@@ -103,7 +103,11 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           </div>
           <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
             <div className="w-2/3 md:w-full">
-              <p className="post-name">{itemData.name}</p>
+              <p className="post-name">
+                {itemData.name.length > 40
+                  ? itemData.name.slice(0, 39) + "..."
+                  : itemData.name}
+              </p>
               <span
                 className={cls(
                   itemData.description.length > 45 ? "w-2/3" : "w-full",
