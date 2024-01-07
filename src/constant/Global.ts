@@ -26,6 +26,8 @@ const DEFINE = {
     TAILWINDCSS: "TailwindCSS",
     JAVASCRIPT: "Javascript",
     TYPESCRIPT: "Typescript",
+    HTML: "Html",
+    NEXTJS: "Next.js",
     CSS: "Css",
     ETC: "Etc",
   },

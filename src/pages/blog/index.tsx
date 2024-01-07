@@ -53,6 +53,36 @@ export default function Blog({ blogs }: BlogistObject) {
     setFilteredList(updatedList);
   };
 
+  const tagCategoryCount = () => {
+    let tagCount = blogs.results;
+
+    if (tagCategory !== DEFINE.TAGCATEGORY.ALL) {
+      tagCount = blogs.results.filter((item: ListResults) => {
+        return item?.properties["태그"].multi_select
+          .map((row: any) => row.name)
+          .includes(tagCategory);
+      });
+    }
+
+    if (tagCategory === DEFINE.TAGCATEGORY.ETC) {
+      tagCount = blogs.results.filter((item: ListResults) => {
+        return item?.properties["태그"].multi_select
+          .map((row: any) => row.name)
+          .some((i) =>
+            [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].includes(i)
+          );
+      });
+    }
+
+    setFilteredList(tagCount);
+  };
+
+  useEffect(() => {
+    tagCategoryCount();
+    setCurrentPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tagCategory]);
+
   return (
     <>
       <Seo
@@ -194,7 +224,7 @@ export default function Blog({ blogs }: BlogistObject) {
           </div>
           <Pagination
             postsPerPage={9}
-            totalPosts={blogs.results?.length || 0}
+            totalPosts={filteredList?.length || 0}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
@@ -203,8 +233,6 @@ export default function Blog({ blogs }: BlogistObject) {
     </>
   );
 }
-
-//  const currentPageData = sortedData?.slice(indexOfFirst, indexOfLast);
 
 export async function getServerSideProps() {
   const axiosConfig = {

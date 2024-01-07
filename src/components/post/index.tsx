@@ -27,14 +27,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
     tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagName.includes(tagCategory) ||
     (tagCategory === DEFINE.TAGCATEGORY.ETC &&
-      ![
-        DEFINE.TAGCATEGORY.DEV,
-        DEFINE.TAGCATEGORY.REACT,
-        DEFINE.TAGCATEGORY.EMOTION,
-        DEFINE.TAGCATEGORY.TAILWINDCSS,
-        DEFINE.TAGCATEGORY.JAVASCRIPT,
-        DEFINE.TAGCATEGORY.CSS,
-      ].some((excludedTag) => tagName.includes(excludedTag)));
+      [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].some((excludedTag) =>
+        tagName.includes(excludedTag)
+      ));
 
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
