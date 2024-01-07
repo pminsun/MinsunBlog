@@ -93,9 +93,9 @@ export default function Project({ projects }: ProjectistObject) {
             <div
               className={cls(
                 viewStyle === "gallery"
-                  ? "page-gallery-style"
+                  ? "page-gallery-style grid-rows-3"
                   : "page-list-style",
-                "w-full"
+                "w-full min-h-[912px] lg:min-h-[904px]"
               )}
             >
               {useSortedData(

@@ -203,7 +203,7 @@ export default function Blog({ blogs }: BlogistObject) {
             <div
               className={cls(
                 viewStyle === "gallery"
-                  ? "page-gallery-style"
+                  ? "page-gallery-style grid-rows-3"
                   : "page-list-style",
                 "w-full min-h-[912px] lg:min-h-[904px]"
               )}
