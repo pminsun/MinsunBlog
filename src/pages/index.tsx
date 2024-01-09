@@ -184,14 +184,11 @@ export default function Home({ blogs }: BlogistObject) {
                               }
                             }}
                             className={cls(
-                              yearList === year
-                                ? "month-selected"
-                                : "month-noneSelected",
-                              matchExceptMonth(monthList.engMonth)
-                                ? year === 2023
-                                  ? "month-disabled hover:text-black"
-                                  : "month-noneDisabled"
-                                : "",
+                              yearList === year ? "month-selected" : "",
+                              matchExceptMonth(monthList.engMonth) &&
+                                year === 2023
+                                ? "month-disabled"
+                                : "month-noneDisabled",
                               "month-base"
                             )}
                           >
@@ -200,33 +197,53 @@ export default function Home({ blogs }: BlogistObject) {
                         ))}
                       </ul>
                       <ul className="h-48 overflow-y-auto scrollbar-none">
-                        {engMonthName.map((mon) => (
-                          <li
-                            key={mon.monthEng}
-                            onClick={() => {
-                              if (
-                                !(
-                                  yearList === 2023 &&
-                                  matchExceptMonth(mon.monthEng)
-                                )
-                              ) {
-                                selectMonth(mon.monthEng, mon.monthNum);
-                              }
-                            }}
-                            className={cls(
-                              monthList.engMonth === mon.monthEng
-                                ? "month-selected"
-                                : "month-noneSelected",
-                              yearList === 2023 &&
-                                matchExceptMonth(mon.monthEng)
-                                ? "month-disabled"
-                                : "month-noneDisabled",
-                              "month-base"
-                            )}
-                          >
-                            {mon.monthEng}
-                          </li>
-                        ))}
+                        {yearList === 2023
+                          ? engMonthName.slice(8).map((mon) => (
+                              <li
+                                key={mon.monthEng}
+                                onClick={() => {
+                                  if (
+                                    !(
+                                      yearList === 2023 &&
+                                      matchExceptMonth(mon.monthEng)
+                                    )
+                                  ) {
+                                    selectMonth(mon.monthEng, mon.monthNum);
+                                  }
+                                }}
+                                className={cls(
+                                  monthList.engMonth === mon.monthEng
+                                    ? "month-selected"
+                                    : "month-noneDisabled",
+                                  "month-base"
+                                )}
+                              >
+                                {mon.monthEng}
+                              </li>
+                            ))
+                          : engMonthName.map((mon) => (
+                              <li
+                                key={mon.monthEng}
+                                onClick={() => {
+                                  if (
+                                    !(
+                                      yearList === 2023 &&
+                                      matchExceptMonth(mon.monthEng)
+                                    )
+                                  ) {
+                                    selectMonth(mon.monthEng, mon.monthNum);
+                                  }
+                                }}
+                                className={cls(
+                                  monthList.engMonth === mon.monthEng
+                                    ? "month-selected"
+                                    : "month-noneDisabled",
+                                  "month-base"
+                                )}
+                              >
+                                {mon.monthEng}
+                              </li>
+                            ))}
                       </ul>
                     </div>
                   )}
