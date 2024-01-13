@@ -60,6 +60,7 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
     (txtPiece: RichText, index: number) => {
       const textContent = txtPiece?.text?.content;
       const textAnnotations = txtPiece?.annotations;
+      const textLink = txtPiece?.text?.link;
 
       const textStyles = [
         ...getStyle("bold", textAnnotations?.bold),
@@ -72,7 +73,15 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
 
       const finalTextStyle = textStyles.join(" ");
 
-      return (
+      return textLink !== null ? (
+        <Link
+          href={textContent}
+          target="_blank"
+          className="hover:text-[#2c82f2] underline"
+        >
+          {textContent}
+        </Link>
+      ) : (
         <span
           key={index}
           className={cls(
