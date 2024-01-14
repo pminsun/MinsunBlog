@@ -13,6 +13,7 @@ import MoveToTop from "@/components/ScreenElement/moveToTop";
 import DEFINE from "@/constant/Global";
 import { BlogistObject, ListResults } from "@/InterfaceGather";
 import Pagination from "@/components/ScreenElement/pagination";
+import { PiWarningCircle } from "react-icons/pi";
 
 export default function Blog({ blogs }: BlogistObject) {
   const { viewStyle, sortedContent } = useBlogPageStore();
@@ -200,6 +201,12 @@ export default function Blog({ blogs }: BlogistObject) {
               </ul>
               <PageState path={"blogs"} />
             </div>
+            {filteredList.length === 0 && (
+              <div className="w-full flex-center gap-2 post-link-style !cursor-default p-4">
+                <PiWarningCircle className="text-black dark:text-slate-400 text-xl" />
+                <p>검색결과가 없습니다.</p>
+              </div>
+            )}
             <div
               className={cls(
                 viewStyle === "gallery"

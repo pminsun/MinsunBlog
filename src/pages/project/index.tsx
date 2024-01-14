@@ -13,6 +13,7 @@ import { cls } from "libs/utils";
 import { useEffect, useState } from "react";
 import { ListResults, ProjectistObject } from "@/InterfaceGather";
 import Pagination from "@/components/ScreenElement/pagination";
+import { PiWarningCircle } from "react-icons/pi";
 
 export default function Project({ projects }: ProjectistObject) {
   const { viewStyle, sortedContent } = useProjectPageStore();
@@ -90,6 +91,12 @@ export default function Project({ projects }: ProjectistObject) {
               </ul>
               <PageState path={"projects"} />
             </div>
+            {filteredList.length === 0 && (
+              <div className="w-full flex-center gap-2 post-link-style !cursor-default p-4">
+                <PiWarningCircle className="text-black dark:text-slate-400 text-xl" />
+                <p>검색결과가 없습니다.</p>
+              </div>
+            )}
             <div
               className={cls(
                 viewStyle === "gallery"

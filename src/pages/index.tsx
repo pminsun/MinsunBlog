@@ -261,7 +261,20 @@ export default function Home({ blogs }: BlogistObject) {
           </div>
         </div>
         <div className="pb-8">
-          <p className="text-xl font-bold mb-5">Recent Blog Posts</p>
+          <div className="flex items-end justify-between  mb-5">
+            <p className="text-xl font-bold">Recent Blog Posts</p>
+            <Link
+              href="/blog"
+              className="flex items-center justify-end gap-2 w-36 text-sm text-gray-400 hover:text-gray-700 transition-all"
+            >
+              <p className="about-allposts font-semibold">
+                {DEFINE.PAGES.BLOG.ENGTWO}
+              </p>
+              <div className="pt-[3px]">
+                <HiArrowNarrowRight />
+              </div>
+            </Link>
+          </div>
           <div className="w-full page-gallery-style">
             {blogs?.results.slice(0, 3).map((item: ListResults) => (
               <Post
@@ -272,17 +285,6 @@ export default function Home({ blogs }: BlogistObject) {
               />
             ))}
           </div>
-          <Link
-            href="/blog"
-            className="flex items-center gap-2 mt-6 w-36 text-sm text-gray-400 hover:text-gray-700 transition-all"
-          >
-            <p className="about-allposts font-semibold">
-              {DEFINE.PAGES.BLOG.ENGTWO}
-            </p>
-            <div className="pt-[3px]">
-              <HiArrowNarrowRight />
-            </div>
-          </Link>
         </div>
       </div>
     </>
