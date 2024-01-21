@@ -167,6 +167,21 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
           </p>
         </>
       );
+    case "quote":
+      return (
+        <>
+          <div
+            key={blockContent.id}
+            className={cls(
+              "text-sm my-3 py-1 leading-6 relative flex items-center",
+              ...paragraphColor
+            )}
+          >
+            <span className="absolute left-0 right-0 w-1 h-full bg-[#2c82f2b9]"></span>
+            <p className="pl-5">{richTextContent}</p>
+          </div>
+        </>
+      );
     case "code":
       return (
         <pre
