@@ -45,10 +45,10 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           <div className="post-gallery-image-container">
             {item.cover ? (
               <Image
-                src={
+                src={decodeURIComponent(
                   (item.cover?.external?.url ?? "") ||
-                  (item.cover?.file?.url ?? "")
-                }
+                    (item.cover?.file?.url ?? "")
+                )}
                 alt="image"
                 width={300}
                 height={300}
