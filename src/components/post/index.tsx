@@ -84,7 +84,7 @@ export default function Post({
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {!item.cover &&
+            {/* {!item.cover &&
             stringTag !== "Next.js" &&
             stringTag !== "Javascript" ? (
               <div className="post-noneimage-style" />
@@ -99,6 +99,23 @@ export default function Post({
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
+            )} */}
+            {item.cover ? (
+              <Image
+                src={
+                  (item.cover?.external?.url ?? "") ||
+                  (item.cover?.file?.url ?? "")
+                }
+                alt="image"
+                width={300}
+                height={300}
+                priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                className="post-image-style"
+              />
+            ) : (
+              <div className="post-noneimage-style" />
             )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
