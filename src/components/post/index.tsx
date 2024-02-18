@@ -9,7 +9,7 @@ import DEFINE from "@/constant/Global";
 import { PostType, TagType } from "@/InterfaceGather";
 import { useEffect, useState } from "react";
 
-type Props = {
+type FireCoverProps = {
   coverImages: string[];
 };
 
@@ -18,7 +18,7 @@ export default function Post({
   viewStyle,
   tagCategory,
   coverImages,
-}: PostType & Props) {
+}: PostType & FireCoverProps) {
   const itemData = UseProperties(item);
 
   const router = useRouter();
