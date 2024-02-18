@@ -10,7 +10,7 @@ import { PostType, TagType } from "@/InterfaceGather";
 import { useEffect, useState } from "react";
 
 type FireCoverProps = {
-  coverImages: string[];
+  coverImages?: string[];
 };
 
 export default function Post({
@@ -54,12 +54,12 @@ export default function Post({
       (item.cover?.external?.url ?? "") || (item.cover?.file?.url ?? "");
 
     if (!item.cover && stringTag === "Next.js") {
-      const nextCoverUrl = coverImages.find((url) =>
+      const nextCoverUrl = coverImages?.find((url) =>
         url.includes("next-cover")
       );
       setCoverUrl(nextCoverUrl ?? "");
     } else if (!item.cover && stringTag === "Javascript") {
-      const javascriptCoverUrl = coverImages.find((url) =>
+      const javascriptCoverUrl = coverImages?.find((url) =>
         url.includes("javascript-cover")
       );
       setCoverUrl(javascriptCoverUrl ?? "");
