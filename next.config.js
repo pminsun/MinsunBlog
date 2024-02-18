@@ -8,6 +8,7 @@ const nextConfig = {
       "www.notion.so",
       "localhost",
       "prod-files-secure.s3.us-west-2.amazonaws.com",
+      "firebasestorage.googleapis.com",
     ],
   },
 };

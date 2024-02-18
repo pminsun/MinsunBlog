@@ -7,8 +7,18 @@ import { changeDate } from "libs/useChangeDate";
 import { cls } from "libs/utils";
 import DEFINE from "@/constant/Global";
 import { PostType, TagType } from "@/InterfaceGather";
+import { useEffect, useState } from "react";
 
-export default function Post({ item, viewStyle, tagCategory }: PostType) {
+type Props = {
+  coverImages: string[];
+};
+
+export default function Post({
+  item,
+  viewStyle,
+  tagCategory,
+  coverImages,
+}: PostType & Props) {
   const itemData = UseProperties(item);
 
   const router = useRouter();
@@ -23,6 +33,7 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
     .split("T")[0];
 
   const tagName = itemData.tags.map((row: TagType) => row.name);
+
   const categoryView =
     tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagName.includes(tagCategory) ||
@@ -34,6 +45,36 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
 
+  // firebase CoverImage
+  const [coverUrl, setCoverUrl] = useState<string>("");
+
+  const stringTag = tagName + "";
+  const matchCoverImage = () => {
+    const notionCover =
+      (item.cover?.external?.url ?? "") || (item.cover?.file?.url ?? "");
+
+    if (!item.cover && stringTag === "Next.js") {
+      const nextCoverUrl = coverImages.find((url) =>
+        url.includes("next-cover")
+      );
+      setCoverUrl(nextCoverUrl ?? "");
+    } else if (!item.cover && stringTag === "Javascript") {
+      const javascriptCoverUrl = coverImages.find((url) =>
+        url.includes("javascript-cover")
+      );
+      setCoverUrl(javascriptCoverUrl ?? "");
+    } else if (item.cover) {
+      setCoverUrl(notionCover);
+    } else if (!item.cover && stringTag !== "Next.js") {
+      return <div className="post-noneimage-style" />;
+    }
+  };
+
+  useEffect(() => {
+    matchCoverImage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       {viewStyle === "gallery" && categoryView && (
@@ -43,12 +84,13 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {item.cover ? (
+            {!item.cover &&
+            stringTag !== "Next.js" &&
+            stringTag !== "Javascript" ? (
+              <div className="post-noneimage-style" />
+            ) : (
               <Image
-                src={decodeURIComponent(
-                  (item.cover?.external?.url ?? "") ||
-                    (item.cover?.file?.url ?? "")
-                )}
+                src={coverUrl || ""}
                 alt="image"
                 width={300}
                 height={300}
@@ -57,8 +99,6 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
-            ) : (
-              <div className="post-noneimage-style" />
             )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
