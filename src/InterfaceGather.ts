@@ -257,7 +257,7 @@ export interface PostDetailPropType {
   startDate?: string;
   endDate?: string;
   description: string;
-  coverImage: string;
+  coverImage?: string;
   createDate: string;
 }
 

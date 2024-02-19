@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const itemData = UseProperties(item);
 
+  console.log(itemData.url);
+
   const router = useRouter();
   const pathName =
     router.pathname === "/project" ? `/project/${item.id}` : `/blog/${item.id}`;
@@ -45,6 +47,12 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
       setCoverUrl("/coverImages/next-cover.png");
     } else if (stringTag === "Javascript") {
       setCoverUrl("/coverImages/javascript-cover.png");
+    } else if (stringTag === "Html") {
+      setCoverUrl("/coverImages/html-cover.png");
+    } else if (stringTag === "Typescript") {
+      setCoverUrl("/coverImages/typescript-cover.png");
+    } else if (stringTag === "Emotion") {
+      setCoverUrl("/coverImages/emotion-cover.png");
     } else {
       return <div className="post-noneimage-style" />;
     }
@@ -75,6 +83,17 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
+            ) : itemData.url ? (
+              <Image
+                src={itemData.url}
+                alt="image"
+                width={300}
+                height={300}
+                priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                className="post-image-style"
+              />
             ) : (
               <div className="post-noneimage-style" />
             )}
@@ -96,12 +115,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="post-list-style post-link-style group"
         >
           <div className="post-list-image-container">
-            {item.cover ? (
+            {coverUrl ? (
               <Image
-                src={
-                  (item.cover?.external?.url ?? "") ||
-                  (item.cover?.file?.url ?? "")
-                }
+                src={coverUrl}
                 alt="image"
                 width={300}
                 height={300}

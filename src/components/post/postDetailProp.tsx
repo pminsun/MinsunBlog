@@ -3,14 +3,14 @@ import Tag from "./tag";
 import { HiExternalLink } from "react-icons/hi";
 import { changeDate } from "libs/useChangeDate";
 import Image from "next/image";
-import { PostDetailPropType } from "@/InterfaceGather";
+import { PostDetailPropType, TagType } from "@/InterfaceGather";
+import { useEffect, useState } from "react";
 
 export default function PostDetailProp({
   name,
   tags,
   github,
   description,
-  coverImage,
   createDate,
 }: PostDetailPropType) {
   const create = new Date(createDate);
@@ -20,15 +20,45 @@ export default function PostDetailProp({
     .toISOString()
     .split("T")[0];
 
+  const tagName = tags.map((row: TagType) => row.name);
+  // CoverImage
+  const [coverUrl, setCoverUrl] = useState<string>("");
+
+  const stringTag = tagName + "";
+  const matchCoverImage = () => {
+    if (stringTag === "Next.js") {
+      setCoverUrl("/coverImages/next-cover.png");
+    } else if (stringTag === "Javascript") {
+      setCoverUrl("/coverImages/javascript-cover.png");
+    } else if (stringTag === "Html") {
+      setCoverUrl("/coverImages/html-cover.png");
+    } else if (stringTag === "Typescript") {
+      setCoverUrl("/coverImages/typescript-cover.png");
+    } else {
+      return <div className="post-noneimage-style" />;
+    }
+  };
+
+  useEffect(() => {
+    matchCoverImage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const blurDataURL =
+    "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
+
   return (
     <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
       <div className="absolute w-full h-full">
-        {coverImage ? (
+        {coverUrl ? (
           <Image
-            src={coverImage}
-            alt="coverImage"
+            src={coverUrl}
+            alt="image"
             width={300}
             height={300}
+            priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             className="post-image-style"
           />
         ) : (

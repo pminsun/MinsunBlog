@@ -77,7 +77,6 @@ export default function blockDetail({
         github={itemData.github}
         createDate={propertiesData.created_time}
         description={itemData.description}
-        coverImage={itemData.coverImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
         {blockDetail?.results?.map((blockContent: any) => (
