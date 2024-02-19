@@ -72,6 +72,7 @@ export default function Post({
 
   useEffect(() => {
     matchCoverImage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
