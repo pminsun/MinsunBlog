@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { ref, listAll, getDownloadURL } from "@firebase/storage";
 import { fireStorage } from "../firebase/firebasedb";
 
 export async function getCoverImages() {
