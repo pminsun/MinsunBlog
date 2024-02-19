@@ -12,8 +12,6 @@ import { useEffect, useState } from "react";
 export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const itemData = UseProperties(item);
 
-  console.log(itemData.url);
-
   const router = useRouter();
   const pathName =
     router.pathname === "/project" ? `/project/${item.id}` : `/blog/${item.id}`;
