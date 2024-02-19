@@ -9,16 +9,7 @@ import DEFINE from "@/constant/Global";
 import { PostType, TagType } from "@/InterfaceGather";
 import { useEffect, useState } from "react";
 
-type FireCoverProps = {
-  coverImages?: string[];
-};
-
-export default function Post({
-  item,
-  viewStyle,
-  tagCategory,
-  coverImages,
-}: PostType & FireCoverProps) {
+export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const itemData = UseProperties(item);
 
   const router = useRouter();
@@ -48,32 +39,31 @@ export default function Post({
   // firebase CoverImage
   const [coverUrl, setCoverUrl] = useState<string>("");
 
-  const stringTag = tagName + "";
-  const matchCoverImage = () => {
-    const notionCover =
-      (item.cover?.external?.url ?? "") || (item.cover?.file?.url ?? "");
+  // const stringTag = tagName + "";
+  // const matchCoverImage = () => {
+  //   const notionCover =
+  //     (item.cover?.external?.url ?? "") || (item.cover?.file?.url ?? "");
 
-    if (!item.cover && stringTag === "Next.js") {
-      const nextCoverUrl = coverImages?.find((url) =>
-        url.includes("next-cover")
-      );
-      setCoverUrl(nextCoverUrl ?? "");
-    } else if (!item.cover && stringTag === "Javascript") {
-      const javascriptCoverUrl = coverImages?.find((url) =>
-        url.includes("javascript-cover")
-      );
-      setCoverUrl(javascriptCoverUrl ?? "");
-    } else if (item.cover) {
-      setCoverUrl(notionCover);
-    } else if (!item.cover && stringTag !== "Next.js") {
-      return <div className="post-noneimage-style" />;
-    }
-  };
+  //   if (!item.cover && stringTag === "Next.js") {
+  //     const nextCoverUrl = coverImages?.find((url) =>
+  //       url.includes("next-cover")
+  //     );
+  //     setCoverUrl(nextCoverUrl ?? "");
+  //   } else if (!item.cover && stringTag === "Javascript") {
+  //     const javascriptCoverUrl = coverImages?.find((url) =>
+  //       url.includes("javascript-cover")
+  //     );
+  //     setCoverUrl(javascriptCoverUrl ?? "");
+  //   } else if (item.cover) {
+  //     setCoverUrl(notionCover);
+  //   } else if (!item.cover && stringTag !== "Next.js") {
+  //     return <div className="post-noneimage-style" />;
+  //   }
+  // };
 
-  useEffect(() => {
-    matchCoverImage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   matchCoverImage();
+  // }, []);
 
   return (
     <>
@@ -84,7 +74,7 @@ export default function Post({
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {!item.cover &&
+            {/* {!item.cover &&
             stringTag !== "Next.js" &&
             stringTag !== "Javascript" ? (
               <div className="post-noneimage-style" />
@@ -99,8 +89,8 @@ export default function Post({
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
-            )}
-            {/* {item.cover ? (
+            )} */}
+            {item.cover ? (
               <Image
                 src={
                   (item.cover?.external?.url ?? "") ||
@@ -116,7 +106,7 @@ export default function Post({
               />
             ) : (
               <div className="post-noneimage-style" />
-            )} */}
+            )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
             <p className="post-name">{itemData.name}</p>

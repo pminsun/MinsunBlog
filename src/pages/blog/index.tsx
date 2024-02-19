@@ -14,16 +14,8 @@ import DEFINE from "@/constant/Global";
 import { BlogistObject, ListResults } from "@/InterfaceGather";
 import Pagination from "@/components/ScreenElement/pagination";
 import { PiWarningCircle } from "react-icons/pi";
-import { getAllData } from "libs/data";
 
-type FireCoverProps = {
-  coverImages: string[];
-};
-
-export default function Blog({
-  blogs,
-  coverImages,
-}: BlogistObject & FireCoverProps) {
+export default function Blog({ blogs }: BlogistObject) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
   const [tagCategory, setTagCategory] = useState<string>(
@@ -230,7 +222,6 @@ export default function Blog({
                     item={item}
                     viewStyle={viewStyle}
                     tagCategory={tagCategory}
-                    coverImages={coverImages}
                   />
                 )),
                 sortedContent
@@ -270,9 +261,8 @@ export async function getServerSideProps() {
     axiosConfig
   );
   const blogs = response.data;
-  const { coverImages } = await getAllData();
 
   return {
-    props: { blogs, coverImages },
+    props: { blogs },
   };
 }
