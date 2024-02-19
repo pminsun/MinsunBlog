@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { DATABASE_ID_BLOG, TOKEN } from "./config";
 import { fireStorage } from "../firebase/firebasedb";
 
 export async function getCoverImages() {
