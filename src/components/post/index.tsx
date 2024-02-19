@@ -40,26 +40,26 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const [coverUrl, setCoverUrl] = useState<string>("");
 
   const stringTag = tagName + "";
-  const matchCoverImage = () => {
-    if (stringTag === "Next.js") {
-      setCoverUrl("/coverImages/next-cover.png");
-    } else if (stringTag === "Javascript") {
-      setCoverUrl("/coverImages/javascript-cover.png");
-    } else if (stringTag === "Html") {
-      setCoverUrl("/coverImages/html-cover.png");
-    } else if (stringTag === "Typescript") {
-      setCoverUrl("/coverImages/typescript-cover.png");
-    } else if (stringTag === "Emotion") {
-      setCoverUrl("/coverImages/emotion-cover.png");
-    } else {
-      return <div className="post-noneimage-style" />;
-    }
-  };
+  // const matchCoverImage = () => {
+  //   if (stringTag === "Next.js") {
+  //     setCoverUrl("/coverImages/next-cover.png");
+  //   } else if (stringTag === "Javascript") {
+  //     setCoverUrl("/coverImages/javascript-cover.png");
+  //   } else if (stringTag === "Html") {
+  //     setCoverUrl("/coverImages/html-cover.png");
+  //   } else if (stringTag === "Typescript") {
+  //     setCoverUrl("/coverImages/typescript-cover.png");
+  //   } else if (stringTag === "Emotion") {
+  //     setCoverUrl("/coverImages/emotion-cover.png");
+  //   } else {
+  //     return <div className="post-noneimage-style" />;
+  //   }
+  // };
 
-  useEffect(() => {
-    matchCoverImage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   matchCoverImage();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>
