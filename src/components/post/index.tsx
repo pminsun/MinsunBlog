@@ -36,34 +36,24 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
 
-  // firebase CoverImage
+  // CoverImage
   const [coverUrl, setCoverUrl] = useState<string>("");
 
-  // const stringTag = tagName + "";
-  // const matchCoverImage = () => {
-  //   const notionCover =
-  //     (item.cover?.external?.url ?? "") || (item.cover?.file?.url ?? "");
+  const stringTag = tagName + "";
+  const matchCoverImage = () => {
+    if (stringTag === "Next.js") {
+      setCoverUrl("/coverImages/next-cover.png");
+    } else if (stringTag === "Javascript") {
+      setCoverUrl("/coverImages/javascript-cover.png");
+    } else {
+      return <div className="post-noneimage-style" />;
+    }
+  };
 
-  //   if (!item.cover && stringTag === "Next.js") {
-  //     const nextCoverUrl = coverImages?.find((url) =>
-  //       url.includes("next-cover")
-  //     );
-  //     setCoverUrl(nextCoverUrl ?? "");
-  //   } else if (!item.cover && stringTag === "Javascript") {
-  //     const javascriptCoverUrl = coverImages?.find((url) =>
-  //       url.includes("javascript-cover")
-  //     );
-  //     setCoverUrl(javascriptCoverUrl ?? "");
-  //   } else if (item.cover) {
-  //     setCoverUrl(notionCover);
-  //   } else if (!item.cover && stringTag !== "Next.js") {
-  //     return <div className="post-noneimage-style" />;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   matchCoverImage();
-  // }, []);
+  useEffect(() => {
+    matchCoverImage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -74,28 +64,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {/* {!item.cover &&
-            stringTag !== "Next.js" &&
-            stringTag !== "Javascript" ? (
-              <div className="post-noneimage-style" />
-            ) : (
+            {coverUrl ? (
               <Image
-                src={coverUrl || ""}
-                alt="image"
-                width={300}
-                height={300}
-                priority
-                placeholder="blur"
-                blurDataURL={blurDataURL}
-                className="post-image-style"
-              />
-            )} */}
-            {item.cover ? (
-              <Image
-                src={
-                  (item.cover?.external?.url ?? "") ||
-                  (item.cover?.file?.url ?? "")
-                }
+                src={coverUrl}
                 alt="image"
                 width={300}
                 height={300}
