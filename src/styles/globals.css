@@ -6,7 +6,7 @@
 @layer base {
   html,
   body {
-    @apply font-SCoreDream h-full scrollbar-w-3 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-[#c7c7c4] dark:scrollbar-thumb-[#23345c] scrollbar-track-[#fbfbfa] dark:scrollbar-track-slate-900;
+    @apply font-SCoreDream h-full;
   }
   #__next {
     @apply h-full;
@@ -21,6 +21,25 @@ p:not(.about-allposts),
 li,
 span:not(.detail-paragraph, .tag-name, .itemDetail-prop) {
   @apply text-black dark:text-slate-400;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fbfbfa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7c7c4;
+  border-radius: 6px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #23345c;
 }
 
 /*custom*/
