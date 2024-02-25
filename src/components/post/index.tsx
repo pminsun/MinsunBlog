@@ -40,26 +40,6 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const [coverUrl, setCoverUrl] = useState<string>("");
 
   const stringTag = tagName + "";
-  // const matchCoverImage = () => {
-  //   if (stringTag === "Next.js") {
-  //     setCoverUrl("/coverImages/next-cover.png");
-  //   } else if (stringTag === "Javascript") {
-  //     setCoverUrl("/coverImages/javascript-cover.png");
-  //   } else if (stringTag === "Html") {
-  //     setCoverUrl("/coverImages/html-cover.png");
-  //   } else if (stringTag === "Typescript") {
-  //     setCoverUrl("/coverImages/typescript-cover.png");
-  //   } else if (stringTag === "Emotion") {
-  //     setCoverUrl("/coverImages/emotion-cover.png");
-  //   } else {
-  //     return <div className="post-noneimage-style" />;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   matchCoverImage();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   return (
     <>
@@ -70,18 +50,7 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {coverUrl ? (
-              <Image
-                src={coverUrl}
-                alt="image"
-                width={300}
-                height={300}
-                priority
-                placeholder="blur"
-                blurDataURL={blurDataURL}
-                className="post-image-style"
-              />
-            ) : itemData.url ? (
+            {itemData.url ? (
               <Image
                 src={itemData.url}
                 alt="image"
@@ -113,9 +82,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="post-list-style post-link-style group"
         >
           <div className="post-list-image-container">
-            {coverUrl ? (
+            {itemData.url ? (
               <Image
-                src={coverUrl}
+                src={itemData.url}
                 alt="image"
                 width={300}
                 height={300}

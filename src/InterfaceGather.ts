@@ -259,6 +259,7 @@ export interface PostDetailPropType {
   description: string;
   coverImage?: string;
   createDate: string;
+  imageUrl?: string;
 }
 
 // PostDetailContent

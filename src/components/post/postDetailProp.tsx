@@ -12,6 +12,7 @@ export default function PostDetailProp({
   github,
   description,
   createDate,
+  imageUrl,
 }: PostDetailPropType) {
   const create = new Date(createDate);
   const korDate = new Date(
@@ -50,9 +51,9 @@ export default function PostDetailProp({
   return (
     <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
       <div className="absolute w-full h-full">
-        {coverUrl ? (
+        {imageUrl ? (
           <Image
-            src={coverUrl}
+            src={imageUrl}
             alt="image"
             width={300}
             height={300}
