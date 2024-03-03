@@ -115,7 +115,12 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
   }, []);
 
   const imageSizeStyles = {
-    height: imageSize.height < 30 ? 30 : imageSize.height,
+    height:
+      imageSize.height < 30
+        ? 30
+        : imageSize.height > 360
+        ? 360
+        : imageSize.height,
     width:
       imageSize.width > 768 || scrennWidth < 768 ? "100%" : imageSize.width,
   };
@@ -202,7 +207,7 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
         <div
           key={blockContent.id}
           style={imageSizeStyles}
-          className="relative my-2 border border-gray-200 dark:border-gray-700"
+          className="relative my-3"
         >
           {blockContent.image && (
             <Image
@@ -211,7 +216,12 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
               fill
               priority
               sizes="100%"
-              className="object-contain"
+              className={cls(
+                "object-left-top",
+                imageSize.height > 30 && imageSize.height < 360
+                  ? "object-fill"
+                  : "object-contain"
+              )}
               onLoadingComplete={({ naturalWidth, naturalHeight }) => {
                 setImageSize({ width: naturalWidth, height: naturalHeight });
               }}

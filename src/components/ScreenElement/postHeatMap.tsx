@@ -374,15 +374,15 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
                     <Link
                       key={content.id}
                       href={`/blog/${content.id}`}
-                      className="w-full mb-2 last-of-type:mb-0 border border-[#cad1dc] rounded-lg px-4 py-2 flex items-center justify-between"
+                      className="w-full mb-2 last-of-type:mb-0 group border border-[#cad1dc] dark:border-slate-400 rounded-lg px-4 py-2 flex items-center justify-between"
                     >
-                      <p className="text-sm dark:!text-white">
+                      <p className="text-sm group-hover:text-[#2c82f2]">
                         {content.name.length > 25
                           ? content.name.slice(0, 24) + "..."
                           : content.name}
                       </p>
                       <div className="w-8 h-8 flex items-center justify-center">
-                        <BsBoxArrowUpRight className="text-lg dark:text-white" />
+                        <BsBoxArrowUpRight className="text-lg dark:text-slate-400 group-hover:text-[#2c82f2]" />
                       </div>
                     </Link>
                   );
