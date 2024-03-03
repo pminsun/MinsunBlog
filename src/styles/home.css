@@ -8,19 +8,15 @@
 }
 
 .link-outerPage {
-  @apply flex justify-between flex-col md:flex-row rounded-lg px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
+  @apply flex justify-between flex-col md:flex-row rounded-lg overflow-hidden px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
 }
 
 .link-outerPage a {
-  @apply relative flex items-center justify-center py-2 flex-1 text-center rounded-lg text-white bg-slate-400 hover:bg-[#2c82f2];
+  @apply flex items-center justify-center py-2 flex-1 text-center rounded-lg overflow-hidden text-white bg-slate-400 hover:bg-[#2c82f2];
 }
 
 .link-outerPage a svg {
   @apply text-2xl;
-}
-
-.link-outerPage a .tooltip {
-  @apply absolute -top-full py-2 px-1 rounded-lg bg-slate-300 text-xs invisible;
 }
 
 /* Select Month */
@@ -46,8 +42,5 @@
 
 /*hearmap : -1값*/
 rect[val="-1"] {
-  @apply fill-[#f3f4f6] dark:fill-[#1f2937] cursor-default;
-}
-rect {
-  @apply cursor-pointer;
+  @apply fill-[#f3f4f6] dark:fill-[#1f2937];
 }

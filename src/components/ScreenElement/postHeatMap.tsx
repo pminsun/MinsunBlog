@@ -1,12 +1,9 @@
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { ApexOptions } from "apexcharts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { PostCountType, PostHeatMapType } from "@/InterfaceGather";
-import UseProperties from "libs/useProperties";
-import Link from "next/link";
-import { BsBoxArrowUpRight } from "react-icons/bs";
 
 export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
   const { theme } = useTheme();
@@ -15,23 +12,19 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
   const monthChart = today.getMonth() + 1;
 
   //작성일자
-  const createPost = blogs.results.map(
-    (x: { id: string; created_time: string }) => {
-      const itemData = UseProperties(x);
-      const create = new Date(x.created_time);
-      const korDate = new Date(
-        create.getTime() - create.getTimezoneOffset() * 60000
-      )
-        .toISOString()
-        .split("T")[0];
-
-      return { korDate, postId: x.id, postName: itemData.name };
-    }
-  );
+  const createPost = blogs.results.map((x: { created_time: string }) => {
+    const create = new Date(x.created_time);
+    const korDate = new Date(
+      create.getTime() - create.getTimezoneOffset() * 60000
+    )
+      .toISOString()
+      .split("T")[0];
+    return korDate;
+  });
 
   const createPostCount: PostCountType = {};
-  createPost.forEach((x: { korDate: string | number; postId: string }) => {
-    createPostCount[x.korDate] = (createPostCount[x.korDate] || 0) + 1;
+  createPost.forEach((x: string | number) => {
+    createPostCount[x] = (createPostCount[x] || 0) + 1;
   });
 
   // 이번달 1일, 마지막 일
@@ -51,6 +44,7 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
 
   const DateArray = () => {
     dateArray = [];
+
     for (let i = 1; i <= daysDifference + 1; i++) {
       const monthDate = new Date(year, Number(month) - 1, i);
 
@@ -180,15 +174,6 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
         : [...commonDate],
   };
 
-  const todayDate = new Date();
-  const todayYear = todayDate.getFullYear();
-  const todayMonth = String(todayDate.getMonth() + 1).padStart(2, "0");
-  const todayDay = String(todayDate.getDate()).padStart(2, "0");
-  const dashDate = `${todayYear}-${todayMonth}-${todayDay}`;
-  const [clickDate, setClickDate] = useState(dashDate);
-  const todayCount = createPostCount[`${todayYear}-${todayMonth}-${todayDay}`];
-  const [clickPostNum, setClickPostNum] = useState(todayCount ? todayCount : 0);
-
   const options: ApexOptions = {
     chart: {
       type: "heatmap",
@@ -201,42 +186,6 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
       },
       animations: {
         enabled: false,
-      },
-      events: {
-        click: function (event, chartContext, config) {
-          if (
-            config &&
-            config.dataPointIndex !== undefined &&
-            config.seriesIndex !== undefined
-          ) {
-            const seriesIndex = config.seriesIndex;
-            const dataPointIndex = config.dataPointIndex;
-            const seriesX = chartContext.w.globals.seriesX;
-
-            if (
-              seriesX &&
-              Array.isArray(seriesX[seriesIndex]) &&
-              seriesX[seriesIndex][dataPointIndex] !== undefined
-            ) {
-              const xValue =
-                chartContext.w.globals.seriesX[seriesIndex][dataPointIndex];
-
-              setClickDate(xValue);
-            }
-
-            const seriesY = chartContext.w.globals.series;
-            let yValue;
-            if (
-              seriesY &&
-              Array.isArray(seriesY[seriesIndex]) &&
-              seriesY[seriesIndex][dataPointIndex] !== undefined
-            ) {
-              yValue =
-                chartContext.w.globals.series[seriesIndex][dataPointIndex];
-              setClickPostNum(yValue);
-            }
-          }
-        },
       },
     },
     dataLabels: {
@@ -336,66 +285,15 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
     },
   };
 
-  const createPostId: any = {};
-  createPost.forEach(
-    (x: { korDate: string | number; postId: string; postName: string }) => {
-      if (!createPostId[x.korDate]) {
-        createPostId[x.korDate] = [{ name: x.postName, id: x.postId }];
-      } else {
-        createPostId[x.korDate].push({ name: x.postName, id: x.postId });
-      }
-    }
-  );
-  const clickedId = createPostId[clickDate];
-
   return (
     <>
-      <div className="mt-2 h-[330px] w-full">
-        <ApexCharts
-          options={options}
-          series={state.series}
-          type="heatmap"
-          width={"98%"}
-          height={"90%"}
-        />
-      </div>
-      <div className="w-full h-[200px] flex flex-col rounded-lg bg-gray-100 dark:bg-gray-800">
-        <div className="flex items-center justify-between">
-          <p className="text-xs">Post activity</p>
-          <p>총 {clickPostNum}개 포스팅</p>
-          <p className="text-xs">{clickDate.replace(/-/g, ".")}</p>
-        </div>
-        <div className="text-center flex items-center justify-center">
-          <div className="flex flex-col gap-3 pt-5 text-left w-full h-full">
-            <div className="overflow-y-auto relative w-full h-[140px]">
-              {clickedId?.length > 0 ? (
-                clickedId?.map((content: any) => {
-                  return (
-                    <Link
-                      key={content.id}
-                      href={`/blog/${content.id}`}
-                      className="w-full mb-2 last-of-type:mb-0 border border-[#cad1dc] rounded-lg px-4 py-2 flex items-center justify-between"
-                    >
-                      <p className="text-sm dark:!text-white">
-                        {content.name.length > 25
-                          ? content.name.slice(0, 24) + "..."
-                          : content.name}
-                      </p>
-                      <div className="w-8 h-8 flex items-center justify-center">
-                        <BsBoxArrowUpRight className="text-lg dark:text-white" />
-                      </div>
-                    </Link>
-                  );
-                })
-              ) : (
-                <p className="text-sm flex items-center justify-center h-full">
-                  포스트 이력이 없습니다.
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      <ApexCharts
+        options={options}
+        series={state.series}
+        type="heatmap"
+        width={"98%"}
+        height={"86%"}
+      />
     </>
   );
 }
