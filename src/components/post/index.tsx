@@ -36,11 +36,6 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
 
-  // CoverImage
-  const [coverUrl, setCoverUrl] = useState<string>("");
-
-  const stringTag = tagName + "";
-
   return (
     <>
       {viewStyle === "gallery" && categoryView && (
