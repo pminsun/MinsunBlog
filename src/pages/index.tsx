@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LottiAnimation from "../components/ScreenElement/lottieAny";
-import Title from "../components/ScreenElement/title";
 import Seo from "@/components/seo";
 import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import axios from "axios";
@@ -12,6 +11,8 @@ import { cls } from "libs/utils";
 import dynamic from "next/dynamic";
 import DEFINE from "@/constant/Global";
 import { BlogistObject, ListResults } from "@/InterfaceGather";
+import Image from "next/image";
+import { useRouter } from "next/router";
 const PostHeatMap = dynamic(
   () => import("@/components/ScreenElement/postHeatMap"),
   {
@@ -118,146 +119,183 @@ export default function Home({ blogs }: BlogistObject) {
     return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
   };
 
+  const pathname = useRouter();
+  const ec2Deploy = "https://minsunblog.com/";
+  const vercelDeploy = "https://min-sun.vercel.app/";
+  const [deplyUrlMent, setDeplyUrlMent] = useState("EC2 배포주소 이동");
+  const [blogUrl, setBlogUrl] = useState(ec2Deploy);
+  useEffect(() => {
+    if (pathname + "" === vercelDeploy) {
+      setBlogUrl(ec2Deploy);
+      setDeplyUrlMent("EC2 배포주소 이동");
+    } else if (pathname + "" === ec2Deploy) {
+      setBlogUrl(vercelDeploy);
+      setDeplyUrlMent("vercel 배포주소 이동");
+    } else {
+      setBlogUrl(ec2Deploy);
+      setDeplyUrlMent("EC2 배포주소 이동");
+    }
+  }, [pathname]);
+
   return (
     <>
       <Seo title={`MinSun's Blog | Home`} />
       <div className="px-5 lg:px-0 laptop-max-width">
-        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[468px] mb-16 lg:mb-10">
-          <div className="flex flex-1 justify-between rounded-lg overflow-hidden flex-col w-full h-full bg-gray-100 dark:bg-gray-800">
-            <div className="w-full h-2/3 lg:h-[312px]">
-              <LottiAnimation />
-            </div>
-            <div className="w-full text-sm leading-6 px-4 lg:px-6 pb-6">
-              <p className="text-center mb-6">
-                안녕하세요.
-                <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
-                개발자입니다.
-              </p>
-              <div className="link-innerPage">
-                <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
-                <Link href="/resume">{DEFINE.PAGES.RESUME.KOR}</Link>
+        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[582px] mb-16 lg:mb-10">
+          <div className="flex flex-1 gap-6 justify-between rounded-lg overflow-hidden flex-col w-full h-full">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg">
+              <div className="w-full h-2/3 lg:h-[312px]">
+                <LottiAnimation />
               </div>
+              <div className="w-full text-sm leading-6 px-4 lg:px-6 pb-6">
+                <p className="text-center mb-6">
+                  안녕하세요.
+                  <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
+                  개발자입니다.
+                </p>
+                <div className="link-innerPage">
+                  <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
+                  <Link href="/resume">{DEFINE.PAGES.RESUME.KOR}</Link>
+                </div>
+              </div>
+            </div>
+            <div className="link-outerPage">
+              <Link href={blogUrl} target="_blank" className="group">
+                <div className="w-[21px] h-[21px] overflow-hidden">
+                  <Image
+                    src="/white-icon.svg"
+                    alt="mylogo"
+                    width={32}
+                    height={32}
+                  />
+                </div>
+                <p className="tooltip w-[130%] group-hover:visible">
+                  {deplyUrlMent}
+                </p>
+              </Link>
+              <Link
+                href="https://github.com/pminsun"
+                target="_blank"
+                className="group"
+              >
+                <IoLogoGithub />
+                <p className="tooltip w-full group-hover:visible">
+                  깃 허브 이동
+                </p>
+              </Link>
+              <Link href="mailto:pminsun309@gmail.com" className="group">
+                <IoMail />
+                <p className="tooltip w-full group-hover:visible">
+                  메일 보내기
+                </p>
+              </Link>
             </div>
           </div>
-          <div className="flex flex-col gap-8 h-full w-full flex-1">
-            <div className="link-outerPage">
-              <Link href="https://github.com/pminsun" target="_blank">
-                <IoLogoGithub />
-              </Link>
-              <Link href="mailto:pminsun309@gmail.com">
-                <IoMail />
-              </Link>
-              <Link href="/project">
-                <IoLogoGithub />
-              </Link>
-            </div>
-            <div className="w-full relative h-[320px] lg:h-3/4 p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <div className="relative text-center flex items-center justify-between text-xs">
-                <span>
-                  {mathMonth.length > 0 ? mathMonth.length : 0} posts in{" "}
-                  {monthList.engMonth}
+          <div className="flex-1 relative h-full p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <div className="relative text-center flex items-center justify-between text-xs">
+              <span>
+                {mathMonth.length > 0 ? mathMonth.length : 0} posts in{" "}
+                {monthList.engMonth}
+              </span>
+              <div className="text-base cursor-pointer relative">
+                <span
+                  onClick={toggleMonthList}
+                  ref={dropMonthMenuBtnRef}
+                  className="hover:text-[#2c82f2] py-1 px-3"
+                >
+                  {yearList}. {monthList.engMonth}
                 </span>
-                <div className="text-base cursor-pointer relative">
-                  <span
-                    onClick={toggleMonthList}
-                    ref={dropMonthMenuBtnRef}
-                    className="hover:text-[#2c82f2] py-1 px-3"
+                {showMonthModal && (
+                  <div
+                    ref={dropMonthMenuRef}
+                    className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 dark:bg-gray-600 rounded-lg mt-1"
                   >
-                    {yearList}. {monthList.engMonth}
-                  </span>
-                  {showMonthModal && (
-                    <div
-                      ref={dropMonthMenuRef}
-                      className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 dark:bg-gray-600 rounded-lg mt-1"
-                    >
-                      <ul>
-                        {years.map((year) => (
-                          <li
-                            key={year}
-                            onClick={() => {
-                              if (matchExceptMonth(monthList.engMonth)) {
-                                if (year !== 2023) {
-                                  setYearList(year);
-                                }
-                              } else {
+                    <ul>
+                      {years.map((year) => (
+                        <li
+                          key={year}
+                          onClick={() => {
+                            if (matchExceptMonth(monthList.engMonth)) {
+                              if (year !== 2023) {
                                 setYearList(year);
                               }
-                            }}
-                            className={cls(
-                              yearList === year ? "month-selected" : "",
-                              matchExceptMonth(monthList.engMonth) &&
-                                year === 2023
-                                ? "month-disabled"
-                                : "month-noneDisabled",
-                              "month-base"
-                            )}
-                          >
-                            {year}
-                          </li>
-                        ))}
-                      </ul>
-                      <ul className="h-48 overflow-y-auto scrollbar-none">
-                        {yearList === 2023
-                          ? engMonthName.slice(8).map((mon) => (
-                              <li
-                                key={mon.monthEng}
-                                onClick={() => {
-                                  if (
-                                    !(
-                                      yearList === 2023 &&
-                                      matchExceptMonth(mon.monthEng)
-                                    )
-                                  ) {
-                                    selectMonth(mon.monthEng, mon.monthNum);
-                                  }
-                                }}
-                                className={cls(
-                                  monthList.engMonth === mon.monthEng
-                                    ? "month-selected"
-                                    : "month-noneDisabled",
-                                  "month-base"
-                                )}
-                              >
-                                {mon.monthEng}
-                              </li>
-                            ))
-                          : engMonthName.map((mon) => (
-                              <li
-                                key={mon.monthEng}
-                                onClick={() => {
-                                  if (
-                                    !(
-                                      yearList === 2023 &&
-                                      matchExceptMonth(mon.monthEng)
-                                    )
-                                  ) {
-                                    selectMonth(mon.monthEng, mon.monthNum);
-                                  }
-                                }}
-                                className={cls(
-                                  monthList.engMonth === mon.monthEng
-                                    ? "month-selected"
-                                    : "month-noneDisabled",
-                                  "month-base"
-                                )}
-                              >
-                                {mon.monthEng}
-                              </li>
-                            ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-                <span>{blogs.results.length} total posts</span>
+                            } else {
+                              setYearList(year);
+                            }
+                          }}
+                          className={cls(
+                            yearList === year ? "month-selected" : "",
+                            matchExceptMonth(monthList.engMonth) &&
+                              year === 2023
+                              ? "month-disabled"
+                              : "month-noneDisabled",
+                            "month-base"
+                          )}
+                        >
+                          {year}
+                        </li>
+                      ))}
+                    </ul>
+                    <ul className="h-48 overflow-y-auto scrollbar-none">
+                      {yearList === 2023
+                        ? engMonthName.slice(8).map((mon) => (
+                            <li
+                              key={mon.monthEng}
+                              onClick={() => {
+                                if (
+                                  !(
+                                    yearList === 2023 &&
+                                    matchExceptMonth(mon.monthEng)
+                                  )
+                                ) {
+                                  selectMonth(mon.monthEng, mon.monthNum);
+                                }
+                              }}
+                              className={cls(
+                                monthList.engMonth === mon.monthEng
+                                  ? "month-selected"
+                                  : "month-noneDisabled",
+                                "month-base"
+                              )}
+                            >
+                              {mon.monthEng}
+                            </li>
+                          ))
+                        : engMonthName.map((mon) => (
+                            <li
+                              key={mon.monthEng}
+                              onClick={() => {
+                                if (
+                                  !(
+                                    yearList === 2023 &&
+                                    matchExceptMonth(mon.monthEng)
+                                  )
+                                ) {
+                                  selectMonth(mon.monthEng, mon.monthNum);
+                                }
+                              }}
+                              className={cls(
+                                monthList.engMonth === mon.monthEng
+                                  ? "month-selected"
+                                  : "month-noneDisabled",
+                                "month-base"
+                              )}
+                            >
+                              {mon.monthEng}
+                            </li>
+                          ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-              <div className="mt-2 h-full w-full">
-                <PostHeatMap
-                  blogs={blogs}
-                  year={yearList}
-                  month={monthList.numMonth}
-                />
-              </div>
+              <span>{blogs.results.length} total posts</span>
             </div>
+
+            <PostHeatMap
+              blogs={blogs}
+              year={yearList}
+              month={monthList.numMonth}
+            />
           </div>
         </div>
         <div className="pb-8">
