@@ -132,13 +132,13 @@ export default function Home({ blogs }: BlogistObject) {
   const [blogUrl, setBlogUrl] = useState(ec2Deploy);
   useEffect(() => {
     if (currentUrl === vercelDeploy) {
-      setBlogUrl(ec2Deploy);
+      setBlogUrl("https://" + ec2Deploy);
       setDeplyUrlMent("EC2 배포주소 이동");
     } else if (currentUrl === ec2Deploy) {
-      setBlogUrl(vercelDeploy);
+      setBlogUrl("https://" + vercelDeploy);
       setDeplyUrlMent("vercel 배포주소 이동");
     } else {
-      setBlogUrl(ec2Deploy);
+      setBlogUrl("https://" + ec2Deploy);
       setDeplyUrlMent("EC2 배포주소 이동");
     }
   }, [currentUrl]);
