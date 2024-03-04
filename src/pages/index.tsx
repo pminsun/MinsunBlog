@@ -119,23 +119,29 @@ export default function Home({ blogs }: BlogistObject) {
     return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
   };
 
-  const pathname = useRouter();
-  const ec2Deploy = "https://minsunblog.com/";
-  const vercelDeploy = "https://min-sun.vercel.app/";
+  const [currentUrl, setCurrentUrl] = useState("");
+  useEffect(() => {
+    if (window) {
+      setCurrentUrl(window.location.host);
+    }
+  }, []);
+
+  const ec2Deploy = "minsunblog.com";
+  const vercelDeploy = "min-sun.vercel.app";
   const [deplyUrlMent, setDeplyUrlMent] = useState("EC2 배포주소 이동");
   const [blogUrl, setBlogUrl] = useState(ec2Deploy);
   useEffect(() => {
-    if (pathname + "" === vercelDeploy) {
+    if (currentUrl === vercelDeploy) {
       setBlogUrl(ec2Deploy);
       setDeplyUrlMent("EC2 배포주소 이동");
-    } else if (pathname + "" === ec2Deploy) {
+    } else if (currentUrl === ec2Deploy) {
       setBlogUrl(vercelDeploy);
       setDeplyUrlMent("vercel 배포주소 이동");
     } else {
       setBlogUrl(ec2Deploy);
       setDeplyUrlMent("EC2 배포주소 이동");
     }
-  }, [pathname]);
+  }, [currentUrl]);
 
   return (
     <>
