@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import DEFINE from "@/constant/Global";
 import { BlogistObject, ListResults } from "@/InterfaceGather";
 import Image from "next/image";
+import { useRouter } from "next/router";
 const PostHeatMap = dynamic(
   () => import("@/components/ScreenElement/postHeatMap"),
   {
@@ -118,9 +119,9 @@ export default function Home({ blogs }: BlogistObject) {
     return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
   };
 
-  const pathname = typeof window != undefined ? window.location.host : "";
-  const ec2Deploy = "/minsunblog.com/";
-  const vercelDeploy = "/min-sun.vercel.app/";
+  const pathname = useRouter();
+  const ec2Deploy = "https://minsunblog.com/";
+  const vercelDeploy = "https://min-sun.vercel.app/";
   const [deplyUrlMent, setDeplyUrlMent] = useState("EC2 배포주소 이동");
   const [blogUrl, setBlogUrl] = useState(ec2Deploy);
   useEffect(() => {
@@ -135,8 +136,6 @@ export default function Home({ blogs }: BlogistObject) {
       setDeplyUrlMent("EC2 배포주소 이동");
     }
   }, [pathname]);
-
-  console.log(pathname);
 
   return (
     <>
