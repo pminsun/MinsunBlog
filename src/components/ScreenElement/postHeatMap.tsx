@@ -355,7 +355,7 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
           options={options}
           series={state.series}
           type="heatmap"
-          width={"98%"}
+          width={"100%"}
           height={"90%"}
         />
       </div>
