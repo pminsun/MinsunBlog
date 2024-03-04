@@ -367,14 +367,14 @@ export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
         </div>
         <div className="text-center flex items-center justify-center">
           <div className="flex flex-col gap-3 pt-5 text-left w-full h-full">
-            <div className="overflow-y-auto relative w-full h-[140px]">
+            <div className="day-posting-box">
               {clickedId?.length > 0 ? (
                 clickedId?.map((content: any) => {
                   return (
                     <Link
                       key={content.id}
                       href={`/blog/${content.id}`}
-                      className="w-full mb-2 last-of-type:mb-0 group border border-[#cad1dc] dark:border-slate-400 rounded-lg px-4 py-2 flex items-center justify-between"
+                      className="day-posting group"
                     >
                       <p className="text-sm group-hover:text-[#2c82f2]">
                         {content.name.length > 25

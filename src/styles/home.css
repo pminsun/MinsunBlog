@@ -51,3 +51,31 @@ rect[val="-1"] {
 rect {
   @apply cursor-pointer;
 }
+
+/* day posting */
+.day-posting-box {
+  @apply overflow-y-auto relative w-full h-[140px];
+}
+.day-posting {
+  @apply w-full mb-2 last-of-type:mb-0 border border-[#cad1dc] dark:border-slate-400 rounded-lg px-4 py-2 flex items-center justify-between;
+}
+.day-posting-box::-webkit-scrollbar {
+  width: 12px;
+}
+
+.day-posting-box::-webkit-scrollbar-track {
+  background: #f3f4f6 !important;
+}
+
+.day-posting-box::-webkit-scrollbar-thumb {
+  background: #c7c7c4;
+  border-radius: 6px;
+  border: 5px solid #f3f4f6;
+}
+html.dark .day-posting-box::-webkit-scrollbar-track {
+  background: #1f2937 !important;
+}
+html.dark .day-posting-box::-webkit-scrollbar-thumb {
+  background-color: #364f8a;
+  border: 5px solid #1f2937;
+}
