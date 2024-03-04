@@ -8,7 +8,7 @@
 }
 
 .link-outerPage {
-  @apply flex justify-between flex-col md:flex-row rounded-lg px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
+  @apply flex justify-between md:flex-row rounded-lg px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
 }
 
 .link-outerPage a {
