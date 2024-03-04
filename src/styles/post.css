@@ -28,7 +28,26 @@
 }
 
 .item-tagCategory {
-  @apply flex items-center gap-3 md:max-w-[2/3] mr-3 overflow-x-auto;
+  @apply flex items-center gap-3 md:max-w-[2/3] mr-1 overflow-x-auto;
+}
+
+.item-tagCategory::-webkit-scrollbar {
+  height: 4px;
+}
+
+.item-tagCategory::-webkit-scrollbar-track {
+  background: #fbfbfa;
+}
+
+.item-tagCategory::-webkit-scrollbar-thumb {
+  background: #c7c7c4;
+  border-radius: 6px;
+}
+html.dark .item-tagCategory::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+html.dark .item-tagCategory::-webkit-scrollbar-thumb {
+  background-color: #23345c;
 }
 
 .item-tagCategory li {
