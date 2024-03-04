@@ -118,9 +118,9 @@ export default function Home({ blogs }: BlogistObject) {
     return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
   };
 
-  const pathname = window != undefined ? window.location.href : "";
-  const ec2Deploy = "https://minsunblog.com/";
-  const vercelDeploy = "https://min-sun.vercel.app/";
+  const pathname = typeof window != undefined ? window.location.host : "";
+  const ec2Deploy = "/minsunblog.com/";
+  const vercelDeploy = "/min-sun.vercel.app/";
   const [deplyUrlMent, setDeplyUrlMent] = useState("EC2 배포주소 이동");
   const [blogUrl, setBlogUrl] = useState(ec2Deploy);
   useEffect(() => {
@@ -135,6 +135,8 @@ export default function Home({ blogs }: BlogistObject) {
       setDeplyUrlMent("EC2 배포주소 이동");
     }
   }, [pathname]);
+
+  console.log(pathname);
 
   return (
     <>
