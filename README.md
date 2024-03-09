@@ -2,7 +2,7 @@
 
 <!-- Table of Contents -->
 
-# :notebook_with_decorative_cover: Table of Contents
+# :notebook_with_decorative_cover: 목차
 
 - [About the Project](#star2-about-the-project)
   - [개인 블로그 Screenshots](#camera-screenshots)
@@ -13,7 +13,7 @@
 - [개발 Roadmap](#compass-roadmap)
 - [Getting Started](#toolbox-getting-started)
   - [Installation](#gear-installation)
-  - [Running Tests](#test_tube-running-tests)
+  - [Running Dev](#test_tube-running-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
@@ -37,21 +37,20 @@
 
 ### :space_invader: Tech Stack
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul>
-</details>
-<p>library</p>
+<p>기술스택</p>
 <ul>
-  <li><a href="https://axios-http.com/kr/docs/intro">axios v1.5</a></li>
-  <li><a href="https://apexcharts.com/">react-apexcharts v3.44</a></li>
-  <li><a href="https://zustand-demo.pmnd.rs/">zustand v4.4</a></li>
-  <li><a href="https://github.com/pacocoursey/next-themes">next-themes v0.2.1</a></li>
+  <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript</a></li>
+  <li><a href="https://nextjs.org/" target="_blank">Next.js</a></li>
+  <li><a href="https://reactjs.org/" target="_blank">React.js</a></li>
+  <li><a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a></li>
+</ul>
+
+<p>사용한 메인 라이브러리</p>
+<ul>
+  <li><a href="https://axios-http.com/kr/docs/intro" target="_blank">axios v1.5</a></li>
+  <li><a href="https://apexcharts.com/" target="_blank">react-apexcharts v3.44</a></li>
+  <li><a href="https://zustand-demo.pmnd.rs/" target="_blank">zustand v4.4</a></li>
+  <li><a href="https://github.com/pacocoursey/next-themes" target="_blank">next-themes v0.2.1</a></li>
 </ul>
 
 <!-- Features -->
@@ -86,9 +85,13 @@
 ### :key: Environment Variables
 
 <p>사용된 환경 설정</p>
+
 `NEXT_PUBLIC_NOTION_TOKEN`
+
 `NEXT_PUBLIC_NOTION_DATABASE_ID_PROJECT`
+
 `NEXT_PUBLIC_NOTION_DATABASE_ID_BLOG`
+
 `NEXT_PUBLIC_BASE_URL`
 
 <!-- Roadmap -->
@@ -125,7 +128,7 @@
 
 <!-- Running Tests -->
 
-### :test_tube: Running Tests
+### :test_tube: Running Dev
 
 ```bash
   npm run dev
