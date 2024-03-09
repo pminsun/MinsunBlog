@@ -5,25 +5,23 @@
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#star2-about-the-project)
-  - [Screenshots](#camera-screenshots)
+  - [개인 블로그 Screenshots](#camera-screenshots)
   - [Tech Stack](#space_invader-tech-stack)
-  - [Features](#dart-features)
-  - [Color Reference](#art-color-reference)
+  - [블로그 특징](#dart-features)
+  - [주요 색상](#art-color-reference)
   - [Environment Variables](#key-environment-variables)
+- [개발 Roadmap](#compass-roadmap)
 - [Getting Started](#toolbox-getting-started)
-  - [Prerequisites](#bangbang-prerequisites)
   - [Installation](#gear-installation)
   - [Running Tests](#test_tube-running-tests)
   - [Run Locally](#running-run-locally)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
 - [Contributing](#wave-contributing)
   - [Code of Conduct](#scroll-code-of-conduct)
 - [FAQ](#grey_question-faq)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
 
 <!-- About the Project -->
 
@@ -34,7 +32,7 @@
 
 <!-- Screenshots -->
 
-### :camera: Screenshots
+### :camera: 개인 블로그 Screenshots
 
 <div align="center"> 
   <img width="1280" alt="blogcapture" src="https://github.com/pminsun/MinsunBlog/assets/125803499/0e5b2a71-f8ae-4f47-8828-ae445538b1e5" alt="screenshot">
@@ -62,15 +60,16 @@
 
 <!-- Features -->
 
-### :dart: Features
+### :dart: 블로그 특징
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Notion APi로 데이터를 불러와 Next.js로 제작 후 EC2로 배포한 블로그입니다.
+- 라이트, 다크 모드가 있는 반응형 웹사이트입니다.
+- 태그별로 블로그를 필터링 할 수 있습니다.
+- heatmap으로 만든 달력을 통해 일자별 포스팅 수, 포스팅 된 글을 확인 할 수 있습니다.
 
 <!-- Color Reference -->
 
-### :art: Color Reference
+### :art: 주요 색상
 
 | LightColor      | Hex                                                              |
 | --------------- | ---------------------------------------------------------------- |
@@ -90,35 +89,44 @@
 
 ### :key: Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+사용된 환경 설정
+`NEXT_PUBLIC_NOTION_TOKEN`
+`NEXT_PUBLIC_NOTION_DATABASE_ID_PROJECT`
+`NEXT_PUBLIC_NOTION_DATABASE_ID_BLOG`
+`NEXT_PUBLIC_BASE_URL`
 
-`API_KEY`
+<!-- Roadmap -->
 
-`ANOTHER_API_KEY`
+## :compass: 개발 Roadmap
+
+- [x] 홈페이지 - lottieAny 적용
+- [x] 공통 - 라이트 / 다크 모드 적용
+- [x] 상세페이지 - 코드 문 jsx (react) html문 etc 적용 / video 추가 / codepen 추가
+- [x] 리스트페이지 - 검색 창 (Blog, Projects 페이지) & 태그 필터 적용
+- [x] 리스트페이지 - pagination (Blog, Projects 페이지)
+- [x] 공통 - mobile, tablet 반응형
+- [x] 공통 - 오른쪽 하단에 상단 이동 버튼 추가
+- [x] 리스트페이지 - 이미지 blurDataURL 적용하기
+- [x] 상세페이지 - 하단에 다음 / 이전 포스트 링크
+- [x] 홈페이지 - heatmap으로 월별 달력 생성: 일별 포스팅 수 tooltip
+- [x] 홈페이지 - 달력 클릭 시 해당 포스팅 내역 보이게
+- [x] 공통 - EC2 배포
+- [ ] 홈페이지 - 달력 오늘이후 날짜 선택 불가
+- [ ] 공통 - 페이지 이동 속도 개선
 
 <!-- Getting Started -->
 
 ## :toolbox: Getting Started
 
-<!-- Prerequisites -->
-
-### :bangbang: Prerequisites
-
-This project uses Yarn as package manager
-
-```bash
- npm install --global yarn
-```
-
 <!-- Installation -->
 
 ### :gear: Installation
 
-Install my-project with npm
+Install MinsunBlog with npm
 
 ```bash
-  yarn install my-project
-  cd my-project
+  npm install MinsunBlog
+  cd MinsunBlog
 ```
 
 <!-- Running Tests -->
@@ -183,25 +191,6 @@ function App() {
 }
 ```
 
-<!-- Roadmap -->
-
-## :compass: Roadmap
-
-- [x] 홈페이지 - lottieAny 적용
-- [x] 공통 - 라이트 / 다크 모드 적용
-- [x] 상세페이지 - 코드 문 jsx (react) html문 etc 적용 / video 추가 / codepen 추가
-- [x] 리스트페이지 - 검색 창 (Blog, Projects 페이지) & 태그 필터 적용
-- [x] 리스트페이지 - pagination (Blog, Projects 페이지)
-- [x] 공통 - mobile, tablet 반응형
-- [x] 공통 - 오른쪽 하단에 상단 이동 버튼 추가
-- [x] 리스트페이지 - 이미지 blurDataURL 적용하기
-- [x] 상세페이지 - 하단에 다음 / 이전 포스트 링크
-- [x] 홈페이지 - heatmap으로 달력 생성: 일별 포스팅 수 tooltip
-- [x] 홈페이지 - 달력 클릭 시 해당 포스팅 내역 보이게
-- [x] 공통 - EC2 배포
-- [ ] 홈페이지 - 달력 오늘이후 날짜 선택 불가
-- [ ] 공통 - 페이지 이동 속도 개선
-
 <!-- Contributing -->
 
 ## :wave: Contributing
@@ -236,23 +225,12 @@ Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-te
 
 ## :warning: License
 
-Distributed under the no License. See LICENSE.txt for more information.
+Copyright © Minsun Park 2023. All rights reserved.
 
 <!-- Contact -->
 
 ## :handshake: Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+박민선(Minsun Park) - pminsun309@gmail.com
 
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
-
-<!-- Acknowledgments -->
-
-## :gem: Acknowledgements
-
-Use this section to mention useful resources and libraries that you have used in your projects.
-
-- [Shields.io](https://shields.io/)
-- [Awesome README](https://github.com/matiassingers/awesome-readme)
-- [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
-- [Readme Template](https://github.com/othneildrew/Best-README-Template)
+Project Link: [https://minsunblog.com/](https://minsunblog.com/)
