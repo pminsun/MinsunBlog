@@ -147,7 +147,7 @@ To deploy this project run
 
 ## :warning: License
 
-MIT 라이센스에 따라 배포됩니다. 자세한 내용은 LICENSE.txt 을 확인하세요
+MIT 라이센스에 따라 배포됩니다. 자세한 내용은 LICENSE 을 확인하세요
 
 <!-- Contact -->
 
