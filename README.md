@@ -38,20 +38,17 @@
 ### :space_invader: Tech Stack
 
 <p>기술스택</p>
-<ul>
-  <li><a href="https://www.typescriptlang.org/" target="_blank">Typescript</a></li>
-  <li><a href="https://nextjs.org/" target="_blank">Next.js</a></li>
-  <li><a href="https://reactjs.org/" target="_blank">React.js</a></li>
-  <li><a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a></li>
-</ul>
+
+- Typescript
+- Next.js
+- React.js
+- TailwindCSS
 
 <p>사용한 메인 라이브러리</p>
-<ul>
-  <li><a href="https://axios-http.com/kr/docs/intro" target="_blank">axios v1.5</a></li>
-  <li><a href="https://apexcharts.com/" target="_blank">react-apexcharts v3.44</a></li>
-  <li><a href="https://zustand-demo.pmnd.rs/" target="_blank">zustand v4.4</a></li>
-  <li><a href="https://github.com/pacocoursey/next-themes" target="_blank">next-themes v0.2.1</a></li>
-</ul>
+- react-apexcharts v3.44
+- axios v1.5
+- zustand v4.4
+- next-themes v0.2.1
 
 <!-- Features -->
 
