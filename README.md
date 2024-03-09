@@ -37,7 +37,7 @@
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img width="1280" alt="blogcapture" src="https://github.com/pminsun/MinsunBlog/assets/125803499/ec873beb-f803-423b-848a-a11787d563ed" alt="screenshot">
+  <img width="1280" alt="blogcapture" src="https://github.com/pminsun/MinsunBlog/assets/125803499/0e5b2a71-f8ae-4f47-8828-ae445538b1e5" alt="screenshot">
 </div>
 
 <!-- TechStack -->
@@ -53,6 +53,7 @@
     <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
   </ul>
 </details>
+<details>
 <summary>library</summary>
   <ul>
     <li><a href="https://www.mysql.com/">MySQL</a></li>
@@ -71,19 +72,19 @@
 
 ### :art: Color Reference
 
-| LightColor      | Hex                                                               |
-| --------------- | ----------------------------------------------------------------- |
-| Primary Color   | ![#fbfbfa](https://via.placeholder.com/10/fbfbfa?text=+) #fbfbfa  |
-| Secondary Color | ![#f3f4f6](https://via.placeholder.com/10/f3f4f6?text=+) #f3f4f6  |
-| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/02c82f2?text=+) #2c82f2 |
-| Text Color      | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000  |
+| LightColor      | Hex                                                              |
+| --------------- | ---------------------------------------------------------------- |
+| Primary Color   | ![#fbfbfa](https://via.placeholder.com/10/fbfbfa?text=+) #fbfbfa |
+| Secondary Color | ![#f3f4f6](https://via.placeholder.com/10/f3f4f6?text=+) #f3f4f6 |
+| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/2c82f2?text=+) #2c82f2 |
+| Text Color      | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
 
-| DarkColor       | Hex                                                                |
-| --------------- | ------------------------------------------------------------------ |
-| Primary Color   | ![#0f172a](https://via.placeholder.com/10/0f172a?text=+) #0f172a   |
-| Secondary Color | ![#1f2937](https://via.placeholder.com/10/1f2937?text=+) #1f2937   |
-| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/02c82f2?text=+) #02c82f2 |
-| Text Color      | ![#94a3b8](https://via.placeholder.com/10/94a3b8?text=+) #94a3b8   |
+| DarkColor       | Hex                                                               |
+| --------------- | ----------------------------------------------------------------- |
+| Primary Color   | ![#0f172a](https://via.placeholder.com/10/0f172a?text=+) #0f172a  |
+| Secondary Color | ![#1f2937](https://via.placeholder.com/10/1f2937?text=+) #1f2937  |
+| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/2c82f2?text=+) #02c82f2 |
+| Text Color      | ![#94a3b8](https://via.placeholder.com/10/94a3b8?text=+) #94a3b8  |
 
 <!-- Env Variables -->
 
@@ -186,8 +187,20 @@ function App() {
 
 ## :compass: Roadmap
 
-- [x] Todo 1
-- [ ] Todo 2
+- [x] 홈페이지 - lottieAny 적용
+- [x] 공통 - 라이트 / 다크 모드 적용
+- [x] 상세페이지 - 코드 문 jsx (react) html문 etc 적용 / video 추가 / codepen 추가
+- [x] 리스트페이지 - 검색 창 (Blog, Projects 페이지) & 태그 필터 적용
+- [x] 리스트페이지 - pagination (Blog, Projects 페이지)
+- [x] 공통 - mobile, tablet 반응형
+- [x] 공통 - 오른쪽 하단에 상단 이동 버튼 추가
+- [x] 리스트페이지 - 이미지 blurDataURL 적용하기
+- [x] 상세페이지 - 하단에 다음 / 이전 포스트 링크
+- [x] 홈페이지 - heatmap으로 달력 생성: 일별 포스팅 수 tooltip
+- [x] 홈페이지 - 달력 클릭 시 해당 포스팅 내역 보이게
+- [x] 공통 - EC2 배포
+- [ ] 홈페이지 - 달력 오늘이후 날짜 선택 불가
+- [ ] 공통 - 페이지 이동 속도 개선
 
 <!-- Contributing -->
 
