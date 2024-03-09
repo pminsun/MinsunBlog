@@ -39,12 +39,18 @@
 
 <p>기술스택</p>
 
-- Typescript
-- Next.js
-- React.js
-- TailwindCSS
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Typescript][Typescript]][Typescript-url]
+- [![TailwindCSS][TailwindCSS.js]][TailwindCSS-url]
+
+* Typescript
+* Next.js
+* React.js
+* TailwindCSS
 
 <p>사용한 메인 라이브러리</p>
+
 - react-apexcharts v3.44
 - axios v1.5
 - zustand v4.4
@@ -146,7 +152,7 @@ To deploy this project run
 
 ## :warning: License
 
-Copyright © Minsun Park 2023. All rights reserved.
+MIT 라이센스에 따라 배포됩니다. 자세한 내용은 LICENSE.txt 을 확인하세요
 
 <!-- Contact -->
 
