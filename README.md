@@ -14,12 +14,7 @@
 - [Getting Started](#toolbox-getting-started)
   - [Installation](#gear-installation)
   - [Running Tests](#test_tube-running-tests)
-  - [Run Locally](#running-run-locally)
   - [Deployment](#triangular_flag_on_post-deployment)
-- [Usage](#eyes-usage)
-- [Contributing](#wave-contributing)
-  - [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
 
@@ -51,12 +46,13 @@
     <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
   </ul>
 </details>
-<details>
-<summary>library</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-  </ul>
-</details>
+<p>library</p>
+<ul>
+  <li><a href="https://axios-http.com/kr/docs/intro">axios v1.5</a></li>
+  <li><a href="https://apexcharts.com/">react-apexcharts v3.44</a></li>
+  <li><a href="https://zustand-demo.pmnd.rs/">zustand v4.4</a></li>
+  <li><a href="https://github.com/pacocoursey/next-themes">next-themes v0.2.1</a></li>
+</ul>
 
 <!-- Features -->
 
@@ -89,7 +85,7 @@
 
 ### :key: Environment Variables
 
-사용된 환경 설정
+<p>사용된 환경 설정</p>
 `NEXT_PUBLIC_NOTION_TOKEN`
 `NEXT_PUBLIC_NOTION_DATABASE_ID_PROJECT`
 `NEXT_PUBLIC_NOTION_DATABASE_ID_BLOG`
@@ -122,8 +118,6 @@
 
 ### :gear: Installation
 
-Install MinsunBlog with npm
-
 ```bash
   npm install MinsunBlog
   cd MinsunBlog
@@ -133,38 +127,8 @@ Install MinsunBlog with npm
 
 ### :test_tube: Running Tests
 
-To run tests, run the following command
-
 ```bash
-  yarn test test
-```
-
-<!-- Run Locally -->
-
-### :running: Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/Louis3797/awesome-readme-template.git
-```
-
-Go to the project directory
-
-```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  yarn install
-```
-
-Start the server
-
-```bash
-  yarn start
+  npm run dev
 ```
 
 <!-- Deployment -->
@@ -174,52 +138,9 @@ Start the server
 To deploy this project run
 
 ```bash
-  yarn deploy
+  npm run build
+  npm start
 ```
-
-<!-- Usage -->
-
-## :eyes: Usage
-
-Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
-
-```javascript
-import Component from "my-project";
-
-function App() {
-  return <Component />;
-}
-```
-
-<!-- Contributing -->
-
-## :wave: Contributing
-
-<a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
-</a>
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-<!-- Code of Conduct -->
-
-### :scroll: Code of Conduct
-
-Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
-
-<!-- FAQ -->
-
-## :grey_question: FAQ
-
-- Question 1
-
-  - Answer 1
-
-- Question 2
-
-  - Answer 2
 
 <!-- License -->
 
