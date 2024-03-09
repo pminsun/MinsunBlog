@@ -2,15 +2,15 @@
 
 <!-- Table of Contents -->
 
-# :notebook_with_decorative_cover: 목차
+## :notebook_with_decorative_cover: 목차
 
 - [About the Project](#star2-about-the-project)
-  - [개인 블로그 Screenshots](#camera-screenshots)
+  - [개인 블로그 Screenshots](#camera-개인-블로그-screenshots)
   - [Tech Stack](#space_invader-tech-stack)
-  - [블로그 특징](#dart-features)
-  - [주요 색상](#art-color-reference)
+  - [블로그 특징](#dart-블로그-특징)
+  - [주요 색상](#art-주요-색상)
   - [Environment Variables](#key-environment-variables)
-- [개발 Roadmap](#compass-roadmap)
+- [개발 Roadmap](#compass-개발-roadmap)
 - [Getting Started](#toolbox-getting-started)
   - [Installation](#gear-installation)
   - [Running Dev](#test_tube-running-tests)
@@ -39,15 +39,10 @@
 
 <p>기술스택</p>
 
-- [![Next][Next.js]][Next-url]
-- [![React][React.js]][React-url]
-- [![Typescript][Typescript]][Typescript-url]
-- [![TailwindCSS][TailwindCSS.js]][TailwindCSS-url]
-
-* Typescript
-* Next.js
-* React.js
-* TailwindCSS
+- Typescript
+- Next.js
+- React.js
+- TailwindCSS
 
 <p>사용한 메인 라이브러리</p>
 
