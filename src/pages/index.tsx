@@ -1,7 +1,11 @@
 import Link from "next/link";
 import LottiAnimation from "../components/ScreenElement/lottieAny";
 import Seo from "@/components/seo";
-import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
+import {
+  DATABASE_ID_BLOG,
+  TOKEN,
+  DATABASE_ID_BLOG_START_CURSOR,
+} from "libs/config";
 import axios from "axios";
 import Post from "@/components/post";
 import { HiArrowNarrowRight } from "react-icons/hi";
@@ -10,9 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import { cls } from "libs/utils";
 import dynamic from "next/dynamic";
 import DEFINE from "@/constant/Global";
-import { BlogistObject, ListResults } from "@/InterfaceGather";
+import { DataListObject, ListResults } from "@/InterfaceGather";
 import Image from "next/image";
-import { useRouter } from "next/router";
 const PostHeatMap = dynamic(
   () => import("@/components/ScreenElement/postHeatMap"),
   {
@@ -20,7 +23,7 @@ const PostHeatMap = dynamic(
   }
 );
 
-export default function Home({ blogs }: BlogistObject) {
+export default function Home({ combinedBlogs }: DataListObject) {
   const today = new Date();
   const year = today.getFullYear();
   const engMonthName = [
@@ -43,7 +46,7 @@ export default function Home({ blogs }: BlogistObject) {
   const engMonth = engMonthName[today.getMonth()].monthEng;
   const numMonth = engMonthName[today.getMonth()].monthNum;
 
-  const createPost = blogs.results.map((x: { created_time: string }) => {
+  const createPost = combinedBlogs.map((x: { created_time: string }) => {
     const create = new Date(x.created_time);
     const korDate = new Date(
       create.getTime() - create.getTimezoneOffset() * 60000
@@ -294,11 +297,11 @@ export default function Home({ blogs }: BlogistObject) {
                   </div>
                 )}
               </div>
-              <span>{blogs.results.length} total posts</span>
+              <span>{combinedBlogs.length} total posts</span>
             </div>
 
             <PostHeatMap
-              blogs={blogs}
+              combinedBlogs={combinedBlogs}
               year={yearList}
               month={monthList.numMonth}
             />
@@ -320,7 +323,7 @@ export default function Home({ blogs }: BlogistObject) {
             </Link>
           </div>
           <div className="w-full page-gallery-style">
-            {blogs?.results.slice(0, 3).map((item: ListResults) => (
+            {combinedBlogs.slice(0, 3).map((item: ListResults) => (
               <Post
                 key={item.id}
                 item={item}
@@ -349,14 +352,33 @@ export async function getServerSideProps() {
     page_size: 100,
   };
 
+  const remainData = {
+    page_size: 100,
+    start_cursor: DATABASE_ID_BLOG_START_CURSOR,
+  };
+
   const response = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     data,
     axiosConfig
   );
 
-  const blogs = response.data;
+  const remainResponse = await axios.post(
+    `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
+    remainData,
+    axiosConfig
+  );
+
+  const [blogsResponse, remainBlogsResponse] = await Promise.all([
+    response,
+    remainResponse,
+  ]);
+
+  const originblogs = blogsResponse.data.results;
+  const remainBlogs = remainBlogsResponse.data.results;
+  const combinedBlogs = [...originblogs, ...remainBlogs];
+
   return {
-    props: { blogs },
+    props: { combinedBlogs },
   };
 }

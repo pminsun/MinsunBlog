@@ -3,7 +3,12 @@ import Post from "@/components/post";
 import Title from "../../components/ScreenElement/title";
 import axios from "axios";
 import { cls } from "libs/utils";
-import { BASE_URL, DATABASE_ID_BLOG, TOKEN } from "libs/config";
+import {
+  BASE_URL,
+  DATABASE_ID_BLOG,
+  DATABASE_ID_BLOG_START_CURSOR,
+  TOKEN,
+} from "libs/config";
 import { useSortedData } from "libs/usePageState";
 import PageState from "@/components/ScreenElement/pageState";
 import { useBlogPageStore } from "@/store/pageStore";
@@ -11,11 +16,11 @@ import Seo from "@/components/seo";
 import { useEffect, useState } from "react";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import DEFINE from "@/constant/Global";
-import { BlogistObject, ListResults } from "@/InterfaceGather";
+import { DataListObject, ListResults } from "@/InterfaceGather";
 import Pagination from "@/components/ScreenElement/pagination";
 import { PiWarningCircle } from "react-icons/pi";
 
-export default function Blog({ blogs }: BlogistObject) {
+export default function Blog({ combinedBlogs }: DataListObject) {
   const { viewStyle, sortedContent } = useBlogPageStore();
   const [mounted, setMounted] = useState<boolean>(false);
   const [tagCategory, setTagCategory] = useState<string>(
@@ -29,8 +34,10 @@ export default function Blog({ blogs }: BlogistObject) {
   }, []);
 
   useEffect(() => {
-    setFilteredList(blogs.results);
-  }, [blogs.results]);
+    setFilteredList(combinedBlogs);
+  }, [combinedBlogs]);
+
+  console.log(combinedBlogs);
 
   // Paging
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,8 +47,8 @@ export default function Blog({ blogs }: BlogistObject) {
   const handleSearchInputChange = (searchWord: string) => {
     setSearch(searchWord);
 
-    let updatedList = blogs.results;
-    updatedList = blogs.results.filter((item: ListResults) => {
+    let updatedList = combinedBlogs;
+    updatedList = combinedBlogs.filter((item: ListResults) => {
       return (
         item?.properties["이름"].title[0].plain_text
           ?.toLowerCase()
@@ -55,10 +62,10 @@ export default function Blog({ blogs }: BlogistObject) {
   };
 
   const tagCategoryCount = () => {
-    let tagCount = blogs.results;
+    let tagCount = combinedBlogs;
 
     if (tagCategory !== DEFINE.TAGCATEGORY.ALL) {
-      tagCount = blogs.results.filter((item: ListResults) => {
+      tagCount = combinedBlogs.filter((item: ListResults) => {
         return item?.properties["태그"].multi_select
           .map((row: any) => row.name)
           .includes(tagCategory);
@@ -66,7 +73,7 @@ export default function Blog({ blogs }: BlogistObject) {
     }
 
     if (tagCategory === DEFINE.TAGCATEGORY.ETC) {
-      tagCount = blogs.results.filter((item: ListResults) => {
+      tagCount = combinedBlogs.filter((item: ListResults) => {
         return item?.properties["태그"].multi_select
           .map((row: any) => row.name)
           .some((i) =>
@@ -116,7 +123,7 @@ export default function Blog({ blogs }: BlogistObject) {
                       : ""
                   )}
                 >
-                  {DEFINE.TAGCATEGORY.ALL}({blogs.results.length})
+                  {DEFINE.TAGCATEGORY.ALL}({combinedBlogs.length})
                 </li>
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.DEV)}
@@ -255,14 +262,33 @@ export async function getServerSideProps() {
     page_size: 100,
   };
 
+  const remainData = {
+    page_size: 100,
+    start_cursor: DATABASE_ID_BLOG_START_CURSOR,
+  };
+
   const response = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     data,
     axiosConfig
   );
-  const blogs = response.data;
+
+  const remainResponse = await axios.post(
+    `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
+    remainData,
+    axiosConfig
+  );
+
+  const [blogsResponse, remainBlogsResponse] = await Promise.all([
+    response,
+    remainResponse,
+  ]);
+
+  const originblogs = blogsResponse.data.results;
+  const remainBlogs = remainBlogsResponse.data.results;
+  const combinedBlogs = [...originblogs, ...remainBlogs];
 
   return {
-    props: { blogs },
+    props: { combinedBlogs },
   };
 }

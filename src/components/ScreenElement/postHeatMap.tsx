@@ -8,14 +8,18 @@ import UseProperties from "libs/useProperties";
 import Link from "next/link";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 
-export default function PostHeatMap({ blogs, year, month }: PostHeatMapType) {
+export default function PostHeatMap({
+  combinedBlogs,
+  year,
+  month,
+}: PostHeatMapType) {
   const { theme } = useTheme();
   const today = new Date(`${year}-${month}`);
   const yearChart = today.getFullYear();
   const monthChart = today.getMonth() + 1;
 
   //작성일자
-  const createPost = blogs.results.map(
+  const createPost = combinedBlogs.map(
     (x: { id: string; created_time: string }) => {
       const itemData = UseProperties(x);
       const create = new Date(x.created_time);

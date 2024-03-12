@@ -115,17 +115,7 @@ export interface ListResults {
 }
 
 export interface DataListObject {
-  has_more: boolean;
-  next_cursor: null | string;
-  object: string;
-  page_or_database: {} | null;
-  request_id: string;
-  results: ListResults[];
-  type: string;
-}
-
-export interface BlogistObject {
-  blogs: DataListObject;
+  combinedBlogs: ListResults[];
 }
 
 export interface ProjectistObject {
@@ -337,7 +327,7 @@ export interface BlockContentType {
 
 //PostHeatMap
 export interface PostHeatMapType {
-  blogs: DataListObject;
+  combinedBlogs: ListResults[];
   year: number;
   month: string;
 }
