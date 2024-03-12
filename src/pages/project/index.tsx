@@ -29,8 +29,8 @@ export default function Project({ projects }: ProjectistObject) {
   }, []);
 
   useEffect(() => {
-    setFilteredList(projects.results);
-  }, [projects.results]);
+    setFilteredList(projects);
+  }, [projects]);
 
   // Paging
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,8 +40,8 @@ export default function Project({ projects }: ProjectistObject) {
   const handleSearchInputChange = (searchWord: string) => {
     setSearch(searchWord);
 
-    let updatedList = projects.results;
-    updatedList = projects.results.filter((item: ListResults) => {
+    let updatedList = projects;
+    updatedList = projects.filter((item: ListResults) => {
       return (
         item?.properties["이름"].title[0].plain_text
           ?.toLowerCase()
@@ -86,7 +86,7 @@ export default function Project({ projects }: ProjectistObject) {
                       : ""
                   )}
                 >
-                  {DEFINE.TAGCATEGORY.ALL}({projects.results.length})
+                  {DEFINE.TAGCATEGORY.ALL}({projects.length})
                 </li>
               </ul>
               <PageState path={"projects"} />
@@ -121,7 +121,7 @@ export default function Project({ projects }: ProjectistObject) {
           <MoveToTop />
           <Pagination
             postsPerPage={9}
-            totalPosts={projects.results?.length || 0}
+            totalPosts={projects?.length || 0}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
@@ -151,7 +151,7 @@ export async function getServerSideProps() {
     axiosConfig
   );
 
-  const projects = response.data;
+  const projects = response.data.results;
   return {
     props: { projects },
   };

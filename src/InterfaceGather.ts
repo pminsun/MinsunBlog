@@ -119,7 +119,7 @@ export interface DataListObject {
 }
 
 export interface ProjectistObject {
-  projects: DataListObject;
+  projects: ListResults[];
 }
 
 export interface TableRow {
