@@ -1,11 +1,7 @@
 import Link from "next/link";
 import LottiAnimation from "../components/ScreenElement/lottieAny";
 import Seo from "@/components/seo";
-import {
-  DATABASE_ID_BLOG,
-  TOKEN,
-  DATABASE_ID_BLOG_START_CURSOR,
-} from "libs/config";
+import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import axios from "axios";
 import Post from "@/components/post";
 import { HiArrowNarrowRight } from "react-icons/hi";
@@ -352,16 +348,19 @@ export async function getServerSideProps() {
     page_size: 100,
   };
 
-  const remainData = {
-    page_size: 100,
-    start_cursor: DATABASE_ID_BLOG_START_CURSOR,
-  };
-
   const response = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     data,
     axiosConfig
   );
+
+  const startCursor =
+    response.data.has_more === true ? response.data.next_cursor : null;
+
+  const remainData = {
+    page_size: 100,
+    start_cursor: startCursor,
+  };
 
   const remainResponse = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,

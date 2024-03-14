@@ -3,12 +3,7 @@ import Post from "@/components/post";
 import Title from "../../components/ScreenElement/title";
 import axios from "axios";
 import { cls } from "libs/utils";
-import {
-  BASE_URL,
-  DATABASE_ID_BLOG,
-  DATABASE_ID_BLOG_START_CURSOR,
-  TOKEN,
-} from "libs/config";
+import { BASE_URL, DATABASE_ID_BLOG, TOKEN } from "libs/config";
 import { useSortedData } from "libs/usePageState";
 import PageState from "@/components/ScreenElement/pageState";
 import { useBlogPageStore } from "@/store/pageStore";
@@ -260,16 +255,19 @@ export async function getServerSideProps() {
     page_size: 100,
   };
 
-  const remainData = {
-    page_size: 100,
-    start_cursor: DATABASE_ID_BLOG_START_CURSOR,
-  };
-
   const response = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     data,
     axiosConfig
   );
+
+  const startCursor =
+    response.data.has_more === true ? response.data.next_cursor : null;
+
+  const remainData = {
+    page_size: 100,
+    start_cursor: startCursor,
+  };
 
   const remainResponse = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
