@@ -37,8 +37,6 @@ export default function Blog({ combinedBlogs }: DataListObject) {
     setFilteredList(combinedBlogs);
   }, [combinedBlogs]);
 
-  console.log(combinedBlogs);
-
   // Paging
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLast = currentPage * 9;
