@@ -45,7 +45,7 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="h-[280px] post-link-style group"
         >
           <div className="post-gallery-image-container">
-            {itemData.url ? (
+            {itemData.url && (
               <Image
                 src={itemData.url}
                 alt="image"
@@ -56,9 +56,26 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
-            ) : (
-              <div className="post-noneimage-style" />
             )}
+            {!itemData.url &&
+              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+                <div className="post-noneimage-style" />
+              )}
+            {!itemData.url &&
+              item.id === "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+                <Image
+                  src={
+                    "https://dxf0ufub2j2u1.cloudfront.net/images/blogHome.png"
+                  }
+                  alt="image"
+                  width={300}
+                  height={300}
+                  priority
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
+                  className="post-image-style"
+                />
+              )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
             <p className="post-name">{itemData.name}</p>
@@ -77,7 +94,7 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
           className="post-list-style post-link-style group"
         >
           <div className="post-list-image-container">
-            {itemData.url ? (
+            {itemData.url && (
               <Image
                 src={itemData.url}
                 alt="image"
@@ -88,9 +105,26 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 blurDataURL={blurDataURL}
                 className="post-image-style"
               />
-            ) : (
-              <div className="post-noneimage-style" />
             )}
+            {!itemData.url &&
+              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+                <div className="post-noneimage-style" />
+              )}
+            {!itemData.url &&
+              item.id === "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+                <Image
+                  src={
+                    "https://dxf0ufub2j2u1.cloudfront.net/images/blogHome.png"
+                  }
+                  alt="image"
+                  width={300}
+                  height={300}
+                  priority
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
+                  className="post-image-style"
+                />
+              )}
           </div>
           <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
             <div className="w-2/3 md:w-full">
