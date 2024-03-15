@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PostDetailContent from "@/components/post/postDetailContent";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -8,14 +9,16 @@ import { BASE_URL, TOKEN } from "libs/config";
 import PostDetailProp from "@/components/post/postDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
-import { BlockDetailData, BlockDetailResults } from "@/InterfaceGather";
+import { BlockDetailData } from "@/InterfaceGather";
+import { useEffect, useState } from "react";
+import { getObjectsInFolder } from "libs/awsGetS3";
 
 export default function blockDetail({
   blockDetail,
   propertiesData,
 }: BlockDetailData) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
+  const awsImage = router.query.img;
   const backClick = () => {
     router.push("/project");
   };
@@ -40,10 +43,8 @@ export default function blockDetail({
         tags={itemData.tags}
         github={itemData.github}
         createDate={propertiesData.created_time}
-        startDate={itemData.startDate}
-        endDate={itemData.endDate}
         description={itemData.description}
-        coverImage={itemData.coverImage}
+        awsImageName={awsImage}
       />
       <div className="px-5 lg:px-0 pb-10 laptop-max-width">
         {blockDetail?.results?.map((blockContent: any) => (

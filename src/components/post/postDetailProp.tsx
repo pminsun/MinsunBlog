@@ -4,7 +4,7 @@ import { HiExternalLink } from "react-icons/hi";
 import { changeDate } from "libs/useChangeDate";
 import Image from "next/image";
 import { PostDetailPropType, TagType } from "@/InterfaceGather";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function PostDetailProp({
   name,
@@ -13,7 +13,9 @@ export default function PostDetailProp({
   description,
   createDate,
   imageUrl,
+  awsImageName,
 }: PostDetailPropType) {
+  const router = useRouter();
   const create = new Date(createDate);
   const korDate = new Date(
     create.getTime() - create.getTimezoneOffset() * 60000
@@ -21,37 +23,15 @@ export default function PostDetailProp({
     .toISOString()
     .split("T")[0];
 
-  const tagName = tags.map((row: TagType) => row.name);
-  // CoverImage
-  const [coverUrl, setCoverUrl] = useState<string>("");
-
-  const stringTag = tagName + "";
-  const matchCoverImage = () => {
-    if (stringTag === "Next.js") {
-      setCoverUrl("/coverImages/next-cover.png");
-    } else if (stringTag === "Javascript") {
-      setCoverUrl("/coverImages/javascript-cover.png");
-    } else if (stringTag === "Html") {
-      setCoverUrl("/coverImages/html-cover.png");
-    } else if (stringTag === "Typescript") {
-      setCoverUrl("/coverImages/typescript-cover.png");
-    } else {
-      return <div className="post-noneimage-style" />;
-    }
-  };
-
-  useEffect(() => {
-    matchCoverImage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const blurDataURL =
     "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
+
+  const cloudfrontBaseUrl = "https://dxf0ufub2j2u1.cloudfront.net";
 
   return (
     <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
       <div className="absolute w-full h-full">
-        {imageUrl ? (
+        {imageUrl && (
           <Image
             src={imageUrl}
             alt="image"
@@ -62,8 +42,19 @@ export default function PostDetailProp({
             blurDataURL={blurDataURL}
             className="post-image-style"
           />
-        ) : (
-          <div className="post-noneimage-style" />
+        )}
+        {!imageUrl && !awsImageName && <div className="post-noneimage-style" />}
+        {awsImageName && (
+          <Image
+            src={`${cloudfrontBaseUrl}/images/${awsImageName}`}
+            alt="image"
+            width={300}
+            height={300}
+            priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+            className="post-image-style !object-top"
+          />
         )}
       </div>
       {/* image dark */}

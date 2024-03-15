@@ -244,12 +244,10 @@ export interface PostDetailPropType {
   name: string;
   tags: TagType[];
   github?: string;
-  startDate?: string;
-  endDate?: string;
   description: string;
-  coverImage?: string;
   createDate: string;
   imageUrl?: string;
+  awsImageName?: string | string[];
 }
 
 // PostDetailContent

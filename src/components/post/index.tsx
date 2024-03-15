@@ -8,13 +8,32 @@ import { cls } from "libs/utils";
 import DEFINE from "@/constant/Global";
 import { PostType, TagType } from "@/InterfaceGather";
 import { useEffect, useState } from "react";
+import { getObjectsInFolder } from "libs/awsGetS3";
 
 export default function Post({ item, viewStyle, tagCategory }: PostType) {
   const itemData = UseProperties(item);
 
+  //aws s3 image
+  const [awsImages, setAwsImages] = useState<string[] | null>(null);
+  const cloudfrontBaseUrl = "https://dxf0ufub2j2u1.cloudfront.net";
+  useEffect(() => {
+    const fetchObjects = async () => {
+      try {
+        const res = await getObjectsInFolder();
+        const removeFolder = res.map((r: string) => r.split("/")[1]);
+        setAwsImages(removeFolder);
+      } catch (error) {
+        console.error("Error fetching objects:", error);
+      }
+    };
+
+    fetchObjects();
+  }, []);
+
   const router = useRouter();
   const pathName =
     router.pathname === "/project" ? `/project/${item.id}` : `/blog/${item.id}`;
+  const queryValue = router.pathname === "/project" ? { img: awsImages } : null;
 
   const create = new Date(item.created_time);
   const korDate = new Date(
@@ -40,7 +59,7 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
     <>
       {viewStyle === "gallery" && categoryView && (
         <Link
-          href={{ pathname: pathName }}
+          href={{ pathname: pathName, query: queryValue }}
           key={item.id}
           className="h-[280px] post-link-style group"
         >
@@ -62,11 +81,10 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 <div className="post-noneimage-style" />
               )}
             {!itemData.url &&
-              item.id === "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+              router.pathname === "/project" &&
+              awsImages?.map((imagePath: any) => (
                 <Image
-                  src={
-                    "https://dxf0ufub2j2u1.cloudfront.net/images/blogHome.png"
-                  }
+                  src={`${cloudfrontBaseUrl}/images/${imagePath}`}
                   alt="image"
                   width={300}
                   height={300}
@@ -74,8 +92,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                   placeholder="blur"
                   blurDataURL={blurDataURL}
                   className="post-image-style"
+                  key={imagePath}
                 />
-              )}
+              ))}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
             <p className="post-name">{itemData.name}</p>
@@ -111,11 +130,10 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                 <div className="post-noneimage-style" />
               )}
             {!itemData.url &&
-              item.id === "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+              router.pathname === "/project" &&
+              awsImages?.map((imagePath: any) => (
                 <Image
-                  src={
-                    "https://dxf0ufub2j2u1.cloudfront.net/images/blogHome.png"
-                  }
+                  src={`${cloudfrontBaseUrl}/images/${imagePath}`}
                   alt="image"
                   width={300}
                   height={300}
@@ -123,8 +141,9 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
                   placeholder="blur"
                   blurDataURL={blurDataURL}
                   className="post-image-style"
+                  key={imagePath}
                 />
-              )}
+              ))}
           </div>
           <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
             <div className="w-2/3 md:w-full">
