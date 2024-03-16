@@ -134,6 +134,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
       setCurrentUrl(window.location.host);
     }
     mathMonthToday();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ec2Deploy = "minsunblog.com";
