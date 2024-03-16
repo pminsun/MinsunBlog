@@ -47,6 +47,10 @@ html.dark::-webkit-scrollbar-thumb {
   @apply bg-[#fbfbfa] dark:bg-slate-900;
 }
 
+.flex-line {
+  @apply flex items-center;
+}
+
 .flex-center {
   @apply flex items-center justify-center;
 }

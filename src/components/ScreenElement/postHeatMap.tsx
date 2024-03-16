@@ -362,6 +362,18 @@ export default function PostHeatMap({
           width={"100%"}
           height={"90%"}
         />
+        <div className="flex-line justify-end heatmap-info">
+          <div className="flex-line gap-2">
+            <span>Less</span>
+            <div className="flex-line gap-1">
+              <div className="small-box bg-[#cad1dc]" />
+              <div className="small-box bg-[#7bb1f7]" />
+              <div className="small-box bg-[#61a1f5]" />
+              <div className="small-box bg-[#4692f4]" />
+            </div>
+            <span>More</span>
+          </div>
+        </div>
       </div>
       <div className="w-full h-[200px] flex flex-col rounded-lg bg-gray-100 dark:bg-gray-800">
         <div className="flex items-center justify-between">
@@ -370,7 +382,7 @@ export default function PostHeatMap({
           <p className="text-xs">{clickDate.replace(/-/g, ".")}</p>
         </div>
         <div className="text-center flex items-center justify-center">
-          <div className="flex flex-col gap-3 pt-5 text-left w-full h-full">
+          <div className="flex flex-col gap-3 pt-4 text-left w-full h-full">
             <div className="day-posting-box">
               {clickedId?.length > 0 ? (
                 clickedId?.map((content: any) => {

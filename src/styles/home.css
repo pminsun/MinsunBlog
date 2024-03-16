@@ -44,6 +44,14 @@
   @apply cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600;
 }
 
+.heatmap-info span {
+  @apply text-xs;
+}
+
+.small-box {
+  @apply w-2 h-2 rounded-sm;
+}
+
 /*hearmap : -1값*/
 rect[val="-1"] {
   @apply fill-[#f3f4f6] dark:fill-[#1f2937] cursor-default;

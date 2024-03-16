@@ -22,6 +22,7 @@ const PostHeatMap = dynamic(
 export default function Home({ combinedBlogs }: DataListObject) {
   const today = new Date();
   const year = today.getFullYear();
+  const month = today.getMonth() + 1;
   const engMonthName = [
     { monthEng: DEFINE.MONTHS.JAN.ENG, monthNum: DEFINE.MONTHS.JAN.NUM },
     { monthEng: DEFINE.MONTHS.FEB.ENG, monthNum: DEFINE.MONTHS.FEB.NUM },
@@ -55,6 +56,15 @@ export default function Home({ combinedBlogs }: DataListObject) {
 
   const [monthList, setMonthList] = useState({ engMonth, numMonth });
   const [yearList, setYearList] = useState(year);
+  const [modalMonth, setModalMonth] = useState(12);
+
+  const mathMonthToday = () => {
+    if (month === engMonthName.length) {
+      setModalMonth(12);
+    } else {
+      setModalMonth(month);
+    }
+  };
 
   const [showMonthModal, setShowMonthModal] = useState(false);
   const selectMonth = (engMonth: string, numMonth: string) => {
@@ -123,6 +133,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
     if (window) {
       setCurrentUrl(window.location.host);
     }
+    mathMonthToday();
   }, []);
 
   const ec2Deploy = "minsunblog.com";
@@ -220,20 +231,22 @@ export default function Home({ combinedBlogs }: DataListObject) {
                         <li
                           key={year}
                           onClick={() => {
-                            if (matchExceptMonth(monthList.engMonth)) {
-                              if (year !== 2023) {
-                                setYearList(year);
-                              }
+                            if (year !== 2023) {
+                              setYearList(year);
+                              selectMonth(
+                                engMonthName[0].monthEng,
+                                engMonthName[0].monthNum
+                              );
                             } else {
                               setYearList(year);
+                              selectMonth(
+                                engMonthName[8].monthEng,
+                                engMonthName[8].monthNum
+                              );
                             }
                           }}
                           className={cls(
                             yearList === year ? "month-selected" : "",
-                            matchExceptMonth(monthList.engMonth) &&
-                              year === 2023
-                              ? "month-disabled"
-                              : "month-noneDisabled",
                             "month-base"
                           )}
                         >
@@ -241,54 +254,41 @@ export default function Home({ combinedBlogs }: DataListObject) {
                         </li>
                       ))}
                     </ul>
-                    <ul className="h-48 overflow-y-auto scrollbar-none">
-                      {yearList === 2023
-                        ? engMonthName.slice(8).map((mon) => (
-                            <li
-                              key={mon.monthEng}
-                              onClick={() => {
-                                if (
-                                  !(
-                                    yearList === 2023 &&
-                                    matchExceptMonth(mon.monthEng)
-                                  )
-                                ) {
-                                  selectMonth(mon.monthEng, mon.monthNum);
-                                }
-                              }}
-                              className={cls(
-                                monthList.engMonth === mon.monthEng
-                                  ? "month-selected"
-                                  : "month-noneDisabled",
-                                "month-base"
-                              )}
-                            >
-                              {mon.monthEng}
-                            </li>
-                          ))
-                        : engMonthName.map((mon) => (
-                            <li
-                              key={mon.monthEng}
-                              onClick={() => {
-                                if (
-                                  !(
-                                    yearList === 2023 &&
-                                    matchExceptMonth(mon.monthEng)
-                                  )
-                                ) {
-                                  selectMonth(mon.monthEng, mon.monthNum);
-                                }
-                              }}
-                              className={cls(
-                                monthList.engMonth === mon.monthEng
-                                  ? "month-selected"
-                                  : "month-noneDisabled",
-                                "month-base"
-                              )}
-                            >
-                              {mon.monthEng}
-                            </li>
-                          ))}
+                    <ul className="h-auto overflow-y-auto scrollbar-none">
+                      {yearList === 2023 &&
+                        engMonthName.slice(8).map((mon) => (
+                          <li
+                            key={mon.monthEng}
+                            onClick={() => {
+                              selectMonth(mon.monthEng, mon.monthNum);
+                            }}
+                            className={cls(
+                              monthList.engMonth === mon.monthEng
+                                ? "month-selected"
+                                : "month-noneDisabled",
+                              "month-base"
+                            )}
+                          >
+                            {mon.monthEng}
+                          </li>
+                        ))}
+                      {yearList !== 2023 &&
+                        engMonthName.slice(0, modalMonth).map((mon) => (
+                          <li
+                            key={mon.monthEng}
+                            onClick={() => {
+                              selectMonth(mon.monthEng, mon.monthNum);
+                            }}
+                            className={cls(
+                              monthList.engMonth === mon.monthEng
+                                ? "month-selected"
+                                : "month-noneDisabled",
+                              "month-base"
+                            )}
+                          >
+                            {mon.monthEng}
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 )}
