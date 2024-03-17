@@ -12,9 +12,9 @@ const nextConfig = {
       "dxf0ufub2j2u1.cloudfront.net",
     ],
   },
-  experimental: {
-    largePageDataBytes: 128 * 100000,
-  },
+  // experimental: {
+  //   largePageDataBytes: 128 * 100000,
+  // },
 };
 
 module.exports = nextConfig;
