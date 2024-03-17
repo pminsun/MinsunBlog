@@ -124,10 +124,6 @@ export default function Home({ combinedBlogs }: DataListObject) {
     return () => document.removeEventListener("click", handleClickOutsideClose);
   }, [showMonthModal]);
 
-  const matchExceptMonth = (select: string) => {
-    return exceptMonth.some((exceptMonth) => exceptMonth.monthEng === select);
-  };
-
   const [currentUrl, setCurrentUrl] = useState("");
   useEffect(() => {
     if (window) {

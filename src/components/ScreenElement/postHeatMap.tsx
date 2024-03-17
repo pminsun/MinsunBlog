@@ -354,14 +354,16 @@ export default function PostHeatMap({
 
   return (
     <>
-      <div className="mt-2 h-[330px] w-full">
-        <ApexCharts
-          options={options}
-          series={state.series}
-          type="heatmap"
-          width={"100%"}
-          height={"90%"}
-        />
+      <div className="flex flex-col justify-between mt-2 h-[330px] w-full">
+        <div className="w-full h-[90%]">
+          <ApexCharts
+            options={options}
+            series={state.series}
+            type="heatmap"
+            width={"100%"}
+            height={"100%"}
+          />
+        </div>
         <div className="flex-line justify-end heatmap-info">
           <div className="flex-line gap-2">
             <span>Less</span>

@@ -20,8 +20,10 @@ export default function Post({ item, viewStyle, tagCategory }: PostType) {
     const fetchObjects = async () => {
       try {
         const res = await getObjectsInFolder();
-        const removeFolder = res.map((r: string) => r.split("/")[1]);
-        setAwsImages(removeFolder);
+        if (res) {
+          const removeFolder = res.map((r: string) => r.split("/")[1]);
+          setAwsImages(removeFolder);
+        }
       } catch (error) {
         console.error("Error fetching objects:", error);
       }
