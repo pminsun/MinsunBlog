@@ -354,7 +354,7 @@ export default function PostHeatMap({
 
   return (
     <>
-      <div className="flex flex-col justify-between mt-2 h-[330px] w-full">
+      <div className="flex flex-col justify-between mt-2 mb-1 h-[330px] w-full">
         <div className="w-full h-[90%]">
           <ApexCharts
             options={options}

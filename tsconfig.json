@@ -20,13 +20,6 @@
       "@/components": ["src/components/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "firebase/firebasedb.ts",
-    "firebase/firestore.js",
-    "libs/data.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs/data.ts"],
   "exclude": ["node_modules"]
 }
