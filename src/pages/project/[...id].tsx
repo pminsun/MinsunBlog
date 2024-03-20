@@ -10,8 +10,6 @@ import PostDetailProp from "@/components/post/postDetailProp";
 import Seo from "@/components/seo";
 import MoveToTop from "@/components/ScreenElement/moveToTop";
 import { BlockDetailData } from "@/InterfaceGather";
-import { useEffect, useState } from "react";
-import { getObjectsInFolder } from "libs/awsGetS3";
 
 export default function blockDetail({
   blockDetail,
