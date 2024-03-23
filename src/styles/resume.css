@@ -1,0 +1,30 @@
+.res-top p {
+  @apply text-[#2c82f2] font-semibold mb-2 text-base lg:text-lg;
+}
+.res-top .left-title {
+  @apply font-semibold mr-2 text-base lg:text-lg;
+}
+.res-top li {
+  @apply mt-1;
+}
+.res-top li a:hover {
+  @apply text-[#2c82f2];
+}
+.res-mid {
+  @apply flex flex-col gap-[60px];
+}
+.res-title {
+  @apply w-[35%] font-bold text-lg dark:!text-white mb-4 lg:mb-0;
+}
+.res-con {
+  @apply flex-1;
+}
+.tech {
+  @apply text-sm;
+}
+.line {
+  @apply w-full h-[2px] my-[40px] bg-stone-300 dark:bg-stone-700;
+}
+.move-btn {
+  @apply block px-4 py-2 border-2 rounded-full hover:text-white hover:bg-[#2c82f2] border-[#2c82f2] text-[#2c82f2];
+}

@@ -142,7 +142,7 @@ export async function getServerSideProps(context: NextPageContext) {
     axiosConfig
   );
 
-  const responseProperties = axios.get(
+  const responseProperties = await axios.get(
     `https://api.notion.com/v1/pages/${query.id}`,
     axiosConfig
   );
@@ -153,6 +153,9 @@ export async function getServerSideProps(context: NextPageContext) {
   ]);
   const blockDetail = blockResponse.data;
   const propertiesData = propertiesResponse.data;
+
+  // const blockDetail = resoinseBlock.data;
+  // const propertiesData = responseProperties.data;
 
   // table id 추출
   let tableId = null;
