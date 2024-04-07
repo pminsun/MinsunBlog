@@ -85,12 +85,14 @@
 <p>사용된 환경 설정</p>
 
 `NEXT_PUBLIC_NOTION_TOKEN`
-
 `NEXT_PUBLIC_NOTION_DATABASE_ID_PROJECT`
-
 `NEXT_PUBLIC_NOTION_DATABASE_ID_BLOG`
-
 `NEXT_PUBLIC_BASE_URL`
+
+`NEXT_PUBLIC_AWS_REG`
+`NEXT_PUBLIC_AWS_KEY`
+`NEXT_PUBLIC_AWS_SECRET_KEY`
+`AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE`
 
 <!-- Roadmap -->
 
@@ -109,8 +111,9 @@
 - [x] 홈페이지 - 달력 클릭 시 해당 포스팅 내역 보이게
 - [x] 공통 - EC2 배포
 - [x] 홈페이지 - 월 선택 모달 오늘 기준 달까지 표기
-- [ ] 프로젝트 페이지 - aws S3에서 이미지 불러오기
+- [x] 프로젝트 페이지 - aws S3에서 이미지 불러오기
 - [ ] 홈페이지 - 달력 2023.09 4주차, 오늘 이후 날짜 선택 불가
+- [ ] 상세페이지 - 이미지 클릭 시 크게 보이는 모달
 - [ ] 공통 - 페이지 이동 속도 개선
 
 <!-- Getting Started -->
