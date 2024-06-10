@@ -127,6 +127,8 @@ export default function blockDetail({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
+  //const startTime = performance.now();
+
   const { query } = context;
   const axiosConfig = {
     headers: {
@@ -153,9 +155,6 @@ export async function getServerSideProps(context: NextPageContext) {
   ]);
   const blockDetail = blockResponse.data;
   const propertiesData = propertiesResponse.data;
-
-  // const blockDetail = resoinseBlock.data;
-  // const propertiesData = responseProperties.data;
 
   // table id 추출
   let tableId = null;

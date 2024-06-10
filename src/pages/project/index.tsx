@@ -101,7 +101,9 @@ export default function Project({ projects }: ProjectistObject) {
       try {
         const res = await getObjectsInFolder();
         if (res) {
-          const removeFolder = res.map((r: string) => r.split("/")[1]);
+          const removeFolder = res
+            .map((r: string) => r.split("/")[1])
+            .reverse();
           setAwsImages(removeFolder);
         }
       } catch (error) {
@@ -156,6 +158,7 @@ export default function Project({ projects }: ProjectistObject) {
                 <p>검색결과가 없습니다.</p>
               </div>
             )}
+
             <div
               className={cls(
                 viewStyle === "gallery"
@@ -171,7 +174,15 @@ export default function Project({ projects }: ProjectistObject) {
                     item={item}
                     viewStyle={viewStyle}
                     tagCategory={tagCategory}
-                    awsImages={awsImages}
+                    awsImages={
+                      awsImages &&
+                      item.id === "49b53229-e993-4e98-ad6d-74687ad9364a"
+                        ? awsImages[1]
+                        : awsImages &&
+                          item.id === "12e40e01-8c7c-457e-bada-784889fbe08a"
+                        ? awsImages[0]
+                        : ""
+                    }
                   />
                 )),
                 sortedContent

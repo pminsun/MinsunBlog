@@ -237,7 +237,7 @@ export interface PostType {
   item: ListResults;
   viewStyle: string;
   tagCategory: string;
-  awsImages?: string[] | null;
+  awsImages?: string | null;
 }
 
 //PostDetailProp

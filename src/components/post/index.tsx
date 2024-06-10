@@ -7,7 +7,6 @@ import { changeDate } from "libs/useChangeDate";
 import { cls } from "libs/utils";
 import DEFINE from "@/constant/Global";
 import { PostType, TagType } from "@/InterfaceGather";
-import { useEffect, useState } from "react";
 
 export default function Post({
   item,
@@ -67,24 +66,22 @@ export default function Post({
               />
             )}
             {!itemData.url &&
-              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" &&
+              item.id !== "49b53229-e993-4e98-ad6d-74687ad9364a" && (
                 <div className="post-noneimage-style" />
               )}
-            {!itemData.url &&
-              router.pathname === "/project" &&
-              awsImages?.map((imagePath: any) => (
-                <Image
-                  src={`${cloudfrontBaseUrl}/images/${imagePath}`}
-                  alt="image"
-                  width={300}
-                  height={300}
-                  priority
-                  placeholder="blur"
-                  blurDataURL={blurDataURL}
-                  className="post-image-style"
-                  key={imagePath}
-                />
-              ))}
+            {!itemData.url && router.pathname === "/project" && awsImages && (
+              <Image
+                src={`${cloudfrontBaseUrl}/images/${awsImages}`}
+                alt="image"
+                width={300}
+                height={300}
+                priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                className="post-image-style"
+              />
+            )}
           </div>
           <div className="p-4 absolute bottom-0 w-full">
             <p className="post-name">{itemData.name}</p>
@@ -116,24 +113,23 @@ export default function Post({
               />
             )}
             {!itemData.url &&
-              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" && (
+              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" &&
+              item.id !== "49b53229-e993-4e98-ad6d-74687ad9364a" && (
                 <div className="post-noneimage-style" />
               )}
-            {!itemData.url &&
-              router.pathname === "/project" &&
-              awsImages?.map((imagePath: any) => (
-                <Image
-                  src={`${cloudfrontBaseUrl}/images/${imagePath}`}
-                  alt="image"
-                  width={300}
-                  height={300}
-                  priority
-                  placeholder="blur"
-                  blurDataURL={blurDataURL}
-                  className="post-image-style"
-                  key={imagePath}
-                />
-              ))}
+
+            {!itemData.url && router.pathname === "/project" && (
+              <Image
+                src={`${cloudfrontBaseUrl}/images/${awsImages}`}
+                alt="image"
+                width={300}
+                height={300}
+                priority
+                placeholder="blur"
+                blurDataURL={blurDataURL}
+                className="post-image-style"
+              />
+            )}
           </div>
           <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
             <div className="w-2/3 md:w-full">
