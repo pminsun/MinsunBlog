@@ -6,7 +6,7 @@ import { saveAs } from 'file-saver'
 
 export default function Resume() {
   const downloadPDF = () => {
-    fetch('/resume_06.18.pdf') // PDF 파일의 경로
+    fetch('/resume_06.19.pdf') // PDF 파일의 경로
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok')
@@ -256,7 +256,7 @@ export default function Resume() {
                     옐로나이프
                   </p>
                   <p className="my-2 text-base">
-                    팀원(퍼블 & 프론트 담당) | 연구개발센터 | 재직 중
+                    사원(퍼블 & 프론트 담당) | 연구개발센터 | 재직 중
                   </p>
                   <p className="mb-2 text-sm">
                     2021.10.01 - 현재{' '}
