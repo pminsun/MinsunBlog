@@ -23,10 +23,10 @@
   @apply font-bold gap-2 mb-2;
 }
 .summary {
-  @apply text-sm my-2 pl-[14px];
+  @apply text-sm my-2 lg:pl-[14px];
 }
 .tech {
-  @apply text-sm pl-[14px];
+  @apply text-sm lg:pl-[14px];
 }
 .line {
   @apply w-full h-[2px] my-[40px] bg-stone-300 dark:bg-stone-700;
@@ -34,10 +34,18 @@
 .move-btn {
   @apply block px-4 py-2 border-2 rounded-full hover:text-white hover:bg-[#2c82f2] border-[#2c82f2] text-[#2c82f2];
 }
+.detailproject-con {
+  @apply flex justify-between mb-8 gap-4 flex-col lg:flex-row;
+}
 .detailproject-title {
   @apply font-semibold text-lg mb-6 dark:!text-white;
 }
-
+.detailproject-btnArea {
+  @apply flex flex-row lg:flex-col gap-3;
+}
+.detailproject-btnArea a {
+  @apply text-center;
+}
 .project-img {
   @apply border border-black;
 }

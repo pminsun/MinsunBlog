@@ -187,14 +187,16 @@ export default function Resume() {
                           <Link
                             href="https://github.com/pminsun/MinsunBlog"
                             target="_blank"
-                            className="hover:text-[#2c82f2]"
+                            className="hover:text-[#2c82f2] block lg:inline-block"
                           >
                             https://github.com/pminsun/MinsunBlog
                           </Link>
                         </p>
                         <p className="tech mt-1">
-                          Tech Stack : Next.js, typeScript, tailwind, aws ec2,
-                          zustand
+                          Tech Stack :{" "}
+                          <span className="block lg:inline-block">
+                            Next.js, typeScript, tailwind, aws ec2, zustand
+                          </span>
                         </p>
                       </li>
                       <li>
@@ -224,14 +226,16 @@ export default function Resume() {
                           <Link
                             href="https://github.com/pminsun/AllFood"
                             target="_blank"
-                            className="hover:text-[#2c82f2]"
+                            className="hover:text-[#2c82f2] block lg:inline-block"
                           >
                             https://github.com/pminsun/AllFood
                           </Link>
                         </p>
                         <p className="tech mt-1">
-                          Tech Stack : Next.js, Javascript, React.js, zustand,
-                          react-query
+                          Tech Stack :
+                          <span className="block lg:inline-block">
+                            Next.js, Javascript, React.js, zustand, react-query
+                          </span>
                         </p>
                       </li>
                     </ul>
@@ -278,7 +282,7 @@ export default function Resume() {
               <p className="font-bold text-lg mb-5 !text-[#2c82f2]">프로젝트</p>
               <ul className="flex flex-col gap-[60px]">
                 <li>
-                  <div className="flex justify-between mb-8">
+                  <div className="detailproject-con">
                     <div>
                       <p className="detailproject-title">
                         [사이드] 개인 블로그 웹사이트
@@ -291,7 +295,7 @@ export default function Resume() {
                         ec2, aws S3
                       </p>
                     </div>
-                    <div className="flex flex-col gap-3">
+                    <div className="detailproject-btnArea">
                       <Link
                         href="https://github.com/pminsun/MinsunBlog"
                         target="_blank"
@@ -318,7 +322,7 @@ export default function Resume() {
                   </div>
                 </li>
                 <li className="border-t border-black border-dashed pt-[40px]">
-                  <div className="flex justify-between mb-8">
+                  <div className="detailproject-con">
                     <div>
                       <p className="detailproject-title">
                         [사이드] AllFood 웹사이트
@@ -329,7 +333,7 @@ export default function Resume() {
                         ec2, aws S3
                       </p>
                     </div>
-                    <div className="flex flex-col gap-3">
+                    <div className="detailproject-btnArea">
                       <Link
                         href="https://github.com/pminsun/AllFood"
                         target="_blank"
