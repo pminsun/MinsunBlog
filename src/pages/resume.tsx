@@ -234,7 +234,7 @@ export default function Resume() {
                         <p className="tech mt-1">
                           Tech Stack :
                           <span className="block lg:inline-block">
-                            Next.js, Javascript, React.js, zustand, react-query
+                            Next.js, React.js, Javascript, firebase, react-query
                           </span>
                         </p>
                       </li>
@@ -329,8 +329,8 @@ export default function Resume() {
                       </p>
                       <p className="mb-1">레시피 정보 검색, 저장 하는 WEB</p>
                       <p>
-                        Tech Stack : Next.js, typeScript, tailwind, zustand, aws
-                        ec2, aws S3
+                        Tech Stack : Next.js, React.js, Javascript, firebase,
+                        react-query
                       </p>
                     </div>
                     <div className="detailproject-btnArea">
