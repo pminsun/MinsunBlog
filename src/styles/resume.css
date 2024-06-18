@@ -11,20 +11,36 @@
   @apply text-[#2c82f2];
 }
 .res-mid {
-  @apply flex flex-col gap-[60px];
+  @apply flex flex-col gap-[40px];
 }
 .res-title {
-  @apply w-[35%] font-bold text-lg dark:!text-white mb-4 lg:mb-0;
+  @apply font-bold text-base !text-[#2c82f2] dark:!text-white mb-4;
 }
 .res-con {
   @apply flex-1;
 }
+.project-title {
+  @apply font-bold gap-2 mb-2;
+}
+.summary {
+  @apply text-sm my-2 pl-[14px];
+}
 .tech {
-  @apply text-sm;
+  @apply text-sm pl-[14px];
 }
 .line {
   @apply w-full h-[2px] my-[40px] bg-stone-300 dark:bg-stone-700;
 }
 .move-btn {
   @apply block px-4 py-2 border-2 rounded-full hover:text-white hover:bg-[#2c82f2] border-[#2c82f2] text-[#2c82f2];
+}
+.detailproject-title {
+  @apply font-semibold text-lg mb-6 dark:!text-white;
+}
+
+.project-img {
+  @apply border border-black;
+}
+.project-img img {
+  @apply object-cover w-full h-full;
 }
