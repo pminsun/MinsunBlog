@@ -1,33 +1,33 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import PostDetailContent from "@/components/post/postDetailContent";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { HiArrowLeft } from "react-icons/hi";
-import { NextPageContext } from "next";
-import UseProperties from "libs/useProperties";
-import { BASE_URL, TOKEN } from "libs/config";
-import PostDetailProp from "@/components/post/postDetailProp";
-import Seo from "@/components/seo";
-import MoveToTop from "@/components/ScreenElement/moveToTop";
-import { BlockDetailData } from "@/InterfaceGather";
+import PostDetailContent from '@/components/post/postDetailContent'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { HiArrowLeft } from 'react-icons/hi'
+import { NextPageContext } from 'next'
+import UseProperties from 'libs/useProperties'
+import { BASE_URL, TOKEN } from 'libs/config'
+import PostDetailProp from '@/components/post/postDetailProp'
+import Seo from '@/components/seo'
+import MoveToTop from '@/components/ScreenElement/moveToTop'
+import { BlockDetailData } from '@/InterfaceGather'
 
 export default function blockDetail({
   blockDetail,
   propertiesData,
 }: BlockDetailData) {
-  const router = useRouter();
-  const awsImage = router.query.img;
+  const router = useRouter()
+  const awsImage = router.query.img
   const backClick = () => {
-    router.push("/project");
-  };
+    router.push('/project')
+  }
 
-  const itemData = UseProperties(propertiesData);
+  const itemData = UseProperties(propertiesData)
 
   return (
     <>
       <Seo
         title={itemData.name}
-        url={BASE_URL + "/" + router.asPath}
+        url={BASE_URL + '/' + router.asPath}
         desc={itemData.description}
         image={propertiesData.cover?.external?.url}
       />
@@ -54,38 +54,38 @@ export default function blockDetail({
       </div>
       <MoveToTop />
     </>
-  );
+  )
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { query } = context;
+  const { query } = context
   const axiosConfig = {
     headers: {
-      Accept: "application/json",
-      "Notion-Version": "2022-06-28",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Notion-Version': '2022-06-28',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${TOKEN}`,
     },
-  };
+  }
 
   const resoinseBlock = await axios.get(
     `https://api.notion.com/v1/blocks/${query.id}/children`,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const responseProperties = axios.get(
     `https://api.notion.com/v1/pages/${query.id}`,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const [blockResponse, propertiesResponse] = await Promise.all([
     resoinseBlock,
     responseProperties,
-  ]);
-  const blockDetail = blockResponse.data;
-  const propertiesData = propertiesResponse.data;
+  ])
+  const blockDetail = blockResponse.data
+  const propertiesData = propertiesResponse.data
 
   return {
     props: { blockDetail, propertiesData },
-  };
+  }
 }

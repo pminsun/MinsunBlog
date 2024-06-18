@@ -1,11 +1,11 @@
-import { PaginationType } from "@/InterfaceGather";
-import { cls } from "libs/utils";
+import { PaginationType } from '@/InterfaceGather'
+import { cls } from 'libs/utils'
 import {
   BsChevronDoubleLeft,
   BsChevronDoubleRight,
   BsChevronLeft,
   BsChevronRight,
-} from "react-icons/bs";
+} from 'react-icons/bs'
 
 export default function Pagination({
   postsPerPage,
@@ -13,30 +13,30 @@ export default function Pagination({
   currentPage,
   setCurrentPage,
 }: PaginationType) {
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  const displayPages = [];
-  const maxPageNumbers = 5;
-  const sidePageNumbers = Math.floor(maxPageNumbers / 2);
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const displayPages = []
+  const maxPageNumbers = 5
+  const sidePageNumbers = Math.floor(maxPageNumbers / 2)
 
-  let startPageNumber = currentPage - sidePageNumbers;
-  let endPageNumber = currentPage + sidePageNumbers;
+  let startPageNumber = currentPage - sidePageNumbers
+  let endPageNumber = currentPage + sidePageNumbers
 
   if (startPageNumber <= 0) {
-    startPageNumber = 1;
-    endPageNumber = Math.min(totalPages, maxPageNumbers);
+    startPageNumber = 1
+    endPageNumber = Math.min(totalPages, maxPageNumbers)
   }
   if (endPageNumber > totalPages) {
-    startPageNumber -= endPageNumber - totalPages;
-    endPageNumber = totalPages;
+    startPageNumber -= endPageNumber - totalPages
+    endPageNumber = totalPages
   }
 
   for (let i = startPageNumber; i <= endPageNumber; i++) {
-    displayPages.push(i);
+    displayPages.push(i)
   }
 
   const showNum = displayPages.filter((n) => {
-    return n > 0;
-  });
+    return n > 0
+  })
 
   return (
     <>
@@ -71,7 +71,7 @@ export default function Pagination({
           <li
             key={number}
             onClick={() => setCurrentPage(number)}
-            className={cls(currentPage === number ? "currentpage" : "")}
+            className={cls(currentPage === number ? 'currentpage' : '')}
           >
             {number}
           </li>
@@ -104,5 +104,5 @@ export default function Pagination({
         )}
       </ul>
     </>
-  );
+  )
 }

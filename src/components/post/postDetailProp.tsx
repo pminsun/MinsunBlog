@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Tag from "./tag";
-import { HiExternalLink } from "react-icons/hi";
-import { changeDate } from "libs/useChangeDate";
-import Image from "next/image";
-import { PostDetailPropType, TagType } from "@/InterfaceGather";
-import { useRouter } from "next/router";
+import Link from 'next/link'
+import Tag from './tag'
+import { HiExternalLink } from 'react-icons/hi'
+import { changeDate } from 'libs/useChangeDate'
+import Image from 'next/image'
+import { PostDetailPropType, TagType } from '@/InterfaceGather'
+import { useRouter } from 'next/router'
 
 export default function PostDetailProp({
   name,
@@ -15,18 +15,18 @@ export default function PostDetailProp({
   imageUrl,
   awsImageName,
 }: PostDetailPropType) {
-  const router = useRouter();
-  const create = new Date(createDate);
+  const router = useRouter()
+  const create = new Date(createDate)
   const korDate = new Date(
-    create.getTime() - create.getTimezoneOffset() * 60000
+    create.getTime() - create.getTimezoneOffset() * 60000,
   )
     .toISOString()
-    .split("T")[0];
+    .split('T')[0]
 
   const blurDataURL =
-    "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
+    'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII='
 
-  const cloudfrontBaseUrl = "https://dxf0ufub2j2u1.cloudfront.net";
+  const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
 
   return (
     <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
@@ -78,7 +78,7 @@ export default function PostDetailProp({
               Github <HiExternalLink />
             </span>
             <Link
-              href={github + ""}
+              href={github + ''}
               target="_blank"
               className="itemDetail-prop hover:underline"
             >
@@ -94,5 +94,5 @@ export default function PostDetailProp({
         )}
       </div>
     </div>
-  );
+  )
 }

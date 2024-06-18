@@ -1,28 +1,28 @@
-import Link from "next/link";
-import LottiAnimation from "../components/ScreenElement/lottieAny";
-import Seo from "@/components/seo";
-import { DATABASE_ID_BLOG, TOKEN } from "libs/config";
-import axios from "axios";
-import Post from "@/components/post";
-import { HiArrowNarrowRight } from "react-icons/hi";
-import { IoLogoGithub, IoMail } from "react-icons/io5";
-import { useEffect, useRef, useState } from "react";
-import { cls } from "libs/utils";
-import dynamic from "next/dynamic";
-import DEFINE from "@/constant/Global";
-import { DataListObject, ListResults } from "@/InterfaceGather";
-import Image from "next/image";
+import Link from 'next/link'
+import LottiAnimation from '../components/ScreenElement/lottieAny'
+import Seo from '@/components/seo'
+import { DATABASE_ID_BLOG, TOKEN } from 'libs/config'
+import axios from 'axios'
+import Post from '@/components/post'
+import { HiArrowNarrowRight } from 'react-icons/hi'
+import { IoLogoGithub, IoMail } from 'react-icons/io5'
+import { useEffect, useRef, useState } from 'react'
+import { cls } from 'libs/utils'
+import dynamic from 'next/dynamic'
+import DEFINE from '@/constant/Global'
+import { DataListObject, ListResults } from '@/InterfaceGather'
+import Image from 'next/image'
 const PostHeatMap = dynamic(
-  () => import("@/components/ScreenElement/postHeatMap"),
+  () => import('@/components/ScreenElement/postHeatMap'),
   {
     ssr: false,
-  }
-);
+  },
+)
 
 export default function Home({ combinedBlogs }: DataListObject) {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = today.getMonth() + 1
   const engMonthName = [
     { monthEng: DEFINE.MONTHS.JAN.ENG, monthNum: DEFINE.MONTHS.JAN.NUM },
     { monthEng: DEFINE.MONTHS.FEB.ENG, monthNum: DEFINE.MONTHS.FEB.NUM },
@@ -36,80 +36,80 @@ export default function Home({ combinedBlogs }: DataListObject) {
     { monthEng: DEFINE.MONTHS.OCT.ENG, monthNum: DEFINE.MONTHS.OCT.NUM },
     { monthEng: DEFINE.MONTHS.NOV.ENG, monthNum: DEFINE.MONTHS.NOV.NUM },
     { monthEng: DEFINE.MONTHS.DEC.ENG, monthNum: DEFINE.MONTHS.DEC.NUM },
-  ];
+  ]
 
-  const years = [2023, 2024];
+  const years = [2023, 2024]
 
-  const engMonth = engMonthName[today.getMonth()].monthEng;
-  const numMonth = engMonthName[today.getMonth()].monthNum;
+  const engMonth = engMonthName[today.getMonth()].monthEng
+  const numMonth = engMonthName[today.getMonth()].monthNum
 
   const createPost = combinedBlogs.map((x: { created_time: string }) => {
-    const create = new Date(x.created_time);
+    const create = new Date(x.created_time)
     const korDate = new Date(
-      create.getTime() - create.getTimezoneOffset() * 60000
+      create.getTime() - create.getTimezoneOffset() * 60000,
     )
       .toISOString()
-      .split("T")[0];
+      .split('T')[0]
 
-    return korDate;
-  });
+    return korDate
+  })
 
-  const [monthList, setMonthList] = useState({ engMonth, numMonth });
-  const [yearList, setYearList] = useState(year);
-  const [modalMonth, setModalMonth] = useState(12);
+  const [monthList, setMonthList] = useState({ engMonth, numMonth })
+  const [yearList, setYearList] = useState(year)
+  const [modalMonth, setModalMonth] = useState(12)
 
   const mathMonthToday = () => {
     if (month === engMonthName.length) {
-      setModalMonth(12);
+      setModalMonth(12)
     } else {
-      setModalMonth(month);
+      setModalMonth(month)
     }
-  };
+  }
 
-  const [showMonthModal, setShowMonthModal] = useState(false);
+  const [showMonthModal, setShowMonthModal] = useState(false)
   const selectMonth = (engMonth: string, numMonth: string) => {
-    setMonthList({ engMonth, numMonth });
-  };
+    setMonthList({ engMonth, numMonth })
+  }
 
   const toggleMonthList = () => {
-    setShowMonthModal((prev) => !prev);
-  };
+    setShowMonthModal((prev) => !prev)
+  }
 
   const mathMonth = createPost.filter(
-    (x: string) => x.slice(0, 7) === yearList + "-" + monthList.numMonth
-  );
+    (x: string) => x.slice(0, 7) === yearList + '-' + monthList.numMonth,
+  )
 
-  const exceptMonth = engMonthName.slice(0, 8).map((mon) => mon);
+  const exceptMonth = engMonthName.slice(0, 8).map((mon) => mon)
 
   const preventScroll = () => {
-    const currentScrollY = window.scrollY;
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-    document.body.style.top = `-${currentScrollY}px`;
-    document.body.style.overflowY = "scroll";
+    const currentScrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = `-${currentScrollY}px`
+    document.body.style.overflowY = 'scroll'
 
-    return currentScrollY;
-  };
+    return currentScrollY
+  }
 
   const allowScroll = (prevScrollY: number) => {
-    document.body.style.position = "";
-    document.body.style.width = "";
-    document.body.style.top = "";
-    document.body.style.overflowY = "";
-    window.scrollTo(0, prevScrollY);
-  };
+    document.body.style.position = ''
+    document.body.style.width = ''
+    document.body.style.top = ''
+    document.body.style.overflowY = ''
+    window.scrollTo(0, prevScrollY)
+  }
 
   useEffect(() => {
     if (showMonthModal) {
-      const prevScrollY = preventScroll();
+      const prevScrollY = preventScroll()
       return () => {
-        allowScroll(prevScrollY);
-      };
+        allowScroll(prevScrollY)
+      }
     }
-  }, [showMonthModal]);
+  }, [showMonthModal])
 
-  const dropMonthMenuBtnRef = useRef<HTMLDivElement | null>(null);
-  const dropMonthMenuRef = useRef<HTMLDivElement | null>(null);
+  const dropMonthMenuBtnRef = useRef<HTMLDivElement | null>(null)
+  const dropMonthMenuRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     const handleClickOutsideClose = (e: MouseEvent) => {
       if (
@@ -117,38 +117,38 @@ export default function Home({ combinedBlogs }: DataListObject) {
         !dropMonthMenuRef.current?.contains(e.target as Node) &&
         !dropMonthMenuBtnRef.current?.contains(e.target as Node)
       )
-        setShowMonthModal(false);
-    };
-    document.addEventListener("click", handleClickOutsideClose);
+        setShowMonthModal(false)
+    }
+    document.addEventListener('click', handleClickOutsideClose)
 
-    return () => document.removeEventListener("click", handleClickOutsideClose);
-  }, [showMonthModal]);
+    return () => document.removeEventListener('click', handleClickOutsideClose)
+  }, [showMonthModal])
 
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState('')
   useEffect(() => {
     if (window) {
-      setCurrentUrl(window.location.host);
+      setCurrentUrl(window.location.host)
     }
-    mathMonthToday();
+    mathMonthToday()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  const ec2Deploy = "minsunblog.com";
-  const vercelDeploy = "min-sun.vercel.app";
-  const [deplyUrlMent, setDeplyUrlMent] = useState("EC2 배포주소 이동");
-  const [blogUrl, setBlogUrl] = useState(ec2Deploy);
+  const ec2Deploy = 'minsunblog.com'
+  const vercelDeploy = 'min-sun.vercel.app'
+  const [deplyUrlMent, setDeplyUrlMent] = useState('EC2 배포주소 이동')
+  const [blogUrl, setBlogUrl] = useState(ec2Deploy)
   useEffect(() => {
     if (currentUrl === vercelDeploy) {
-      setBlogUrl("https://" + ec2Deploy);
-      setDeplyUrlMent("EC2 배포주소 이동");
+      setBlogUrl('https://' + ec2Deploy)
+      setDeplyUrlMent('EC2 배포주소 이동')
     } else if (currentUrl === ec2Deploy) {
-      setBlogUrl("https://" + vercelDeploy);
-      setDeplyUrlMent("vercel 배포주소 이동");
+      setBlogUrl('https://' + vercelDeploy)
+      setDeplyUrlMent('vercel 배포주소 이동')
     } else {
-      setBlogUrl("https://" + ec2Deploy);
-      setDeplyUrlMent("EC2 배포주소 이동");
+      setBlogUrl('https://' + ec2Deploy)
+      setDeplyUrlMent('EC2 배포주소 이동')
     }
-  }, [currentUrl]);
+  }, [currentUrl])
 
   return (
     <>
@@ -207,7 +207,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
           <div className="flex-1 relative h-full p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
             <div className="relative text-center flex items-center justify-between text-xs">
               <span>
-                {mathMonth.length > 0 ? mathMonth.length : 0} posts in{" "}
+                {mathMonth.length > 0 ? mathMonth.length : 0} posts in{' '}
                 {monthList.engMonth}
               </span>
               <div className="text-base cursor-pointer relative">
@@ -229,22 +229,22 @@ export default function Home({ combinedBlogs }: DataListObject) {
                           key={year}
                           onClick={() => {
                             if (year !== 2023) {
-                              setYearList(year);
+                              setYearList(year)
                               selectMonth(
                                 engMonthName[0].monthEng,
-                                engMonthName[0].monthNum
-                              );
+                                engMonthName[0].monthNum,
+                              )
                             } else {
-                              setYearList(year);
+                              setYearList(year)
                               selectMonth(
                                 engMonthName[8].monthEng,
-                                engMonthName[8].monthNum
-                              );
+                                engMonthName[8].monthNum,
+                              )
                             }
                           }}
                           className={cls(
-                            yearList === year ? "month-selected" : "",
-                            "month-base"
+                            yearList === year ? 'month-selected' : '',
+                            'month-base',
                           )}
                         >
                           {year}
@@ -257,13 +257,13 @@ export default function Home({ combinedBlogs }: DataListObject) {
                           <li
                             key={mon.monthEng}
                             onClick={() => {
-                              selectMonth(mon.monthEng, mon.monthNum);
+                              selectMonth(mon.monthEng, mon.monthNum)
                             }}
                             className={cls(
                               monthList.engMonth === mon.monthEng
-                                ? "month-selected"
-                                : "month-noneDisabled",
-                              "month-base"
+                                ? 'month-selected'
+                                : 'month-noneDisabled',
+                              'month-base',
                             )}
                           >
                             {mon.monthEng}
@@ -274,13 +274,13 @@ export default function Home({ combinedBlogs }: DataListObject) {
                           <li
                             key={mon.monthEng}
                             onClick={() => {
-                              selectMonth(mon.monthEng, mon.monthNum);
+                              selectMonth(mon.monthEng, mon.monthNum)
                             }}
                             className={cls(
                               monthList.engMonth === mon.monthEng
-                                ? "month-selected"
-                                : "month-noneDisabled",
-                              "month-base"
+                                ? 'month-selected'
+                                : 'month-noneDisabled',
+                              'month-base',
                             )}
                           >
                             {mon.monthEng}
@@ -320,61 +320,61 @@ export default function Home({ combinedBlogs }: DataListObject) {
               <Post
                 key={item.id}
                 item={item}
-                viewStyle={"gallery"}
-                tagCategory={"All"}
+                viewStyle={'gallery'}
+                tagCategory={'All'}
               />
             ))}
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }
 
 export async function getServerSideProps() {
   const axiosConfig = {
     headers: {
-      Accept: "application/json",
-      "Notion-Version": "2022-02-22",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Notion-Version': '2022-02-22',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${TOKEN}`,
     },
-  };
+  }
 
   const data = {
     page_size: 100,
-  };
+  }
 
   const response = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     data,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const startCursor =
-    response.data.has_more === true ? response.data.next_cursor : null;
+    response.data.has_more === true ? response.data.next_cursor : null
 
   const remainData = {
     page_size: 100,
     start_cursor: startCursor,
-  };
+  }
 
   const remainResponse = await axios.post(
     `https://api.notion.com/v1/databases/${DATABASE_ID_BLOG}/query`,
     remainData,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const [blogsResponse, remainBlogsResponse] = await Promise.all([
     response,
     remainResponse,
-  ]);
+  ])
 
-  const originblogs = blogsResponse.data.results;
-  const remainBlogs = remainBlogsResponse.data.results;
-  const combinedBlogs = [...originblogs, ...remainBlogs];
+  const originblogs = blogsResponse.data.results
+  const remainBlogs = remainBlogsResponse.data.results
+  const combinedBlogs = [...originblogs, ...remainBlogs]
 
   return {
     props: { combinedBlogs },
-  };
+  }
 }

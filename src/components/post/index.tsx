@@ -1,12 +1,12 @@
-import UseProperties from "libs/useProperties";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Tag from "./tag";
-import { changeDate } from "libs/useChangeDate";
-import { cls } from "libs/utils";
-import DEFINE from "@/constant/Global";
-import { PostType, TagType } from "@/InterfaceGather";
+import UseProperties from 'libs/useProperties'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Tag from './tag'
+import { changeDate } from 'libs/useChangeDate'
+import { cls } from 'libs/utils'
+import DEFINE from '@/constant/Global'
+import { PostType, TagType } from '@/InterfaceGather'
 
 export default function Post({
   item,
@@ -14,39 +14,39 @@ export default function Post({
   tagCategory,
   awsImages,
 }: PostType) {
-  const itemData = UseProperties(item);
+  const itemData = UseProperties(item)
 
   //aws s3 image
-  const cloudfrontBaseUrl = "https://dxf0ufub2j2u1.cloudfront.net";
+  const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
 
-  const router = useRouter();
+  const router = useRouter()
   const pathName =
-    router.pathname === "/project" ? `/project/${item.id}` : `/blog/${item.id}`;
-  const queryValue = router.pathname === "/project" ? { img: awsImages } : null;
+    router.pathname === '/project' ? `/project/${item.id}` : `/blog/${item.id}`
+  const queryValue = router.pathname === '/project' ? { img: awsImages } : null
 
-  const create = new Date(item.created_time);
+  const create = new Date(item.created_time)
   const korDate = new Date(
-    create.getTime() - create.getTimezoneOffset() * 60000
+    create.getTime() - create.getTimezoneOffset() * 60000,
   )
     .toISOString()
-    .split("T")[0];
+    .split('T')[0]
 
-  const tagName = itemData.tags.map((row: TagType) => row.name);
+  const tagName = itemData.tags.map((row: TagType) => row.name)
 
   const categoryView =
     tagCategory === DEFINE.TAGCATEGORY.ALL ||
     tagName.includes(tagCategory) ||
     (tagCategory === DEFINE.TAGCATEGORY.ETC &&
       [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].some((excludedTag) =>
-        tagName.includes(excludedTag)
-      ));
+        tagName.includes(excludedTag),
+      ))
 
   const blurDataURL =
-    "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII=";
+    'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII='
 
   return (
     <>
-      {viewStyle === "gallery" && categoryView && (
+      {viewStyle === 'gallery' && categoryView && (
         <Link
           href={{ pathname: pathName, query: queryValue }}
           key={item.id}
@@ -66,11 +66,11 @@ export default function Post({
               />
             )}
             {!itemData.url &&
-              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" &&
-              item.id !== "49b53229-e993-4e98-ad6d-74687ad9364a" && (
+              item.id !== '12e40e01-8c7c-457e-bada-784889fbe08a' &&
+              item.id !== '49b53229-e993-4e98-ad6d-74687ad9364a' && (
                 <div className="post-noneimage-style" />
               )}
-            {!itemData.url && router.pathname === "/project" && awsImages && (
+            {!itemData.url && router.pathname === '/project' && awsImages && (
               <Image
                 src={`${cloudfrontBaseUrl}/images/${awsImages}`}
                 alt="image"
@@ -93,7 +93,7 @@ export default function Post({
           </div>
         </Link>
       )}
-      {viewStyle === "list" && categoryView && (
+      {viewStyle === 'list' && categoryView && (
         <Link
           href={{ pathname: pathName }}
           key={item.id}
@@ -113,12 +113,12 @@ export default function Post({
               />
             )}
             {!itemData.url &&
-              item.id !== "12e40e01-8c7c-457e-bada-784889fbe08a" &&
-              item.id !== "49b53229-e993-4e98-ad6d-74687ad9364a" && (
+              item.id !== '12e40e01-8c7c-457e-bada-784889fbe08a' &&
+              item.id !== '49b53229-e993-4e98-ad6d-74687ad9364a' && (
                 <div className="post-noneimage-style" />
               )}
 
-            {!itemData.url && router.pathname === "/project" && (
+            {!itemData.url && router.pathname === '/project' && (
               <Image
                 src={`${cloudfrontBaseUrl}/images/${awsImages}`}
                 alt="image"
@@ -135,13 +135,13 @@ export default function Post({
             <div className="w-2/3 md:w-full">
               <p className="post-name">
                 {itemData.name.length > 40
-                  ? itemData.name.slice(0, 39) + "..."
+                  ? itemData.name.slice(0, 39) + '...'
                   : itemData.name}
               </p>
               <span
                 className={cls(
-                  itemData.description.length > 45 ? "w-2/3" : "w-full",
-                  "post-list-desc"
+                  itemData.description.length > 45 ? 'w-2/3' : 'w-full',
+                  'post-list-desc',
                 )}
               >
                 {itemData.description}
@@ -166,5 +166,5 @@ export default function Post({
         </Link>
       )}
     </>
-  );
+  )
 }

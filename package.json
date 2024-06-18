@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start -p 3000",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.535.0",
@@ -24,10 +26,12 @@
     "dotenv": "^16.3.1",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "eslint-config-prettier": "^9.1.0",
     "file-saver": "^2.0.5",
     "next": "13.4.19",
     "next-themes": "^0.2.1",
     "postcss": "8.4.29",
+    "prettier": "^3.3.2",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "18.2.0",

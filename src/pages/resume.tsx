@@ -1,33 +1,33 @@
-import Title from "@/components/ScreenElement/title";
-import Image from "next/image";
-import Link from "next/link";
-import { IoIosSquare } from "react-icons/io";
-import { saveAs } from "file-saver";
+import Title from '@/components/ScreenElement/title'
+import Image from 'next/image'
+import Link from 'next/link'
+import { IoIosSquare } from 'react-icons/io'
+import { saveAs } from 'file-saver'
 
 export default function Resume() {
   const downloadPDF = () => {
-    fetch("/resume_06.18.pdf") // PDF 파일의 경로
+    fetch('/resume_06.18.pdf') // PDF 파일의 경로
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok')
         }
-        return response.blob();
+        return response.blob()
       })
       .then((blob) => {
-        saveAs(blob, "박민선_프론트엔드_이력서.pdf"); // 다운로드될 파일명
+        saveAs(blob, '박민선_프론트엔드_이력서.pdf') // 다운로드될 파일명
       })
       .catch((error) => {
         console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-      });
-  };
+          'There has been a problem with your fetch operation:',
+          error,
+        )
+      })
+  }
 
   return (
     <>
       <div className="laptop-max-width h-full overflow-x-hidden">
-        <Title title={"Resume"} />
+        <Title title={'Resume'} />
         <section className="px-5 lg:px-0 pb-8">
           <div
             onClick={downloadPDF}
@@ -38,7 +38,7 @@ export default function Resume() {
 
           <div className="mt-10">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              박민선 |{" "}
+              박민선 |{' '}
               <span className="block mt-4 dark:!text-white lg:mt-0 lg:inline-block">
                 프론트엔드 개발자
               </span>
@@ -168,14 +168,14 @@ export default function Resume() {
                             개인 블로그 WEB
                           </p>
                           <span className="block lg:inline-block lg:ml-2">
-                            ({" "}
+                            ({' '}
                             <Link
                               href="https://minsunblog.com/"
                               target="_blank"
                               className="hover:text-[#2c82f2]"
                             >
                               https://minsunblog.com/
-                            </Link>{" "}
+                            </Link>{' '}
                             )
                           </span>
                         </div>
@@ -183,7 +183,7 @@ export default function Resume() {
                           개요 : Notion API를 활용한 반응형 블로그 WEB
                         </p>
                         <p className="tech">
-                          Github 링크 :{" "}
+                          Github 링크 :{' '}
                           <Link
                             href="https://github.com/pminsun/MinsunBlog"
                             target="_blank"
@@ -193,7 +193,7 @@ export default function Resume() {
                           </Link>
                         </p>
                         <p className="tech mt-1">
-                          Tech Stack :{" "}
+                          Tech Stack :{' '}
                           <span className="block lg:inline-block">
                             Next.js, typeScript, tailwind, aws ec2, zustand
                           </span>
@@ -206,14 +206,14 @@ export default function Resume() {
                             레시피 정보 검색, 저장 서비스 WEB
                           </p>
                           <span className="block lg:inline-block lg:ml-2">
-                            ({" "}
+                            ({' '}
                             <Link
                               href="https://www.myallfood.com/"
                               target="_blank"
                               className="hover:text-[#2c82f2]"
                             >
                               https://www.myallfood.com/
-                            </Link>{" "}
+                            </Link>{' '}
                             )
                           </span>
                         </div>
@@ -222,7 +222,7 @@ export default function Resume() {
                           검색, 저장 서비스 WEB
                         </p>
                         <p className="tech">
-                          Github 링크 :{" "}
+                          Github 링크 :{' '}
                           <Link
                             href="https://github.com/pminsun/AllFood"
                             target="_blank"
@@ -259,7 +259,7 @@ export default function Resume() {
                     팀원(퍼블 & 프론트 담당) | 연구개발센터 | 재직 중
                   </p>
                   <p className="mb-2 text-sm">
-                    2021.10.01 - 현재{" "}
+                    2021.10.01 - 현재{' '}
                     <span className="block lg:inline-block">
                       ( 2년 8개월 2024.05.30기준 )
                     </span>
@@ -314,7 +314,7 @@ export default function Resume() {
                   </div>
                   <div className="project-img">
                     <Image
-                      src={"/homeScreen.png"}
+                      src={'/homeScreen.png'}
                       alt="homeScreen"
                       width={600}
                       height={100}
@@ -352,7 +352,7 @@ export default function Resume() {
                   </div>
                   <div className="project-img">
                     <Image
-                      src={"/allfoodScreenShot.png"}
+                      src={'/allfoodScreenShot.png'}
                       alt="allfoodScreenShot"
                       width={600}
                       height={100}
@@ -365,5 +365,5 @@ export default function Resume() {
         </section>
       </div>
     </>
-  );
+  )
 }

@@ -1,66 +1,66 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import PostDetailContent from "@/components/post/postDetailContent";
-import axios from "axios";
-import { useRouter } from "next/router";
+import PostDetailContent from '@/components/post/postDetailContent'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 import {
   HiArrowLeft,
   HiOutlineArrowCircleLeft,
   HiOutlineArrowCircleRight,
-} from "react-icons/hi";
-import { NextPageContext } from "next";
-import UseProperties from "libs/useProperties";
-import { BASE_URL, TOKEN } from "libs/config";
-import PostDetailProp from "@/components/post/postDetailProp";
-import Seo from "@/components/seo";
-import MoveToTop from "@/components/ScreenElement/moveToTop";
-import Link from "next/link";
+} from 'react-icons/hi'
+import { NextPageContext } from 'next'
+import UseProperties from 'libs/useProperties'
+import { BASE_URL, TOKEN } from 'libs/config'
+import PostDetailProp from '@/components/post/postDetailProp'
+import Seo from '@/components/seo'
+import MoveToTop from '@/components/ScreenElement/moveToTop'
+import Link from 'next/link'
 import {
   BlockDetailData,
   BlockDetailResults,
   TableData,
   TableResults,
-} from "@/InterfaceGather";
+} from '@/InterfaceGather'
 
 export default function blockDetail({
   blockDetail,
   propertiesData,
   tableData,
 }: BlockDetailData) {
-  const router = useRouter();
+  const router = useRouter()
   const backClick = () => {
-    router.push("/blog");
-  };
+    router.push('/blog')
+  }
 
-  const itemData = UseProperties(propertiesData);
+  const itemData = UseProperties(propertiesData)
 
   // 이전, 다음 글
   const pageInfo = (cell: { plain_text: string; href: string }) => {
-    return { title: cell.plain_text, href: cell.href };
-  };
+    return { title: cell.plain_text, href: cell.href }
+  }
 
   const pageInfoAll = (tableData: TableData, index: number) =>
     tableData.results
       .flatMap((table: TableResults) => table.table_row?.cells[index])
       .map(pageInfo)
-      .map((item) => ({ title: item.title, href: item.href }));
+      .map((item) => ({ title: item.title, href: item.href }))
 
-  const preData = pageInfoAll(tableData!, 0);
-  const nextData = pageInfoAll(tableData!, 1);
+  const preData = pageInfoAll(tableData!, 0)
+  const nextData = pageInfoAll(tableData!, 1)
 
   const extractHrefID = (href: string) =>
-    href?.substring(href.lastIndexOf("-") + 1 || href.lastIndexOf("/") + 1);
+    href?.substring(href.lastIndexOf('-') + 1 || href.lastIndexOf('/') + 1)
 
   // title & url
-  const preTitle = preData[0]?.title;
-  const nextTitle = nextData[0]?.title;
-  const preHref = extractHrefID(preData[0]?.href);
-  const nextHref = extractHrefID(nextData[0]?.href);
+  const preTitle = preData[0]?.title
+  const nextTitle = nextData[0]?.title
+  const preHref = extractHrefID(preData[0]?.href)
+  const nextHref = extractHrefID(nextData[0]?.href)
 
   return (
     <>
       <Seo
         title={itemData.name}
-        url={BASE_URL + "/" + router.asPath}
+        url={BASE_URL + '/' + router.asPath}
         desc={itemData.description}
         image={
           propertiesData.cover?.external?.url || propertiesData.cover?.file?.url
@@ -98,7 +98,7 @@ export default function blockDetail({
               <p className="text-[10px] mb-1">이전 포스트</p>
               <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis">
                 {preTitle.length > 30
-                  ? preTitle.slice(0, 30) + "..."
+                  ? preTitle.slice(0, 30) + '...'
                   : preTitle}
               </p>
             </div>
@@ -113,7 +113,7 @@ export default function blockDetail({
               <p className="text-[10px] mb-1">다음 포스트</p>
               <p className="font-bold md:w-48 whitespace-nowrap overflow-hidden text-ellipsis text-right">
                 {nextTitle.length > 30
-                  ? nextTitle.slice(0, 30) + "..."
+                  ? nextTitle.slice(0, 30) + '...'
                   : nextTitle}
               </p>
             </div>
@@ -123,57 +123,57 @@ export default function blockDetail({
       </div>
       <MoveToTop />
     </>
-  );
+  )
 }
 
 export async function getServerSideProps(context: NextPageContext) {
   //const startTime = performance.now();
 
-  const { query } = context;
+  const { query } = context
   const axiosConfig = {
     headers: {
-      Accept: "application/json",
-      "Notion-Version": "2022-06-28",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Notion-Version': '2022-06-28',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${TOKEN}`,
     },
-  };
+  }
 
   const resoinseBlock = await axios.get(
     `https://api.notion.com/v1/blocks/${query.id}/children`,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const responseProperties = await axios.get(
     `https://api.notion.com/v1/pages/${query.id}`,
-    axiosConfig
-  );
+    axiosConfig,
+  )
 
   const [blockResponse, propertiesResponse] = await Promise.all([
     resoinseBlock,
     responseProperties,
-  ]);
-  const blockDetail = blockResponse.data;
-  const propertiesData = propertiesResponse.data;
+  ])
+  const blockDetail = blockResponse.data
+  const propertiesData = propertiesResponse.data
 
   // table id 추출
-  let tableId = null;
+  let tableId = null
   blockDetail.results.map(
     (blockContent: BlockDetailResults) =>
-      blockContent.type === "table" && (tableId = blockContent.id)
-  );
+      blockContent.type === 'table' && (tableId = blockContent.id),
+  )
 
   // table_row data
-  let tableData = null;
+  let tableData = null
   if (tableId) {
     const tableResponse = await axios.get(
       `https://api.notion.com/v1/blocks/${tableId}/children`,
-      axiosConfig
-    );
-    tableData = tableResponse.data;
+      axiosConfig,
+    )
+    tableData = tableResponse.data
   }
 
   return {
     props: { blockDetail, propertiesData, tableData },
-  };
+  }
 }

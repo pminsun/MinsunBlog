@@ -1,6 +1,6 @@
 interface TitleType {
-  title: string;
-  subMent?: string;
+  title: string
+  subMent?: string
 }
 
 export default function Title({ title, subMent }: TitleType) {
@@ -11,5 +11,5 @@ export default function Title({ title, subMent }: TitleType) {
         {subMent}
       </span>
     </div>
-  );
+  )
 }

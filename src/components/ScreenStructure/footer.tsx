@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { BsGithub } from "react-icons/bs";
+import Link from 'next/link'
+import { BsGithub } from 'react-icons/bs'
 
 export default function Footer() {
   return (
@@ -15,5 +15,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
