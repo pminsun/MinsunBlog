@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/*reset*/
+/* reset */
 @layer base {
   html,
   body {
@@ -71,7 +71,7 @@ html.dark::-webkit-scrollbar-thumb {
   @apply w-full lg:max-w-3xl mx-auto;
 }
 
-/*header*/
+/* header */
 header {
   @apply fixed top-0 z-50 w-full backdrop-blur-md bg-[#fbfbfa]/30 dark:bg-slate-900/30;
 
@@ -105,5 +105,18 @@ header {
         @apply text-[#2c82f2];
       }
     }
+  }
+}
+
+/* page Title */
+.title-container {
+  @apply text-center lg:text-left;
+
+  > h2 {
+    @apply text-2xl lg:text-3xl font-bold mb-0 lg:mb-2;
+  }
+
+  > span {
+    @apply text-[10px] lg:text-xs dark:text-slate-300;
   }
 }
