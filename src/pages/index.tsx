@@ -133,97 +133,49 @@ export default function Home({ combinedBlogs }: DataListObject) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const ec2Deploy = 'minsunblog.com'
-  const vercelDeploy = 'min-sun.vercel.app'
-  const [deplyUrlMent, setDeplyUrlMent] = useState('EC2 배포주소 이동')
-  const [blogUrl, setBlogUrl] = useState(ec2Deploy)
-  useEffect(() => {
-    if (currentUrl === vercelDeploy) {
-      setBlogUrl('https://' + ec2Deploy)
-      setDeplyUrlMent('EC2 배포주소 이동')
-    } else if (currentUrl === ec2Deploy) {
-      setBlogUrl('https://' + vercelDeploy)
-      setDeplyUrlMent('vercel 배포주소 이동')
-    } else {
-      setBlogUrl('https://' + ec2Deploy)
-      setDeplyUrlMent('EC2 배포주소 이동')
-    }
-  }, [currentUrl])
-
   return (
     <>
       <Seo title={`MinSun's Blog | Home`} />
-      <div className="px-5 lg:px-0 laptop-max-width">
-        <div className="flex items-center flex-col md:flex-row gap-8 w-full md:h-[582px] mb-16 lg:mb-10">
-          <div className="flex flex-1 gap-6 justify-between rounded-lg overflow-hidden flex-col w-full h-full">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg">
-              <div className="w-full h-2/3 lg:h-[312px]">
+      <div className="home-container laptop-max-width">
+        <div className="intro-container">
+          <div className="intro-left">
+            <div className="intro-leftBox">
+              <div className="intro-leftTopBox">
                 <LottiAnimation />
               </div>
-              <div className="w-full text-sm leading-6 px-4 lg:px-6 pb-6">
-                <p className="text-center mb-6">
+              <div className="intro-leftBottomBox">
+                <p>
                   안녕하세요.
                   <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
                   개발자입니다.
                 </p>
                 <div className="link-innerPage">
                   <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
-                  <Link href="/resume">{DEFINE.PAGES.RESUME.KOR}</Link>
                 </div>
               </div>
             </div>
             <div className="link-outerPage">
-              <Link href={blogUrl} target="_blank" className="group">
-                <div className="w-[21px] h-[21px] overflow-hidden">
-                  <Image
-                    src="/white-icon.svg"
-                    alt="mylogo"
-                    width={32}
-                    height={32}
-                  />
-                </div>
-                <p className="tooltip w-[130%] group-hover:visible">
-                  {deplyUrlMent}
-                </p>
-              </Link>
-              <Link
-                href="https://github.com/pminsun"
-                target="_blank"
-                className="group"
-              >
+              <Link href="https://github.com/pminsun" target="_blank">
                 <IoLogoGithub />
-                <p className="tooltip w-full group-hover:visible">
-                  깃 허브 이동
-                </p>
               </Link>
-              <Link href="mailto:pminsun309@gmail.com" className="group">
+              <Link href="mailto:pminsun309@gmail.com">
                 <IoMail />
-                <p className="tooltip w-full group-hover:visible">
-                  메일 보내기
-                </p>
               </Link>
             </div>
           </div>
-          <div className="flex-1 relative h-full p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-            <div className="relative text-center flex items-center justify-between text-xs">
+          <div className="intro-right">
+            <div className="calendarSelect-container">
               <span>
                 {mathMonth.length > 0 ? mathMonth.length : 0} posts in{' '}
                 {monthList.engMonth}
               </span>
-              <div className="text-base cursor-pointer relative">
-                <span
-                  onClick={toggleMonthList}
-                  ref={dropMonthMenuBtnRef}
-                  className="hover:text-[#2c82f2] py-1 px-3"
-                >
+              <div className="calendarSelect-center">
+                <span onClick={toggleMonthList} ref={dropMonthMenuBtnRef}>
                   {yearList}. {monthList.engMonth}
                 </span>
                 {showMonthModal && (
-                  <div
-                    ref={dropMonthMenuRef}
-                    className="flex absolute left-1/2 -translate-x-1/2 z-20 overflow-hidden shadow-md bg-gray-200 dark:bg-gray-600 rounded-lg mt-1"
-                  >
-                    <ul>
+                  <div ref={dropMonthMenuRef} className="calendarSelect-modal ">
+                    <ul className="year-unit">
                       {years.map((year) => (
                         <li
                           key={year}
@@ -244,14 +196,13 @@ export default function Home({ combinedBlogs }: DataListObject) {
                           }}
                           className={cls(
                             yearList === year ? 'month-selected' : '',
-                            'month-base',
                           )}
                         >
                           {year}
                         </li>
                       ))}
                     </ul>
-                    <ul className="h-auto overflow-y-auto scrollbar-none">
+                    <ul className="month-unit scrollbar-none">
                       {yearList === 2023 &&
                         engMonthName.slice(8).map((mon) => (
                           <li
@@ -263,7 +214,6 @@ export default function Home({ combinedBlogs }: DataListObject) {
                               monthList.engMonth === mon.monthEng
                                 ? 'month-selected'
                                 : 'month-noneDisabled',
-                              'month-base',
                             )}
                           >
                             {mon.monthEng}
@@ -280,7 +230,6 @@ export default function Home({ combinedBlogs }: DataListObject) {
                               monthList.engMonth === mon.monthEng
                                 ? 'month-selected'
                                 : 'month-noneDisabled',
-                              'month-base',
                             )}
                           >
                             {mon.monthEng}
@@ -292,7 +241,6 @@ export default function Home({ combinedBlogs }: DataListObject) {
               </div>
               <span>{combinedBlogs.length} total posts</span>
             </div>
-
             <PostHeatMap
               combinedBlogs={combinedBlogs}
               year={yearList}
@@ -300,17 +248,12 @@ export default function Home({ combinedBlogs }: DataListObject) {
             />
           </div>
         </div>
-        <div className="pb-8">
-          <div className="flex items-end justify-between  mb-5">
-            <p className="text-xl font-bold">Recent Blog Posts</p>
-            <Link
-              href="/blog"
-              className="flex items-center justify-end gap-2 w-36 text-sm text-gray-400 hover:text-gray-700 transition-all"
-            >
-              <p className="about-allposts font-semibold">
-                {DEFINE.PAGES.BLOG.ENGTWO}
-              </p>
-              <div className="pt-[3px]">
+        <div className="recentPost-container">
+          <div className="recentPostTop-title">
+            <p className="title">Recent Blog Posts</p>
+            <Link href="/blog" className="goto-allpost">
+              <p className="about-allposts">{DEFINE.PAGES.BLOG.ENGTWO}</p>
+              <div>
                 <HiArrowNarrowRight />
               </div>
             </Link>

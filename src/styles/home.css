@@ -1,85 +1,211 @@
 /* Move to page or link */
-.link-innerPage {
-  @apply flex gap-4;
+.home-container {
+  @apply px-5 lg:px-0;
+
+  .intro-container {
+    @apply flex items-center flex-col md:flex-row gap-8 w-full md:h-[582px] mb-16 lg:mb-10;
+
+    .intro-left {
+      @apply flex flex-1 gap-6 justify-between rounded-lg overflow-hidden flex-col w-full h-full;
+
+      .intro-leftBox {
+        @apply bg-gray-100 dark:bg-gray-800 rounded-lg;
+
+        .intro-leftTopBox {
+          @apply w-full h-2/3 lg:h-[312px];
+        }
+
+        .intro-leftBottomBox {
+          @apply w-full text-sm leading-6 px-4 lg:px-6 pb-6;
+
+          > p {
+            @apply text-center mb-6;
+          }
+
+          .link-innerPage {
+            @apply flex gap-4;
+
+            a {
+              @apply block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2];
+            }
+          }
+        }
+      }
+
+      .link-outerPage {
+        @apply flex justify-between md:flex-row rounded-lg px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
+        a {
+          @apply relative flex items-center justify-center py-2 flex-1 text-center rounded-lg text-white bg-slate-400 hover:bg-[#2c82f2];
+
+          svg {
+            @apply text-2xl;
+          }
+        }
+      }
+    }
+
+    .intro-right {
+      @apply flex-1 relative h-full p-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800;
+
+      .calendarSelect-container {
+        @apply flex items-center justify-between relative text-center text-xs;
+
+        .calendarSelect-center {
+          @apply relative text-base cursor-pointer;
+
+          > span {
+            @apply py-1 px-3;
+            &:hover {
+              @apply text-[#2c82f2];
+            }
+          }
+
+          .calendarSelect-modal {
+            @apply flex absolute left-1/2 -translate-x-1/2 z-20 rounded-lg mt-1 overflow-hidden shadow-md bg-gray-200 dark:bg-gray-600;
+
+            .year-unit,
+            .month-unit {
+              li {
+                @apply cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600;
+
+                /* Select Month */
+                &.month-selected {
+                  @apply !bg-[#2c82f2] text-white dark:!text-white;
+                }
+
+                &.month-noneDisabled {
+                  @apply hover:bg-[#2c82f2]/[0.5] dark:hover:bg-[#2c82f2]/[0.5] hover:text-white dark:hover:text-white;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      /* heatmap */
+
+      .small-box {
+        @apply w-2 h-2 rounded-sm;
+      }
+
+      /*hearmap : -1값*/
+      rect[val='-1'] {
+        @apply fill-[#f3f4f6] dark:fill-[#1f2937] cursor-default;
+      }
+      rect {
+        @apply cursor-pointer;
+      }
+
+      .heatmap-container {
+        @apply flex flex-col justify-between mt-2 mb-1 h-[330px] w-full;
+
+        .chart-wrap {
+          @apply w-full h-[90%];
+        }
+
+        .heatmap-info {
+          @apply justify-end;
+
+          > div {
+            @apply gap-2;
+            span {
+              @apply text-xs;
+            }
+
+            .small-box-wrap {
+              @apply gap-1;
+
+              > div {
+                @apply w-2 h-2 rounded-sm;
+              }
+            }
+          }
+        }
+      }
+
+      /* dailyPost */
+      .dailyPost-container {
+        @apply flex flex-col w-full h-[200px] rounded-lg bg-gray-100 dark:bg-gray-800;
+
+        .dailyPost-top {
+          @apply flex items-center justify-between;
+        }
+
+        .dailyPost-listBox {
+          @apply flex items-center justify-center text-center;
+
+          > div {
+            @apply flex flex-col gap-3 pt-4 text-left w-full h-full;
+
+            .day-posting-box {
+              @apply overflow-y-auto relative w-full h-[140px];
+
+              a.day-posting {
+                @apply w-full mb-2 last-of-type:mb-0 border border-[#cad1dc] dark:border-slate-400 rounded-lg px-4 py-2 flex items-center justify-between;
+
+                > p {
+                  @apply text-sm;
+                }
+                > div {
+                  @apply flex items-center justify-center w-8 h-8;
+
+                  svg {
+                    @apply text-lg dark:text-slate-400;
+                  }
+                }
+              }
+              &::-webkit-scrollbar {
+                width: 12px;
+              }
+              &::-webkit-scrollbar-track {
+                background: #f3f4f6 !important;
+              }
+              &::-webkit-scrollbar-thumb {
+                background: #c7c7c4;
+                border-radius: 6px;
+                border: 5px solid #f3f4f6;
+              }
+
+              .none-post {
+                @apply flex items-center justify-center h-full text-sm;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .recentPost-container {
+    @apply pb-8;
+
+    .recentPostTop-title {
+      @apply flex items-end justify-between mb-5;
+
+      .title {
+        @apply text-xl font-bold;
+      }
+
+      a.goto-allpost {
+        @apply flex items-center justify-end gap-2 w-36 text-sm text-gray-400 transition-all;
+
+        &:hover {
+          @apply text-gray-700;
+        }
+
+        > p {
+          @apply font-semibold;
+        }
+
+        > div {
+          @apply pt-[3px];
+        }
+      }
+    }
+  }
 }
 
-.link-innerPage a {
-  @apply block py-3 flex-1 text-center rounded-lg overflow-hidden text-xs text-white bg-slate-400 hover:bg-[#2c82f2];
-}
-
-.link-outerPage {
-  @apply flex justify-between md:flex-row rounded-lg px-4 py-6 gap-4 bg-gray-100 dark:bg-gray-800;
-}
-
-.link-outerPage a {
-  @apply relative flex items-center justify-center py-2 flex-1 text-center rounded-lg text-white bg-slate-400 hover:bg-[#2c82f2];
-}
-
-.link-outerPage a svg {
-  @apply text-2xl;
-}
-
-.link-outerPage a .tooltip {
-  @apply absolute -top-full py-2 px-1 rounded-lg bg-slate-300 text-xs invisible;
-}
-
-/* Select Month */
-.month-selected {
-  @apply !bg-[#2c82f2] text-white dark:!text-white;
-}
-
-.month-noneSelected {
-  @apply bg-gray-200 text-black;
-}
-
-.month-disabled {
-  @apply opacity-30 !cursor-default hover:bg-transparent;
-}
-
-.month-noneDisabled {
-  @apply hover:bg-[#2c82f2]/[0.5] dark:hover:bg-[#2c82f2]/[0.5] hover:text-white dark:hover:text-white;
-}
-
-.month-base {
-  @apply cursor-pointer text-[10px] px-5 py-1 dark:text-slate-400 dark:bg-gray-600;
-}
-
-.heatmap-info span {
-  @apply text-xs;
-}
-
-.small-box {
-  @apply w-2 h-2 rounded-sm;
-}
-
-/*hearmap : -1값*/
-rect[val='-1'] {
-  @apply fill-[#f3f4f6] dark:fill-[#1f2937] cursor-default;
-}
-rect {
-  @apply cursor-pointer;
-}
-
-/* day posting */
-.day-posting-box {
-  @apply overflow-y-auto relative w-full h-[140px];
-}
-.day-posting {
-  @apply w-full mb-2 last-of-type:mb-0 border border-[#cad1dc] dark:border-slate-400 rounded-lg px-4 py-2 flex items-center justify-between;
-}
-.day-posting-box::-webkit-scrollbar {
-  width: 12px;
-}
-
-.day-posting-box::-webkit-scrollbar-track {
-  background: #f3f4f6 !important;
-}
-
-.day-posting-box::-webkit-scrollbar-thumb {
-  background: #c7c7c4;
-  border-radius: 6px;
-  border: 5px solid #f3f4f6;
-}
+/* dark mode */
 html.dark .day-posting-box::-webkit-scrollbar-track {
   background: #1f2937 !important;
 }

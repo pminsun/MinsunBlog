@@ -354,8 +354,8 @@ export default function PostHeatMap({
 
   return (
     <>
-      <div className="flex flex-col justify-between mt-2 mb-1 h-[330px] w-full">
-        <div className="w-full h-[90%]">
+      <div className="heatmap-container">
+        <div className="chart-wrap">
           <ApexCharts
             options={options}
             series={state.series}
@@ -364,27 +364,27 @@ export default function PostHeatMap({
             height={'100%'}
           />
         </div>
-        <div className="flex-line justify-end heatmap-info">
-          <div className="flex-line gap-2">
+        <div className="flex-line heatmap-info">
+          <div className="flex-line">
             <span>Less</span>
-            <div className="flex-line gap-1">
-              <div className="small-box bg-[#cad1dc]" />
-              <div className="small-box bg-[#7bb1f7]" />
-              <div className="small-box bg-[#61a1f5]" />
-              <div className="small-box bg-[#4692f4]" />
+            <div className="flex-line small-box-wrap">
+              <div className="bg-[#cad1dc]" />
+              <div className="bg-[#7bb1f7]" />
+              <div className="bg-[#61a1f5]" />
+              <div className="bg-[#4692f4]" />
             </div>
             <span>More</span>
           </div>
         </div>
       </div>
-      <div className="w-full h-[200px] flex flex-col rounded-lg bg-gray-100 dark:bg-gray-800">
-        <div className="flex items-center justify-between">
+      <div className="dailyPost-container">
+        <div className="dailyPost-top">
           <p className="text-xs">Post activity</p>
           <p>총 {clickPostNum}개 포스팅</p>
           <p className="text-xs">{clickDate.replace(/-/g, '.')}</p>
         </div>
-        <div className="text-center flex items-center justify-center">
-          <div className="flex flex-col gap-3 pt-4 text-left w-full h-full">
+        <div className="dailyPost-listBox">
+          <div>
             <div className="day-posting-box">
               {clickedId?.length > 0 ? (
                 clickedId?.map((content: any) => {
@@ -394,21 +394,19 @@ export default function PostHeatMap({
                       href={`/blog/${content.id}`}
                       className="day-posting group"
                     >
-                      <p className="text-sm group-hover:text-[#2c82f2]">
+                      <p className="group-hover:text-[#2c82f2]">
                         {content.name.length > 25
                           ? content.name.slice(0, 24) + '...'
                           : content.name}
                       </p>
-                      <div className="w-8 h-8 flex items-center justify-center">
-                        <BsBoxArrowUpRight className="text-lg dark:text-slate-400 group-hover:text-[#2c82f2]" />
+                      <div>
+                        <BsBoxArrowUpRight className="group-hover:text-[#2c82f2]" />
                       </div>
                     </Link>
                   )
                 })
               ) : (
-                <p className="text-sm flex items-center justify-center h-full">
-                  포스트 이력이 없습니다.
-                </p>
+                <p className="none-post">포스트 이력이 없습니다.</p>
               )}
             </div>
           </div>

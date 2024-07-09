@@ -70,3 +70,40 @@ html.dark::-webkit-scrollbar-thumb {
 .laptop-max-width {
   @apply w-full lg:max-w-3xl mx-auto;
 }
+
+/*header*/
+header {
+  @apply fixed top-0 z-50 w-full backdrop-blur-md bg-[#fbfbfa]/30 dark:bg-slate-900/30;
+
+  > div {
+    @apply flex items-center justify-between py-2 px-4 lg:px-0;
+    nav.header-style {
+      @apply flex gap-2 items-start;
+      a {
+        @apply relative block p-2 font-semibold;
+
+        &::after {
+          content: '';
+          display: block;
+          height: 2px;
+          width: 0;
+          position: absolute;
+          left: 50%;
+          bottom: 5px;
+          background-color: transparent;
+          transition: all 0.3s;
+        }
+
+        &:hover::after {
+          width: 100%;
+          left: 0;
+          background-color: #2c82f2;
+        }
+      }
+
+      .text-point-color {
+        @apply text-[#2c82f2];
+      }
+    }
+  }
+}
