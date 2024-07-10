@@ -1,26 +1,17 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import Tag from './tag'
+import { PostDetailPropType } from '@/InterfaceGather'
 import { HiExternalLink } from 'react-icons/hi'
-import { changeDate } from 'libs/useChangeDate'
-import Image from 'next/image'
-import { PostDetailPropType, TagType } from '@/InterfaceGather'
+import { blurDataURLColor, changeDateToDot, cloudfrontBaseUrl, korDate } from 'libs/utils'
 
 export default function PostDetailProp(props: PostDetailPropType) {
   const { name, tags, github, description, createDate, imageUrl, awsImageName } = props
 
-  const create = new Date(createDate)
-  const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
-    .toISOString()
-    .split('T')[0]
-
-  const blurDataURL =
-    'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII='
-
-  const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
-
   return (
     <div className="post-detailProps-container">
       <div className="post-detailImg-container">
+        {/* blog page */}
         {imageUrl && (
           <Image
             src={imageUrl}
@@ -29,11 +20,11 @@ export default function PostDetailProp(props: PostDetailPropType) {
             height={300}
             priority
             placeholder="blur"
-            blurDataURL={blurDataURL}
+            blurDataURL={blurDataURLColor}
             className="post-image-style"
           />
         )}
-        {!imageUrl && !awsImageName && <div className="post-noneimage-style" />}
+        {/* project page */}
         {awsImageName && (
           <Image
             src={`${cloudfrontBaseUrl}/images/${awsImageName}`}
@@ -42,14 +33,16 @@ export default function PostDetailProp(props: PostDetailPropType) {
             height={300}
             priority
             placeholder="blur"
-            blurDataURL={blurDataURL}
+            blurDataURL={blurDataURLColor}
             className="post-image-style !object-top"
           />
         )}
+        {/* 이미지 없을 경우 */}
+        {!imageUrl && !awsImageName && <div className="post-noneimage-style" />}
       </div>
-      {/* image dark */}
+      {/* 이미지 위 어두운 레이아웃 */}
       <div className="post-image-blackLayout" />
-      {/* prop Content */}
+      {/* prop 내용을 표시하는 부분  */}
       <div className="post-props absolute-center laptop-max-width">
         <h2>{name}</h2>
         <div className="tag-area prop-unit">
@@ -73,7 +66,7 @@ export default function PostDetailProp(props: PostDetailPropType) {
         {createDate && (
           <div className="flex items-center date-area prop-unit">
             <span>작성일자</span>
-            <span>{changeDate(korDate)}</span>
+            <span>{changeDateToDot(korDate(createDate))}</span>
           </div>
         )}
       </div>

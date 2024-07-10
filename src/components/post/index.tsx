@@ -3,29 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Tag from './tag'
-import { changeDate } from 'libs/useChangeDate'
-import { cls } from 'libs/utils'
 import DEFINE from '@/constant/Global'
+import { blurDataURLColor, changeDateToDot, cloudfrontBaseUrl, cls, korDate } from 'libs/utils'
 import { PostType, TagType } from '@/InterfaceGather'
 
 export default function Post(props: PostType) {
   const { item, viewStyle, tagCategory, awsImages } = props
   const itemData = UseProperties(props.item)
 
-  //aws s3 image
-  const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
-
   const router = useRouter()
-  const pathName =
-    router.pathname === '/project' ? `/project/${item.id}` : `/blog/${item.id}`
+  const pathName = router.pathname === '/project' ? `/project/${item.id}` : `/blog/${item.id}`
   const queryValue = router.pathname === '/project' ? { img: awsImages } : null
-
-  const create = new Date(item.created_time)
-  const korDate = new Date(
-    create.getTime() - create.getTimezoneOffset() * 60000,
-  )
-    .toISOString()
-    .split('T')[0]
 
   const tagName = itemData.tags.map((row: TagType) => row.name)
 
@@ -36,9 +24,6 @@ export default function Post(props: PostType) {
       [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].some((excludedTag) =>
         tagName.includes(excludedTag),
       ))
-
-  const blurDataURL =
-    'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO88B8AAqUB0Y/H4mkAAAAASUVORK5CYII='
 
   return (
     <>
@@ -57,7 +42,7 @@ export default function Post(props: PostType) {
                 height={300}
                 priority
                 placeholder="blur"
-                blurDataURL={blurDataURL}
+                blurDataURL={blurDataURLColor}
                 className="post-image-style"
               />
             )}
@@ -74,7 +59,7 @@ export default function Post(props: PostType) {
                 height={300}
                 priority
                 placeholder="blur"
-                blurDataURL={blurDataURL}
+                blurDataURL={blurDataURLColor}
                 className="post-image-style"
               />
             )}
@@ -83,7 +68,9 @@ export default function Post(props: PostType) {
             <p className="post-name">{itemData.name}</p>
             <p className="post-gallery-desc">{itemData.description}</p>
             {item.created_time && (
-              <p className="post-gallery-createdTime">{changeDate(korDate)}</p>
+              <p className="post-gallery-createdTime">
+                {changeDateToDot(korDate(item.created_time))}
+              </p>
             )}
             <Tag tags={itemData.tags} viewStyle={viewStyle} />
           </div>
@@ -104,7 +91,7 @@ export default function Post(props: PostType) {
                 height={300}
                 priority
                 placeholder="blur"
-                blurDataURL={blurDataURL}
+                blurDataURL={blurDataURLColor}
                 className="post-image-style"
               />
             )}
@@ -122,7 +109,7 @@ export default function Post(props: PostType) {
                 height={300}
                 priority
                 placeholder="blur"
-                blurDataURL={blurDataURL}
+                blurDataURL={blurDataURLColor}
                 className="post-image-style"
               />
             )}
@@ -130,9 +117,7 @@ export default function Post(props: PostType) {
           <div className="post-list-info-left post-info">
             <div>
               <p className="post-name">
-                {itemData.name.length > 40
-                  ? itemData.name.slice(0, 39) + '...'
-                  : itemData.name}
+                {itemData.name.length > 40 ? itemData.name.slice(0, 39) + '...' : itemData.name}
               </p>
               <span
                 className={cls(
@@ -145,16 +130,10 @@ export default function Post(props: PostType) {
             </div>
           </div>
           <div className="post-list-info-right post-info">
-            <Tag
-              tags={itemData.tags}
-              viewStyle={viewStyle}
-              tagCategory={tagCategory}
-            />
+            <Tag tags={itemData.tags} viewStyle={viewStyle} tagCategory={tagCategory} />
             <span className="bar page-text-group-hover-Anieffect-1000">|</span>
             {item.created_time && (
-              <span className="post-list-createdTime">
-                {changeDate(item.created_time)}
-              </span>
+              <span className="post-list-createdTime">{changeDateToDot(item.created_time)}</span>
             )}
           </div>
         </Link>

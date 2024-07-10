@@ -7,7 +7,7 @@ import Post from '@/components/post'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 import { IoLogoGithub, IoMail } from 'react-icons/io5'
 import { useEffect, useRef, useState } from 'react'
-import { cls } from 'libs/utils'
+import { cls, korDate } from 'libs/utils'
 import dynamic from 'next/dynamic'
 import DEFINE from '@/constant/Global'
 import { DataListObject, ListResults } from '@/InterfaceGather'
@@ -40,12 +40,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
   const numMonth = engMonthName[today.getMonth()].monthNum
 
   const createPost = combinedBlogs.map((x: { created_time: string }) => {
-    const create = new Date(x.created_time)
-    const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
-      .toISOString()
-      .split('T')[0]
-
-    return korDate
+    return korDate(x.created_time)
   })
 
   const [monthList, setMonthList] = useState({ engMonth, numMonth })
