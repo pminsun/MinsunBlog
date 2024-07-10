@@ -54,7 +54,7 @@ export const notionTxtColor = (colorName: string) => {
 }
 
 export const stylesMap: notionText = {
-  bold: 'font-extrabold',
+  bold: 'fontbold-style',
   italic: 'italic',
   strikethrough: 'line-through',
   underline: 'underline underline-offset-4',

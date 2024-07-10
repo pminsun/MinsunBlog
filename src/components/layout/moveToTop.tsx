@@ -24,12 +24,9 @@ export default function MoveToTop() {
   return (
     <div
       onClick={moveToTop}
-      className={cls(
-        showTopBtn ? 'opacity-100 visible' : 'opacity-0 invisible',
-        'fixed bottom-7 right-4 lg:right-10 p-2 z-20 cursor-pointer hover:scale-90 transition-all duration-500 rounded-full bg-[#2c82f2]',
-      )}
+      className={cls(showTopBtn ? 'show-btn' : 'hidden-btn', 'moveToTop-box')}
     >
-      <HiChevronUp className="text-2xl text-white" />
+      <HiChevronUp />
     </div>
   )
 }

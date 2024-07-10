@@ -42,6 +42,11 @@ html.dark::-webkit-scrollbar-thumb {
   background-color: #23345c;
 }
 
+/* Layout */
+.root-layout {
+  @apply w-full pt-4 lg:px-0 mt-[56px];
+}
+
 /*custom*/
 .bg-primary {
   @apply bg-[#fbfbfa] dark:bg-slate-900;
@@ -118,6 +123,23 @@ footer {
     .copyright {
       @apply text-xs;
     }
+  }
+}
+
+/* MoveToTop btn */
+.moveToTop-box {
+  @apply fixed bottom-7 right-4 lg:right-10 p-2 z-20 cursor-pointer hover:scale-90 transition-all duration-500 rounded-full bg-[#2c82f2];
+
+  svg {
+    @apply text-2xl text-white;
+  }
+
+  &.show-btn {
+    @apply opacity-100 visible;
+  }
+
+  &.hidden-btn {
+    @apply opacity-0 invisible;
   }
 }
 

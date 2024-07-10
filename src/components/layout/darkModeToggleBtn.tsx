@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HiOutlineSun, HiOutlineStar } from 'react-icons/hi'
 
 export default function DarkModeToggleBtn() {

@@ -1,5 +1,4 @@
 /* blog & project post style */
-
 .post-content-area {
   @apply px-5 lg:px-0 pb-8;
 
@@ -161,16 +160,6 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
   background-color: #23345c;
 }
 
-.post-text-group-hover-Anieffect-500 {
-  @apply text-xs
-  group-hover:transition-all group-hover:duration-500;
-}
-
-.post-text-group-hover-Anieffect-1000 {
-  @apply text-xs 
-  group-hover:transition-all group-hover:duration-1000;
-}
-
 /* blog & project post Detail style */
 .backBtn-container {
   @apply px-5 lg:px-0;
@@ -180,7 +169,7 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
   }
 }
 
-/* props */
+/* post props */
 .post-detailProps-container {
   @apply relative h-[300px] overflow-hidden mt-4 mb-8;
 
@@ -256,6 +245,10 @@ a.link-none-style {
 
 p.paragraph-style {
   @apply text-sm leading-6;
+
+  > span.fontbold-style {
+    @apply font-extrabold;
+  }
 }
 
 li.bulletedList-style {
@@ -263,7 +256,7 @@ li.bulletedList-style {
 }
 
 p.heading3-style {
-  @apply text-lg pb-4 leading-6;
+  @apply text-lg pb-4 leading-6 font-bold;
 }
 
 div.quote-style {
