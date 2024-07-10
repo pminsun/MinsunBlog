@@ -195,7 +195,7 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
     @apply absolute w-full h-full bg-black/50;
   }
   .post-props {
-    @apply px-5 lg:px-0 ItemDetailPropText text-white;
+    @apply px-5 lg:px-0 text-white;
 
     h2 {
       @apply text-2xl font-semibold mb-7 drop-shadow-md;
@@ -246,28 +246,84 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
   @apply px-5 lg:px-0 pb-10;
 }
 
-.ItemDetailPropText h2 {
-  @apply drop-shadow-md;
+a.link-style {
+  @apply hover:text-[#2c82f2] underline;
+}
+
+a.link-none-style {
+  @apply mt-6 pb-3 mb-4 font-bold text-sm block border-b border-stone-400;
+}
+
+p.paragraph-style {
+  @apply text-sm leading-6;
+}
+
+li.bulletedList-style {
+  @apply pl-3 text-sm leading-6;
+}
+
+p.heading3-style {
+  @apply text-lg pb-4 leading-6;
+}
+
+div.quote-style {
+  @apply text-sm my-3 py-1 leading-6 relative flex items-center;
+
+  span {
+    @apply absolute left-0 right-0 w-1 h-full bg-[#2c82f2b9];
+  }
+
+  p {
+    @apply pl-5;
+  }
+}
+
+pre.code-style {
+  @apply text-xs overflow-x-auto !text-[#4e5156] dark:!text-[#d6deeb] p-5 bg-[#f6f4ef] dark:bg-[#011627] md:text-sm my-4 border border-transparent rounded-lg dark:border-slate-600;
+}
+
+div.image-style {
+  @apply relative my-3;
+}
+
+div.video-style {
+  @apply border border-gray-200 dark:border-gray-700;
+}
+
+div.bookmark-style {
+  @apply my-2;
+
+  a {
+    @apply text-sm text-[#2c82f2] font-bold break-all hover:underline decoration-[#2c82f2];
+  }
+}
+
+div.embed-style {
+  @apply my-2;
+
+  iframe {
+    @apply w-full;
+  }
 }
 
 /* Pagination */
-.pagination-style {
+ul.pagination-style {
   @apply flex items-center justify-center gap-3 text-sm py-2;
-}
 
-.pagination-style li {
-  @apply py-1 px-2 cursor-pointer;
-}
+  li {
+    @apply py-1 px-2 cursor-pointer;
 
-.pagination-style .ellipsis {
-  @apply cursor-default;
-}
+    &.ellipsis {
+      @apply cursor-default;
+    }
 
-.pagination-style .aLeft,
-.pagination-style .aRight {
-  @apply py-2 px-2;
-}
+    &.aLeft,
+    &.aRight {
+      @apply py-2 px-2;
+    }
 
-.pagination-style .currentpage {
-  @apply bg-[#5699f1] text-white rounded-md;
+    &.currentpage {
+      @apply bg-[#5699f1] text-white rounded-md;
+    }
+  }
 }

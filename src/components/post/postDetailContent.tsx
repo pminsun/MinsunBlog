@@ -51,19 +51,13 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       .join(' ')
 
     return textLink ? (
-      <Link key={index} href={content} target="_blank" className="hover:text-[#2c82f2] underline">
+      <Link key={index} href={content} target="_blank" className="link-style">
         {content}
       </Link>
     ) : (
       <span
         key={index}
-        className={cls(
-          'detail-paragraph',
-          textStyles,
-          content === '참고'
-            ? 'mt-6 pb-3 mb-4 font-bold text-sm block border-b border-stone-400'
-            : '',
-        )}
+        className={cls('detail-paragraph', textStyles, content === '참고' ? 'link-none-style' : '')}
       >
         {content}
       </span>
@@ -76,7 +70,7 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       return (
         <>
           {richTextContent.length > 0 ? (
-            <p key={blockContent.id} className={cls('text-sm leading-6', ...paragraphColor)}>
+            <p key={blockContent.id} className={cls('paragraph-style', ...paragraphColor)}>
               {richTextContent}
             </p>
           ) : (
@@ -86,14 +80,14 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       )
     case 'bulleted_list_item':
       return (
-        <li key={blockContent.id} className={cls('pl-3 text-sm leading-6', ...paragraphColor)}>
+        <li key={blockContent.id} className={cls('bulletedList-style', ...paragraphColor)}>
           {richTextContent}
         </li>
       )
     case 'heading_3':
       return (
         <>
-          <p key={blockContent.id} className={cls('text-lg pb-4 leading-6', ...paragraphColor)}>
+          <p key={blockContent.id} className={cls('heading3-style', ...paragraphColor)}>
             {richTextContent}
           </p>
         </>
@@ -101,15 +95,9 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
     case 'quote':
       return (
         <>
-          <div
-            key={blockContent.id}
-            className={cls(
-              'text-sm my-3 py-1 leading-6 relative flex items-center',
-              ...paragraphColor,
-            )}
-          >
-            <span className="absolute left-0 right-0 w-1 h-full bg-[#2c82f2b9]"></span>
-            <p className="pl-5">{richTextContent}</p>
+          <div key={blockContent.id} className={cls('quote-style', ...paragraphColor)}>
+            <span></span>
+            <p>{richTextContent}</p>
           </div>
         </>
       )
@@ -117,10 +105,7 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       const codeTxt = blockContent.code?.rich_text[0]?.text?.content
       const codeLag = blockContent.code?.language
       return (
-        <pre
-          key={blockContent.id}
-          className="text-xs overflow-x-auto !text-[#4e5156] dark:!text-[#d6deeb] p-5 bg-[#f6f4ef] dark:bg-[#011627] md:text-sm my-4 border border-transparent rounded-lg dark:border-slate-600"
-        >
+        <pre key={blockContent.id} className="code-style">
           {codeLag === 'javascript' ? (
             <Highlight className="javascript">{codeTxt}</Highlight>
           ) : codeLag === 'css' ? (
@@ -136,7 +121,7 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
         width: imageSize.width > 768 || screenWidth < 768 ? '100%' : imageSize.width,
       }
       return (
-        <div key={blockContent.id} style={imageSizeStyles} className="relative my-3">
+        <div key={blockContent.id} style={imageSizeStyles} className="image-style">
           {blockContent.image && (
             <Image
               src={blockContent.image.file.url}
@@ -157,19 +142,15 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       )
     case 'video':
       return (
-        <div key={blockContent.id} className="border border-gray-200 dark:border-gray-700">
+        <div key={blockContent.id} className="video-style">
           {blockContent.video && <video src={blockContent.video.file.url} autoPlay loop muted />}
         </div>
       )
     case 'bookmark':
       return (
-        <div key={blockContent.id} className="my-2 ">
+        <div key={blockContent.id} className="bookmark-style">
           {blockContent.bookmark && (
-            <Link
-              href={blockContent.bookmark.url}
-              target="_blank"
-              className="text-sm text-[#2c82f2] font-bold break-all hover:underline decoration-[#2c82f2]"
-            >
+            <Link href={blockContent.bookmark.url} target="_blank">
               {blockContent.bookmark.url}
             </Link>
           )}
@@ -180,12 +161,11 @@ export default function PostDetailContent({ blockContent }: BlockContentType) {
       const codepenMyId = 'pminsun'
       const codepenId = blockContent.embed?.url?.split('/')[5].split('?')[0]
       return (
-        <div key={blockContent.id} className="my-2">
+        <div key={blockContent.id} className="embed-style">
           {mounted && (
             <>
               <iframe
                 height="350"
-                className="w-full"
                 title="videoTag"
                 src={`${codepenUrl}/${codepenMyId}/embed/${codepenId}?default-tab=html%2Cresult`}
                 loading="lazy"
