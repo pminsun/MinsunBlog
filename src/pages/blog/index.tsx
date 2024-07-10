@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Post from '@/components/post'
-import Title from '../../components/ScreenElement/title'
+import Title from '../../components/layout/title'
 import axios from 'axios'
 import { cls } from 'libs/utils'
 import { BASE_URL, DATABASE_ID_BLOG, TOKEN } from 'libs/config'
 import { useSortedData } from 'libs/usePageState'
-import PageState from '@/components/ScreenElement/pageState'
+import PageState from '@/components/post/pageState'
 import { useBlogPageStore } from '@/store/pageStore'
-import Seo from '@/components/seo'
+import Seo from '@/components/layout/seo'
 import { useEffect, useState } from 'react'
-import MoveToTop from '@/components/ScreenElement/moveToTop'
+import MoveToTop from '@/components/layout/moveToTop'
 import DEFINE from '@/constant/Global'
 import { DataListObject, ListResults } from '@/InterfaceGather'
-import Pagination from '@/components/ScreenElement/pagination'
+import Pagination from '@/components/layout/pagination'
 import { PiWarningCircle } from 'react-icons/pi'
 
 export default function Blog({ combinedBlogs }: DataListObject) {
@@ -41,12 +41,8 @@ export default function Blog({ combinedBlogs }: DataListObject) {
     let updatedList = combinedBlogs
     updatedList = combinedBlogs.filter((item: ListResults) => {
       return (
-        item?.properties['이름'].title[0].plain_text
-          ?.toLowerCase()
-          .includes(searchWord) ||
-        item?.properties.Description?.rich_text[0].plain_text
-          ?.toLowerCase()
-          .includes(searchWord)
+        item?.properties['이름'].title[0].plain_text?.toLowerCase().includes(searchWord) ||
+        item?.properties.Description?.rich_text[0].plain_text?.toLowerCase().includes(searchWord)
       )
     })
     setFilteredList(updatedList)
@@ -67,9 +63,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
       tagCount = combinedBlogs.filter((item: ListResults) => {
         return item?.properties['태그'].multi_select
           .map((row: any) => row.name)
-          .some((i) =>
-            [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].includes(i),
-          )
+          .some((i) => [DEFINE.TAGCATEGORY.HTML, DEFINE.TAGCATEGORY.NEXTJS].includes(i))
       })
     }
 
@@ -91,10 +85,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
       />
       {mounted && (
         <div className="laptop-max-width postList-container">
-          <Title
-            title={'Blog'}
-            subMent={'개발하면서 탐구한 것을 기록합니다.'}
-          />
+          <Title title={'Blog'} subMent={'개발하면서 탐구한 것을 기록합니다.'} />
           <div className="post-content-area">
             <div className="post-search-container">
               <input
@@ -109,9 +100,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ALL)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.ALL
-                      ? 'categoty-selected-style '
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.ALL ? 'categoty-selected-style ' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ALL}({combinedBlogs.length})
@@ -119,9 +108,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.DEV)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.DEV
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.DEV ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.DEV}
@@ -129,9 +116,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.REACT)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.REACT
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.REACT ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.REACT}
@@ -139,9 +124,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.EMOTION)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.EMOTION
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.EMOTION ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.EMOTION}
@@ -149,9 +132,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.TAILWINDCSS)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.TAILWINDCSS
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.TAILWINDCSS ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.TAILWINDCSS}
@@ -159,9 +140,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.JAVASCRIPT)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.JAVASCRIPT
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.JAVASCRIPT ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.JAVASCRIPT}
@@ -169,9 +148,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.TYPESCRIPT)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.TYPESCRIPT
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.TYPESCRIPT ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.TYPESCRIPT}
@@ -179,9 +156,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.CSS)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.CSS
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.CSS ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.CSS}
@@ -189,9 +164,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ETC)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.ETC
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.ETC ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ETC}
@@ -207,20 +180,13 @@ export default function Blog({ combinedBlogs }: DataListObject) {
             )}
             <div
               className={cls(
-                viewStyle === 'gallery'
-                  ? 'page-gallery-style grid-rows-3'
-                  : 'page-list-style',
+                viewStyle === 'gallery' ? 'page-gallery-style grid-rows-3' : 'page-list-style',
                 'page-default-style',
               )}
             >
               {useSortedData(
                 filteredList.map((item: ListResults) => (
-                  <Post
-                    key={item.id}
-                    item={item}
-                    viewStyle={viewStyle}
-                    tagCategory={tagCategory}
-                  />
+                  <Post key={item.id} item={item} viewStyle={viewStyle} tagCategory={tagCategory} />
                 )),
                 sortedContent,
               ).slice(indexOfFirst, indexOfLast)}
@@ -259,8 +225,7 @@ export async function getServerSideProps() {
     axiosConfig,
   )
 
-  const startCursor =
-    response.data.has_more === true ? response.data.next_cursor : null
+  const startCursor = response.data.has_more === true ? response.data.next_cursor : null
 
   const remainData = {
     page_size: 100,
@@ -273,10 +238,7 @@ export async function getServerSideProps() {
     axiosConfig,
   )
 
-  const [blogsResponse, remainBlogsResponse] = await Promise.all([
-    response,
-    remainResponse,
-  ])
+  const [blogsResponse, remainBlogsResponse] = await Promise.all([response, remainResponse])
 
   const originblogs = blogsResponse.data.results
   const remainBlogs = remainBlogsResponse.data.results

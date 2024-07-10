@@ -4,22 +4,12 @@ import { HiExternalLink } from 'react-icons/hi'
 import { changeDate } from 'libs/useChangeDate'
 import Image from 'next/image'
 import { PostDetailPropType, TagType } from '@/InterfaceGather'
-import { useRouter } from 'next/router'
 
-export default function PostDetailProp({
-  name,
-  tags,
-  github,
-  description,
-  createDate,
-  imageUrl,
-  awsImageName,
-}: PostDetailPropType) {
-  const router = useRouter()
+export default function PostDetailProp(props: PostDetailPropType) {
+  const { name, tags, github, description, createDate, imageUrl, awsImageName } = props
+
   const create = new Date(createDate)
-  const korDate = new Date(
-    create.getTime() - create.getTimezoneOffset() * 60000,
-  )
+  const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
     .toISOString()
     .split('T')[0]
 
@@ -75,11 +65,7 @@ export default function PostDetailProp({
             <span>
               Github <HiExternalLink />
             </span>
-            <Link
-              href={github + ''}
-              target="_blank"
-              className="hover:underline"
-            >
+            <Link href={github + ''} target="_blank" className="hover:underline">
               {github}
             </Link>
           </div>

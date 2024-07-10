@@ -10,10 +10,7 @@ export default function DarkModeToggleBtn() {
   }, [setLoaded])
 
   return (
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="flex p-1"
-    >
+    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="flex p-1">
       {loaded ? (
         <>
           {theme === 'dark' ? (

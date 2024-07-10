@@ -186,6 +186,10 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
 
   .post-detailImg-container {
     @apply absolute w-full h-full;
+
+    .post-image-style {
+      @apply w-full h-full object-cover object-center;
+    }
   }
   .post-image-blackLayout {
     @apply absolute w-full h-full bg-black/50;
@@ -240,10 +244,6 @@ html.dark .item-tagCategory::-webkit-scrollbar-thumb {
 /* 상세 내용 */
 .post-detailContent-container {
   @apply px-5 lg:px-0 pb-10;
-
-  .post-image-style {
-    @apply w-full h-full object-cover object-center;
-  }
 }
 
 .ItemDetailPropText h2 {

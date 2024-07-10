@@ -4,7 +4,7 @@ import '@/styles/post.css'
 import '@/styles/fonts.css'
 import '@/styles/codeHighlightColors.css'
 import type { AppProps } from 'next/app'
-import Layout from '../components/layout'
+import Layout from '../components/layout/layout'
 import React from 'react'
 import { ThemeProvider } from 'next-themes'
 

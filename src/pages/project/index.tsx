@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Post from '@/components/post'
-import MoveToTop from '@/components/ScreenElement/moveToTop'
-import PageState from '@/components/ScreenElement/pageState'
-import Seo from '@/components/seo'
-import Title from '@/components/ScreenElement/title'
+import MoveToTop from '@/components/layout/moveToTop'
+import PageState from '@/components/post/pageState'
+import Seo from '@/components/layout/seo'
+import Title from '@/components/layout/title'
 import DEFINE from '@/constant/Global'
 import { useProjectPageStore } from '@/store/pageStore'
 import axios from 'axios'
@@ -12,7 +12,7 @@ import { useSortedData } from 'libs/usePageState'
 import { cls } from 'libs/utils'
 import { useEffect, useState } from 'react'
 import { ListResults, ProjectistObject } from '@/InterfaceGather'
-import Pagination from '@/components/ScreenElement/pagination'
+import Pagination from '@/components/layout/pagination'
 import { PiWarningCircle } from 'react-icons/pi'
 import { AWS_KEY, AWS_REG, AWS_SECRET_KEY } from 'libs/config'
 const { S3Client, ListObjectsV2Command } = require('@aws-sdk/client-s3')
@@ -43,12 +43,8 @@ export default function Project({ projects }: ProjectistObject) {
     let updatedList = projects
     updatedList = projects.filter((item: ListResults) => {
       return (
-        item?.properties['이름'].title[0].plain_text
-          ?.toLowerCase()
-          .includes(searchWord) ||
-        item?.properties.Description?.rich_text[0].plain_text
-          ?.toLowerCase()
-          .includes(searchWord)
+        item?.properties['이름'].title[0].plain_text?.toLowerCase().includes(searchWord) ||
+        item?.properties.Description?.rich_text[0].plain_text?.toLowerCase().includes(searchWord)
       )
     })
     setFilteredList(updatedList)
@@ -120,10 +116,7 @@ export default function Project({ projects }: ProjectistObject) {
       />
       {mounted && (
         <div className="laptop-max-width postList-container">
-          <Title
-            title={'Projects'}
-            subMent={'진행했던 프로젝트들을 기록합니다.'}
-          />
+          <Title title={'Projects'} subMent={'진행했던 프로젝트들을 기록합니다.'} />
           <div className="post-content-area">
             <div className="post-search-container">
               <input
@@ -138,9 +131,7 @@ export default function Project({ projects }: ProjectistObject) {
                 <li
                   onClick={() => setTagCategory(DEFINE.TAGCATEGORY.ALL)}
                   className={cls(
-                    tagCategory === DEFINE.TAGCATEGORY.ALL
-                      ? 'categoty-selected-style'
-                      : '',
+                    tagCategory === DEFINE.TAGCATEGORY.ALL ? 'categoty-selected-style' : '',
                   )}
                 >
                   {DEFINE.TAGCATEGORY.ALL}({projects.length})
@@ -156,9 +147,7 @@ export default function Project({ projects }: ProjectistObject) {
             )}
             <div
               className={cls(
-                viewStyle === 'gallery'
-                  ? 'page-gallery-style grid-rows-3'
-                  : 'page-list-style',
+                viewStyle === 'gallery' ? 'page-gallery-style grid-rows-3' : 'page-list-style',
                 'page-default-style',
               )}
             >
@@ -170,11 +159,9 @@ export default function Project({ projects }: ProjectistObject) {
                     viewStyle={viewStyle}
                     tagCategory={tagCategory}
                     awsImages={
-                      awsImages &&
-                      item.id === '49b53229-e993-4e98-ad6d-74687ad9364a'
+                      awsImages && item.id === '49b53229-e993-4e98-ad6d-74687ad9364a'
                         ? awsImages[1]
-                        : awsImages &&
-                            item.id === '12e40e01-8c7c-457e-bada-784889fbe08a'
+                        : awsImages && item.id === '12e40e01-8c7c-457e-bada-784889fbe08a'
                           ? awsImages[0]
                           : ''
                     }

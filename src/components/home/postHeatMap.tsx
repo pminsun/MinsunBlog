@@ -8,30 +8,23 @@ import UseProperties from 'libs/useProperties'
 import Link from 'next/link'
 import { BsBoxArrowUpRight } from 'react-icons/bs'
 
-export default function PostHeatMap({
-  combinedBlogs,
-  year,
-  month,
-}: PostHeatMapType) {
+export default function PostHeatMap(props: PostHeatMapType) {
+  const { combinedBlogs, year, month } = props
   const { theme } = useTheme()
   const today = new Date(`${year}-${month}`)
   const yearChart = today.getFullYear()
   const monthChart = today.getMonth() + 1
 
   //작성일자
-  const createPost = combinedBlogs.map(
-    (x: { id: string; created_time: string }) => {
-      const itemData = UseProperties(x)
-      const create = new Date(x.created_time)
-      const korDate = new Date(
-        create.getTime() - create.getTimezoneOffset() * 60000,
-      )
-        .toISOString()
-        .split('T')[0]
+  const createPost = combinedBlogs.map((x: { id: string; created_time: string }) => {
+    const itemData = UseProperties(x)
+    const create = new Date(x.created_time)
+    const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
+      .toISOString()
+      .split('T')[0]
 
-      return { korDate, postId: x.id, postName: itemData.name }
-    },
-  )
+    return { korDate, postId: x.id, postName: itemData.name }
+  })
 
   const createPostCount: PostCountType = {}
   createPost.forEach((x: { korDate: string | number; postId: string }) => {
@@ -68,14 +61,10 @@ export default function PostHeatMap({
     const firstWeekDays = dateArray.length > 0 ? 7 - dateArray[0][1] : 0
     const excaptFirstWeek = (dateArray.length - firstWeekDays) / 7
 
-    const firstWeekData = dateArray
-      ?.slice(0, firstWeekDays)
-      .map((_, index) => ({
-        x: dateArray[index][0],
-        y: createPostCount[dateArray[index][0]]
-          ? createPostCount[dateArray[index][0]]
-          : 0,
-      }))
+    const firstWeekData = dateArray?.slice(0, firstWeekDays).map((_, index) => ({
+      x: dateArray[index][0],
+      y: createPostCount[dateArray[index][0]] ? createPostCount[dateArray[index][0]] : 0,
+    }))
 
     const middleWeek = (startWeekDay: number, lastWeekDay: number) => {
       return dateArray
@@ -103,9 +92,7 @@ export default function PostHeatMap({
     if (firstWeekData && firstWeekData.length < 7) {
       let noneDate: { x: string; y: number }[] = []
       for (let i = 0; i < 7 - firstWeekData?.length; i++) {
-        const previousMonth = new Date(
-          currentDay.setDate(currentDay.getDate() - 1),
-        )
+        const previousMonth = new Date(currentDay.setDate(currentDay.getDate() - 1))
           .toISOString()
           .split('T')[0]
 
@@ -208,11 +195,7 @@ export default function PostHeatMap({
       },
       events: {
         click: function (event, chartContext, config) {
-          if (
-            config &&
-            config.dataPointIndex !== undefined &&
-            config.seriesIndex !== undefined
-          ) {
+          if (config && config.dataPointIndex !== undefined && config.seriesIndex !== undefined) {
             const seriesIndex = config.seriesIndex
             const dataPointIndex = config.dataPointIndex
             const seriesX = chartContext.w.globals.seriesX
@@ -222,8 +205,7 @@ export default function PostHeatMap({
               Array.isArray(seriesX[seriesIndex]) &&
               seriesX[seriesIndex][dataPointIndex] !== undefined
             ) {
-              const xValue =
-                chartContext.w.globals.seriesX[seriesIndex][dataPointIndex]
+              const xValue = chartContext.w.globals.seriesX[seriesIndex][dataPointIndex]
 
               setClickDate(xValue)
             }
@@ -235,8 +217,7 @@ export default function PostHeatMap({
               Array.isArray(seriesY[seriesIndex]) &&
               seriesY[seriesIndex][dataPointIndex] !== undefined
             ) {
-              yValue =
-                chartContext.w.globals.series[seriesIndex][dataPointIndex]
+              yValue = chartContext.w.globals.series[seriesIndex][dataPointIndex]
               setClickPostNum(yValue)
             }
           }
@@ -341,15 +322,13 @@ export default function PostHeatMap({
   }
 
   const createPostId: any = {}
-  createPost.forEach(
-    (x: { korDate: string | number; postId: string; postName: string }) => {
-      if (!createPostId[x.korDate]) {
-        createPostId[x.korDate] = [{ name: x.postName, id: x.postId }]
-      } else {
-        createPostId[x.korDate].push({ name: x.postName, id: x.postId })
-      }
-    },
-  )
+  createPost.forEach((x: { korDate: string | number; postId: string; postName: string }) => {
+    if (!createPostId[x.korDate]) {
+      createPostId[x.korDate] = [{ name: x.postName, id: x.postId }]
+    } else {
+      createPostId[x.korDate].push({ name: x.postName, id: x.postId })
+    }
+  })
   const clickedId = createPostId[clickDate]
 
   return (

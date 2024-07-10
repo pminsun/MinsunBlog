@@ -7,12 +7,8 @@ import {
   BsChevronRight,
 } from 'react-icons/bs'
 
-export default function Pagination({
-  postsPerPage,
-  totalPosts,
-  currentPage,
-  setCurrentPage,
-}: PaginationType) {
+export default function Pagination(props: PaginationType) {
+  const { postsPerPage, totalPosts, currentPage, setCurrentPage } = props
   const totalPages = Math.ceil(totalPosts / postsPerPage)
   const displayPages = []
   const maxPageNumbers = 5
@@ -42,18 +38,12 @@ export default function Pagination({
     <>
       <ul className="pagination-style">
         {currentPage > 10 && (
-          <li
-            className="arrow aLeftDouble"
-            onClick={() => setCurrentPage(currentPage - 10)}
-          >
+          <li className="arrow aLeftDouble" onClick={() => setCurrentPage(currentPage - 10)}>
             <BsChevronDoubleLeft />
           </li>
         )}
         {currentPage > 1 && (
-          <li
-            className="arrow aLeft"
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
+          <li className="arrow aLeft" onClick={() => setCurrentPage(currentPage - 1)}>
             <BsChevronLeft />
           </li>
         )}
@@ -87,18 +77,12 @@ export default function Pagination({
           </li>
         )}
         {currentPage < totalPages && (
-          <li
-            className="arrow aRight"
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
+          <li className="arrow aRight" onClick={() => setCurrentPage(currentPage + 1)}>
             <BsChevronRight />
           </li>
         )}
         {currentPage <= totalPages - 10 && (
-          <li
-            className="arrow aRightDouble"
-            onClick={() => setCurrentPage(currentPage + 10)}
-          >
+          <li className="arrow aRightDouble" onClick={() => setCurrentPage(currentPage + 10)}>
             <BsChevronDoubleRight />
           </li>
         )}

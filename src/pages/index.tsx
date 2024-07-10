@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import LottiAnimation from '../components/ScreenElement/lottieAny'
-import Seo from '@/components/seo'
+import LottiAnimation from '../components/home/lottieAny'
+import Seo from '@/components/layout/seo'
 import { DATABASE_ID_BLOG, TOKEN } from 'libs/config'
 import axios from 'axios'
 import Post from '@/components/post'
@@ -11,13 +11,9 @@ import { cls } from 'libs/utils'
 import dynamic from 'next/dynamic'
 import DEFINE from '@/constant/Global'
 import { DataListObject, ListResults } from '@/InterfaceGather'
-import Image from 'next/image'
-const PostHeatMap = dynamic(
-  () => import('@/components/ScreenElement/postHeatMap'),
-  {
-    ssr: false,
-  },
-)
+const PostHeatMap = dynamic(() => import('@/components/home/postHeatMap'), {
+  ssr: false,
+})
 
 export default function Home({ combinedBlogs }: DataListObject) {
   const today = new Date()
@@ -45,9 +41,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
 
   const createPost = combinedBlogs.map((x: { created_time: string }) => {
     const create = new Date(x.created_time)
-    const korDate = new Date(
-      create.getTime() - create.getTimezoneOffset() * 60000,
-    )
+    const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
       .toISOString()
       .split('T')[0]
 
@@ -146,8 +140,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
               <div className="intro-leftBottomBox">
                 <p>
                   안녕하세요.
-                  <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드
-                  개발자입니다.
+                  <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드 개발자입니다.
                 </p>
                 <div className="link-innerPage">
                   <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
@@ -166,8 +159,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
           <div className="intro-right">
             <div className="calendarSelect-container">
               <span>
-                {mathMonth.length > 0 ? mathMonth.length : 0} posts in{' '}
-                {monthList.engMonth}
+                {mathMonth.length > 0 ? mathMonth.length : 0} posts in {monthList.engMonth}
               </span>
               <div className="calendarSelect-center">
                 <span onClick={toggleMonthList} ref={dropMonthMenuBtnRef}>
@@ -182,21 +174,13 @@ export default function Home({ combinedBlogs }: DataListObject) {
                           onClick={() => {
                             if (year !== 2023) {
                               setYearList(year)
-                              selectMonth(
-                                engMonthName[0].monthEng,
-                                engMonthName[0].monthNum,
-                              )
+                              selectMonth(engMonthName[0].monthEng, engMonthName[0].monthNum)
                             } else {
                               setYearList(year)
-                              selectMonth(
-                                engMonthName[8].monthEng,
-                                engMonthName[8].monthNum,
-                              )
+                              selectMonth(engMonthName[8].monthEng, engMonthName[8].monthNum)
                             }
                           }}
-                          className={cls(
-                            yearList === year ? 'month-selected' : '',
-                          )}
+                          className={cls(yearList === year ? 'month-selected' : '')}
                         >
                           {year}
                         </li>
@@ -241,11 +225,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
               </div>
               <span>{combinedBlogs.length} total posts</span>
             </div>
-            <PostHeatMap
-              combinedBlogs={combinedBlogs}
-              year={yearList}
-              month={monthList.numMonth}
-            />
+            <PostHeatMap combinedBlogs={combinedBlogs} year={yearList} month={monthList.numMonth} />
           </div>
         </div>
         <div className="recentPost-container">
@@ -261,12 +241,7 @@ export default function Home({ combinedBlogs }: DataListObject) {
 
           <div className="page-gallery-style post-content-area page-default-style lg:!min-h-[300px]">
             {combinedBlogs.slice(0, 3).map((item: ListResults) => (
-              <Post
-                key={item.id}
-                item={item}
-                viewStyle={'gallery'}
-                tagCategory={'All'}
-              />
+              <Post key={item.id} item={item} viewStyle={'gallery'} tagCategory={'All'} />
             ))}
           </div>
         </div>
@@ -295,8 +270,7 @@ export async function getServerSideProps() {
     axiosConfig,
   )
 
-  const startCursor =
-    response.data.has_more === true ? response.data.next_cursor : null
+  const startCursor = response.data.has_more === true ? response.data.next_cursor : null
 
   const remainData = {
     page_size: 100,
@@ -309,10 +283,7 @@ export async function getServerSideProps() {
     axiosConfig,
   )
 
-  const [blogsResponse, remainBlogsResponse] = await Promise.all([
-    response,
-    remainResponse,
-  ])
+  const [blogsResponse, remainBlogsResponse] = await Promise.all([response, remainResponse])
 
   const originblogs = blogsResponse.data.results
   const remainBlogs = remainBlogsResponse.data.results

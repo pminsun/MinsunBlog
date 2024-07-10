@@ -7,14 +7,11 @@ import { NextPageContext } from 'next'
 import UseProperties from 'libs/useProperties'
 import { BASE_URL, TOKEN } from 'libs/config'
 import PostDetailProp from '@/components/post/postDetailProp'
-import Seo from '@/components/seo'
-import MoveToTop from '@/components/ScreenElement/moveToTop'
+import Seo from '@/components/layout/seo'
+import MoveToTop from '@/components/layout/moveToTop'
 import { BlockDetailData } from '@/InterfaceGather'
 
-export default function blockDetail({
-  blockDetail,
-  propertiesData,
-}: BlockDetailData) {
+export default function blockDetail({ blockDetail, propertiesData }: BlockDetailData) {
   const router = useRouter()
   const awsImage = router.query.img
   const backClick = () => {
@@ -46,10 +43,7 @@ export default function blockDetail({
       />
       <div className="post-detailContent-container laptop-max-width">
         {blockDetail?.results?.map((blockContent: any) => (
-          <PostDetailContent
-            key={blockContent.id}
-            blockContent={blockContent}
-          />
+          <PostDetailContent key={blockContent.id} blockContent={blockContent} />
         ))}
       </div>
       <MoveToTop />
@@ -73,15 +67,9 @@ export async function getServerSideProps(context: NextPageContext) {
     axiosConfig,
   )
 
-  const responseProperties = axios.get(
-    `https://api.notion.com/v1/pages/${query.id}`,
-    axiosConfig,
-  )
+  const responseProperties = axios.get(`https://api.notion.com/v1/pages/${query.id}`, axiosConfig)
 
-  const [blockResponse, propertiesResponse] = await Promise.all([
-    resoinseBlock,
-    responseProperties,
-  ])
+  const [blockResponse, propertiesResponse] = await Promise.all([resoinseBlock, responseProperties])
   const blockDetail = blockResponse.data
   const propertiesData = propertiesResponse.data
 

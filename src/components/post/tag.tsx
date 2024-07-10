@@ -3,10 +3,10 @@ import DEFINE from '@/constant/Global'
 import UseTagsColor from 'libs/useTagsColor'
 import { cls } from 'libs/utils'
 
-export default function Tag({ tags, viewStyle, tagCategory }: TagsType) {
+export default function Tag(props: TagsType) {
+  const { tags, viewStyle, tagCategory } = props
   const exceptAllEtc =
-    tagCategory === DEFINE.TAGCATEGORY.ALL ||
-    tagCategory === DEFINE.TAGCATEGORY.ETC
+    tagCategory === DEFINE.TAGCATEGORY.ALL || tagCategory === DEFINE.TAGCATEGORY.ETC
       ? tags[0].name
       : tagCategory
 
@@ -15,10 +15,7 @@ export default function Tag({ tags, viewStyle, tagCategory }: TagsType) {
       {viewStyle === 'list' && tags.length > 1 ? (
         <div className="flex items-end gap-1 md:hidden">
           <span
-            className={cls(
-              UseTagsColor(exceptAllEtc ?? ''),
-              'p-1 rounded text-[10px] tag-name',
-            )}
+            className={cls(UseTagsColor(exceptAllEtc ?? ''), 'p-1 rounded text-[10px] tag-name')}
           >
             {exceptAllEtc}
           </span>
@@ -31,9 +28,7 @@ export default function Tag({ tags, viewStyle, tagCategory }: TagsType) {
           className={cls(
             UseTagsColor(tag.name),
             'p-1 rounded text-[10px] tag-name !text-black',
-            viewStyle === 'list' && tags.length > 1
-              ? 'hidden md:inline-block'
-              : '',
+            viewStyle === 'list' && tags.length > 1 ? 'hidden md:inline-block' : '',
           )}
         >
           {tag.name}

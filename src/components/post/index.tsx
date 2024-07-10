@@ -8,13 +8,9 @@ import { cls } from 'libs/utils'
 import DEFINE from '@/constant/Global'
 import { PostType, TagType } from '@/InterfaceGather'
 
-export default function Post({
-  item,
-  viewStyle,
-  tagCategory,
-  awsImages,
-}: PostType) {
-  const itemData = UseProperties(item)
+export default function Post(props: PostType) {
+  const { item, viewStyle, tagCategory, awsImages } = props
+  const itemData = UseProperties(props.item)
 
   //aws s3 image
   const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
