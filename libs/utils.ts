@@ -23,7 +23,6 @@ export const changeDateToDot = (date: string) => {
 }
 
 // notion style
-// paragraph & heading_3 & bulleted_list_item
 interface notionText {
   [key: string]: string
 }

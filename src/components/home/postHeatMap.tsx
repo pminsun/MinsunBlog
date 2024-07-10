@@ -1,11 +1,12 @@
 import dynamic from 'next/dynamic'
 const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false })
-import { ApexOptions } from 'apexcharts'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+import { ApexOptions } from 'apexcharts'
 import { PostCountType, PostHeatMapType } from '@/InterfaceGather'
 import UseProperties from 'libs/useProperties'
-import Link from 'next/link'
+import { korDate } from 'libs/utils'
 import { BsBoxArrowUpRight } from 'react-icons/bs'
 
 export default function PostHeatMap(props: PostHeatMapType) {
@@ -18,17 +19,14 @@ export default function PostHeatMap(props: PostHeatMapType) {
   //작성일자
   const createPost = combinedBlogs.map((x: { id: string; created_time: string }) => {
     const itemData = UseProperties(x)
-    const create = new Date(x.created_time)
-    const korDate = new Date(create.getTime() - create.getTimezoneOffset() * 60000)
-      .toISOString()
-      .split('T')[0]
+    const korDateMark = korDate(x.created_time)
 
-    return { korDate, postId: x.id, postName: itemData.name }
+    return { korDateMark, postId: x.id, postName: itemData.name }
   })
 
   const createPostCount: PostCountType = {}
-  createPost.forEach((x: { korDate: string | number; postId: string }) => {
-    createPostCount[x.korDate] = (createPostCount[x.korDate] || 0) + 1
+  createPost.forEach((x: { korDateMark: string | number; postId: string }) => {
+    createPostCount[x.korDateMark] = (createPostCount[x.korDateMark] || 0) + 1
   })
 
   // 이번달 1일, 마지막 일
@@ -51,11 +49,11 @@ export default function PostHeatMap(props: PostHeatMapType) {
     for (let i = 1; i <= daysDifference + 1; i++) {
       const monthDate = new Date(year, Number(month) - 1, i)
 
-      const korDate = new Date(
+      const korDateMark = new Date(
         monthDate.getTime() - monthDate.getTimezoneOffset() * 60000,
       ).toISOString()
 
-      dateArray.push([korDate.split('T')[0], monthDate.getDay()])
+      dateArray.push([korDateMark.split('T')[0], monthDate.getDay()])
     }
 
     const firstWeekDays = dateArray.length > 0 ? 7 - dateArray[0][1] : 0
@@ -322,11 +320,11 @@ export default function PostHeatMap(props: PostHeatMapType) {
   }
 
   const createPostId: any = {}
-  createPost.forEach((x: { korDate: string | number; postId: string; postName: string }) => {
-    if (!createPostId[x.korDate]) {
-      createPostId[x.korDate] = [{ name: x.postName, id: x.postId }]
+  createPost.forEach((x: { korDateMark: string | number; postId: string; postName: string }) => {
+    if (!createPostId[x.korDateMark]) {
+      createPostId[x.korDateMark] = [{ name: x.postName, id: x.postId }]
     } else {
-      createPostId[x.korDate].push({ name: x.postName, id: x.postId })
+      createPostId[x.korDateMark].push({ name: x.postName, id: x.postId })
     }
   })
   const clickedId = createPostId[clickDate]
