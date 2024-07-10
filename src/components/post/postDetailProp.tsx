@@ -29,8 +29,8 @@ export default function PostDetailProp({
   const cloudfrontBaseUrl = 'https://dxf0ufub2j2u1.cloudfront.net'
 
   return (
-    <div className="relative h-[300px] overflow-hidden mt-4 mb-8">
-      <div className="absolute w-full h-full">
+    <div className="post-detailProps-container">
+      <div className="post-detailImg-container">
         {imageUrl && (
           <Image
             src={imageUrl}
@@ -58,38 +58,36 @@ export default function PostDetailProp({
         )}
       </div>
       {/* image dark */}
-      <div className="absolute w-full h-full bg-black/50" />
+      <div className="post-image-blackLayout" />
       {/* prop Content */}
-      <div className="px-5 lg:px-0 ItemDetailPropText absolute-center laptop-max-width text-white">
-        <h2 className="text-2xl font-semibold mb-7">{name}</h2>
-        <div className="flex items-center mb-4">
-          <span className="w-24 block itemDetail-prop">태그</span>
+      <div className="post-props absolute-center laptop-max-width">
+        <h2>{name}</h2>
+        <div className="tag-area prop-unit">
+          <span>태그</span>
           <Tag tags={tags} />
         </div>
-        <div className="flex items-center mb-3">
-          <span className="w-24 min-w-[6rem] block itemDetail-prop">
-            상세설명
-          </span>
-          <span className="itemDetail-prop">{description}</span>
+        <div className="prop-unit description-area">
+          <span>상세설명</span>
+          <span>{description}</span>
         </div>
         {github && (
-          <div className="flex items-center h-6 mt-3 mb-2">
-            <span className="flex items-center gap-2 w-24 itemDetail-prop">
+          <div className="github-area prop-unit">
+            <span>
               Github <HiExternalLink />
             </span>
             <Link
               href={github + ''}
               target="_blank"
-              className="itemDetail-prop hover:underline"
+              className="hover:underline"
             >
               {github}
             </Link>
           </div>
         )}
         {createDate && (
-          <div className="flex items-center">
-            <span className="w-24 pt-1 block itemDetail-prop">작성일자</span>
-            <span className="pt-1 itemDetail-prop">{changeDate(korDate)}</span>
+          <div className="flex items-center date-area prop-unit">
+            <span>작성일자</span>
+            <span>{changeDate(korDate)}</span>
           </div>
         )}
       </div>

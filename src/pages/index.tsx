@@ -258,7 +258,8 @@ export default function Home({ combinedBlogs }: DataListObject) {
               </div>
             </Link>
           </div>
-          <div className="w-full page-gallery-style">
+
+          <div className="page-gallery-style post-content-area page-default-style lg:!min-h-[300px]">
             {combinedBlogs.slice(0, 3).map((item: ListResults) => (
               <Post
                 key={item.id}

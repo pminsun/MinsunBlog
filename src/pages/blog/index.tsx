@@ -90,7 +90,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
         desc={'개발하면서 탐구한 것을 기록합니다.'}
       />
       {mounted && (
-        <div className="laptop-max-width">
+        <div className="laptop-max-width postList-container">
           <Title
             title={'Blog'}
             subMent={'개발하면서 탐구한 것을 기록합니다.'}
@@ -200,8 +200,8 @@ export default function Blog({ combinedBlogs }: DataListObject) {
               <PageState path={'blogs'} />
             </div>
             {filteredList.length === 0 && (
-              <div className="w-full flex-center gap-2 post-link-style !cursor-default p-4">
-                <PiWarningCircle className="text-black dark:text-slate-400 text-xl" />
+              <div className="none-post-wrap flex-center post-link-style">
+                <PiWarningCircle />
                 <p>검색결과가 없습니다.</p>
               </div>
             )}
@@ -210,7 +210,7 @@ export default function Blog({ combinedBlogs }: DataListObject) {
                 viewStyle === 'gallery'
                   ? 'page-gallery-style grid-rows-3'
                   : 'page-list-style',
-                'w-full min-h-[912px] lg:min-h-[904px]',
+                'page-default-style',
               )}
             >
               {useSortedData(

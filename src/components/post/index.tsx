@@ -50,9 +50,9 @@ export default function Post({
         <Link
           href={{ pathname: pathName, query: queryValue }}
           key={item.id}
-          className="h-[280px] post-link-style group"
+          className="h-[280px] post-link-style post-link"
         >
-          <div className="post-gallery-image-container">
+          <div className="post-gallery-image-container post-image-container">
             {itemData.url && (
               <Image
                 src={itemData.url}
@@ -83,7 +83,7 @@ export default function Post({
               />
             )}
           </div>
-          <div className="p-4 absolute bottom-0 w-full">
+          <div className="post-gallery-info post-info">
             <p className="post-name">{itemData.name}</p>
             <p className="post-gallery-desc">{itemData.description}</p>
             {item.created_time && (
@@ -97,9 +97,9 @@ export default function Post({
         <Link
           href={{ pathname: pathName }}
           key={item.id}
-          className="post-list-style post-link-style group"
+          className="post-list-style post-link-style post-link"
         >
-          <div className="post-list-image-container">
+          <div className="post-list-image-container post-image-container">
             {itemData.url && (
               <Image
                 src={itemData.url}
@@ -131,8 +131,8 @@ export default function Post({
               />
             )}
           </div>
-          <div className="flex h-full items-center ml-[calc(27%)] md:ml-[130px] z-20 w-[73%] md:w-[calc(100%-130px)]">
-            <div className="w-2/3 md:w-full">
+          <div className="post-list-info-left post-info">
+            <div>
               <p className="post-name">
                 {itemData.name.length > 40
                   ? itemData.name.slice(0, 39) + '...'
@@ -148,15 +148,13 @@ export default function Post({
               </span>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-end md:items-center gap-3 z-20 absolute right-4">
+          <div className="post-list-info-right post-info">
             <Tag
               tags={itemData.tags}
               viewStyle={viewStyle}
               tagCategory={tagCategory}
             />
-            <span className="hidden md:inline-block page-text-group-hover-effect page-text-group-hover-Anieffect-1000">
-              |
-            </span>
+            <span className="bar page-text-group-hover-Anieffect-1000">|</span>
             {item.created_time && (
               <span className="post-list-createdTime">
                 {changeDate(item.created_time)}

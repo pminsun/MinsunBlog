@@ -119,7 +119,7 @@ export default function Project({ projects }: ProjectistObject) {
         desc={'진행했던 프로젝트들을 기록합니다.'}
       />
       {mounted && (
-        <div className="laptop-max-width">
+        <div className="laptop-max-width postList-container">
           <Title
             title={'Projects'}
             subMent={'진행했던 프로젝트들을 기록합니다.'}
@@ -149,18 +149,17 @@ export default function Project({ projects }: ProjectistObject) {
               <PageState path={'projects'} />
             </div>
             {filteredList.length === 0 && (
-              <div className="w-full flex-center gap-2 post-link-style !cursor-default p-4">
-                <PiWarningCircle className="text-black dark:text-slate-400 text-xl" />
+              <div className="none-post-wrap flex-center post-link-style">
+                <PiWarningCircle />
                 <p>검색결과가 없습니다.</p>
               </div>
             )}
-
             <div
               className={cls(
                 viewStyle === 'gallery'
                   ? 'page-gallery-style grid-rows-3'
                   : 'page-list-style',
-                'w-full min-h-[912px] lg:min-h-[904px]',
+                'page-default-style',
               )}
             >
               {useSortedData(

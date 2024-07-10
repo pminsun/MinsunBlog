@@ -1,6 +1,6 @@
 /* Move to page or link */
 .home-container {
-  @apply px-5 lg:px-0;
+  @apply px-[14px] lg:px-0;
 
   .intro-container {
     @apply flex items-center flex-col md:flex-row gap-8 w-full md:h-[582px] mb-16 lg:mb-10;
@@ -201,6 +201,10 @@
           @apply pt-[3px];
         }
       }
+    }
+
+    .page-gallery-style {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full;
     }
   }
 }

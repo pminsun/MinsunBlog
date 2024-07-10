@@ -31,8 +31,8 @@ export default function blockDetail({
         desc={itemData.description}
         image={propertiesData.cover?.external?.url}
       />
-      <div className="px-5 lg:px-0 laptop-max-width">
-        <button onClick={backClick} className="block p-1">
+      <div className="backBtn-container laptop-max-width">
+        <button onClick={backClick}>
           <HiArrowLeft />
         </button>
       </div>
@@ -44,7 +44,7 @@ export default function blockDetail({
         description={itemData.description}
         awsImageName={awsImage}
       />
-      <div className="px-5 lg:px-0 pb-10 laptop-max-width">
+      <div className="post-detailContent-container laptop-max-width">
         {blockDetail?.results?.map((blockContent: any) => (
           <PostDetailContent
             key={blockContent.id}
