@@ -1,6 +1,6 @@
 /* Move to page or link */
 .home-container {
-  @apply px-[14px] lg:px-0;
+  @apply px-[14px] h-full lg:px-0;
 
   .intro-container {
     @apply flex items-center flex-col md:flex-row gap-8 w-full md:h-[582px] mb-16 lg:mb-10;
@@ -173,6 +173,37 @@
           }
         }
       }
+
+      /* 달력 없는 버전 */
+      &.none_calendar {
+        @apply flex flex-col justify-between;
+        > p.title {
+          @apply text-xl font-bold text-center;
+        }
+
+        > div {
+          @apply border-t border-b border-slate-400 pt-8;
+          .post-list-info-right.post-info {
+            @apply hidden;
+          }
+        }
+
+        a.goto-allpost {
+          @apply flex items-center justify-center gap-2 w-full h-10 text-sm text-white transition-all rounded-lg bg-slate-400;
+
+          &:hover {
+            @apply bg-[#2c82f2];
+          }
+
+          > p {
+            @apply font-semibold;
+          }
+
+          > div {
+            @apply pt-[3px];
+          }
+        }
+      }
     }
   }
 
@@ -205,6 +236,29 @@
 
     .page-gallery-style {
       @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full;
+    }
+  }
+
+  /* 공지 */
+  .notice-container {
+    @apply p-4 lg:p-6 text-center bg-gray-100 dark:bg-gray-800 rounded-lg;
+
+    > p.title {
+      @apply text-sm pb-2 border-b border-slate-400;
+    }
+    > div {
+      @apply flex flex-col pt-3 gap-3;
+
+      p {
+        @apply font-medium;
+      }
+
+      a {
+        @apply flex items-center justify-center px-4 py-2 font-semibold text-white transition-all rounded-md bg-slate-400;
+        &:hover {
+          @apply bg-[#2c82f2];
+        }
+      }
     }
   }
 }

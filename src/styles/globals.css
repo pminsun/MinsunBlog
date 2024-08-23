@@ -6,7 +6,7 @@
 @layer base {
   html,
   body {
-    @apply font-SCoreDream;
+    @apply font-SCoreDream h-full;
   }
   #__next {
     @apply flex flex-col min-h-full relative bg-primary pb-[65px];
