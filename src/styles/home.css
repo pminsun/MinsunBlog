@@ -178,7 +178,7 @@
       &.none_calendar {
         @apply flex flex-col justify-between;
         > p.title {
-          @apply text-xl font-bold text-center;
+          @apply text-lg font-semibold text-center;
         }
 
         > div {
