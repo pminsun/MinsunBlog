@@ -20,12 +20,12 @@ export default function Header() {
           >
             {DEFINE.PAGES.BLOG.ENG}
           </Link>
-          <Link
+          {/* <Link
             href="/project"
             className={cls(router.pathname.startsWith('/project') ? 'text-point-color' : '')}
           >
             {DEFINE.PAGES.PROJECTS.ENG}
-          </Link>
+          </Link> */}
         </nav>
         <DarkModeToggleBtn />
       </div>
