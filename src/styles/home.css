@@ -182,14 +182,18 @@
         }
 
         > div {
-          @apply !min-h-[300px] border-t border-b border-slate-400 pt-8;
+          @apply flex items-center w-full flex-col !min-h-[300px] px-0 border-t border-b border-slate-400 pt-8;
+
+          > a {
+            @apply w-full;
+          }
           .post-list-info-right.post-info {
             @apply hidden;
           }
         }
 
         a.goto-allpost {
-          @apply flex items-center justify-center gap-2 w-full h-10 text-sm text-white transition-all rounded-lg bg-slate-400;
+          @apply flex items-center justify-center gap-2 w-full h-10 mt-5 md:mt-0 text-sm text-white transition-all rounded-lg bg-slate-400;
 
           &:hover {
             @apply bg-[#2c82f2];

@@ -25,9 +25,6 @@ export default function Home({ combinedBlogs }: DataListObject) {
                   안녕하세요.
                   <br /> 새로운 기술을 학습하는 것을 좋아하는 <br /> 프론트엔드 개발자입니다.
                 </p>
-                <div className="link-innerPage">
-                  <Link href="/project">{DEFINE.PAGES.PROJECTS.KOR}</Link>
-                </div>
               </div>
             </div>
             <div className="link-outerPage">
