@@ -13,10 +13,6 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.535.0",
-    "@emotion/css": "^11.11.2",
-    "@emotion/react": "^11.11.1",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -44,11 +40,9 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.11.0",
     "@types/file-saver": "^2.0.7",
     "@types/react-highlight": "^0.12.7",
     "babel-plugin-macros": "^3.1.0",
-    "next-sitemap": "^4.2.3",
-    "twin.macro": "^3.4.0"
+    "next-sitemap": "^4.2.3"
   }
 }
