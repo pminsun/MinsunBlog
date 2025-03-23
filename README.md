@@ -64,19 +64,19 @@
 
 ### :art: 주요 색상
 
-| LightColor      | Hex                                                              |
-| --------------- | ---------------------------------------------------------------- |
-| Primary Color   | ![#fbfbfa](https://via.placeholder.com/10/fbfbfa?text=+) #fbfbfa |
-| Secondary Color | ![#f3f4f6](https://via.placeholder.com/10/f3f4f6?text=+) #f3f4f6 |
-| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/2c82f2?text=+) #2c82f2 |
-| Text Color      | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+| LightColor      | Hex                                                       |
+| --------------- | --------------------------------------------------------- |
+| Primary Color   | ![#fbfbfa](https://placehold.co/10x10/fbfbfa/png) #fbfbfa |
+| Secondary Color | ![#f3f4f6](https://placehold.co/10x10/f3f4f6/png) #f3f4f6 |
+| Accent Color    | ![#2c82f2](https://placehold.co/10x10/2c82f2/png) #2c82f2 |
+| Text Color      | ![#000000](https://placehold.co/10x10/000000/png) #000000 |
 
-| DarkColor       | Hex                                                               |
-| --------------- | ----------------------------------------------------------------- |
-| Primary Color   | ![#0f172a](https://via.placeholder.com/10/0f172a?text=+) #0f172a  |
-| Secondary Color | ![#1f2937](https://via.placeholder.com/10/1f2937?text=+) #1f2937  |
-| Accent Color    | ![#2c82f2](https://via.placeholder.com/10/2c82f2?text=+) #02c82f2 |
-| Text Color      | ![#94a3b8](https://via.placeholder.com/10/94a3b8?text=+) #94a3b8  |
+| DarkColor       | Hex                                                        |
+| --------------- | ---------------------------------------------------------- |
+| Primary Color   | ![#0f172a](https://placehold.co/10x10/0f172a/png) #0f172a  |
+| Secondary Color | ![#1f2937](https://placehold.co/10x10/1f2937/png) #1f2937  |
+| Accent Color    | ![#2c82f2](https://placehold.co/10x10/2c82f2/png) #02c82f2 |
+| Text Color      | ![#94a3b8](https://placehold.co/10x10/94a3b8/png) #94a3b8  |
 
 <!-- Env Variables -->
 
